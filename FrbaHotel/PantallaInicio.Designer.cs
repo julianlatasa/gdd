@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel
 {
-    partial class Pantalla_inicio
+    partial class PantallaInicio
     {
         /// <summary>
         /// Variable del diseñador requerida.

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel
 {
-    public partial class Pantalla_inicio : Form
+    public partial class PantallaInicio : Form
     {
-        public Pantalla_inicio()
+        public PantallaInicio()
         {
             InitializeComponent();
         }
