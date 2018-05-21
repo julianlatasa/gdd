@@ -1,6 +1,6 @@
-﻿namespace FrbaHotel.AbmCliente
+﻿namespace FrbaHotel.AbmHotel
 {
-    partial class ListadoCliente
+    partial class ListadoHotel
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoCliente));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoHotel));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nroIdentificacion = new System.Windows.Forms.MaskedTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tipoIdentificacion = new System.Windows.Forms.ComboBox();
+            this.cantEstrellas = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.email = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.apellido = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.ciudad = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.limpiar = new System.Windows.Forms.Button();
@@ -48,93 +44,71 @@
             this.rol1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.hotel1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.seleccionar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label5 = new System.Windows.Forms.Label();
+            this.pais = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.nroIdentificacion);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.tipoIdentificacion);
+            this.groupBox1.Controls.Add(this.cantEstrellas);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.email);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.apellido);
-            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.pais);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.ciudad);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.nombre);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(223, 153);
+            this.groupBox1.Size = new System.Drawing.Size(223, 125);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
             // 
-            // nroIdentificacion
+            // cantEstrellas
             // 
-            this.nroIdentificacion.Location = new System.Drawing.Point(103, 99);
-            this.nroIdentificacion.Mask = "99999999";
-            this.nroIdentificacion.Name = "nroIdentificacion";
-            this.nroIdentificacion.Size = new System.Drawing.Size(114, 20);
-            this.nroIdentificacion.TabIndex = 10;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 101);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Nro. identificación";
-            // 
-            // tipoIdentificacion
-            // 
-            this.tipoIdentificacion.FormattingEnabled = true;
-            this.tipoIdentificacion.Location = new System.Drawing.Point(103, 71);
-            this.tipoIdentificacion.Name = "tipoIdentificacion";
-            this.tipoIdentificacion.Size = new System.Drawing.Size(114, 21);
-            this.tipoIdentificacion.TabIndex = 9;
+            this.cantEstrellas.FormattingEnabled = true;
+            this.cantEstrellas.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.cantEstrellas.Location = new System.Drawing.Point(103, 43);
+            this.cantEstrellas.Name = "cantEstrellas";
+            this.cantEstrellas.Size = new System.Drawing.Size(114, 21);
+            this.cantEstrellas.TabIndex = 9;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 74);
+            this.label4.Location = new System.Drawing.Point(6, 46);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.Size = new System.Drawing.Size(86, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Tipo identificación";
+            this.label4.Text = "Cant de Estrellas";
             // 
-            // email
+            // ciudad
             // 
-            this.email.Location = new System.Drawing.Point(103, 125);
-            this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(114, 20);
-            this.email.TabIndex = 8;
+            this.ciudad.Location = new System.Drawing.Point(103, 70);
+            this.ciudad.Name = "ciudad";
+            this.ciudad.Size = new System.Drawing.Size(114, 20);
+            this.ciudad.TabIndex = 1;
             // 
-            // label2
+            // label3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 128);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "E-mail";
-            // 
-            // apellido
-            // 
-            this.apellido.Location = new System.Drawing.Point(103, 45);
-            this.apellido.Name = "apellido";
-            this.apellido.Size = new System.Drawing.Size(114, 20);
-            this.apellido.TabIndex = 8;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 48);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Apellido";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Ciudad";
             // 
             // nombre
             // 
@@ -154,7 +128,7 @@
             // 
             // limpiar
             // 
-            this.limpiar.Location = new System.Drawing.Point(13, 172);
+            this.limpiar.Location = new System.Drawing.Point(13, 144);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
             this.limpiar.TabIndex = 1;
@@ -164,7 +138,7 @@
             // 
             // buscar
             // 
-            this.buscar.Location = new System.Drawing.Point(161, 172);
+            this.buscar.Location = new System.Drawing.Point(161, 144);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(75, 23);
             this.buscar.TabIndex = 1;
@@ -180,7 +154,7 @@
             this.rol1,
             this.hotel1,
             this.seleccionar});
-            this.resultados.Location = new System.Drawing.Point(13, 202);
+            this.resultados.Location = new System.Drawing.Point(13, 174);
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 2;
@@ -210,11 +184,27 @@
             this.seleccionar.DisplayIndex = 1;
             this.seleccionar.Text = "";
             // 
-            // ListadoCliente
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 99);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "País";
+            // 
+            // pais
+            // 
+            this.pais.Location = new System.Drawing.Point(103, 96);
+            this.pais.Name = "pais";
+            this.pais.Size = new System.Drawing.Size(114, 20);
+            this.pais.TabIndex = 1;
+            // 
+            // ListadoHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 366);
+            this.ClientSize = new System.Drawing.Size(248, 339);
             this.Controls.Add(this.resultados);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.limpiar);
@@ -222,13 +212,13 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ListadoCliente";
+            this.Name = "ListadoHotel";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Listado Clientes";
+            this.Text = "Listado Hoteles";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ListadoCliente_Load);
+            this.Load += new System.EventHandler(this.ListadoUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -245,17 +235,15 @@
         private System.Windows.Forms.ListView resultados;
         private System.Windows.Forms.ColumnHeader usuario1;
         private System.Windows.Forms.ColumnHeader seleccionar;
-        private System.Windows.Forms.ComboBox tipoIdentificacion;
+        private System.Windows.Forms.ComboBox cantEstrellas;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox apellido;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ColumnHeader documento1;
         private System.Windows.Forms.ColumnHeader rol1;
         private System.Windows.Forms.ColumnHeader hotel1;
-        private System.Windows.Forms.TextBox email;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox nroIdentificacion;
+        private System.Windows.Forms.TextBox ciudad;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox pais;
+        private System.Windows.Forms.Label label5;
 
 
     }

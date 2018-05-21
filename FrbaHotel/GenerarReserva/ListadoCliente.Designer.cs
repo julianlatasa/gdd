@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.AbmCliente
+﻿namespace FrbaHotel.GenerarReserva
 {
     partial class ListadoCliente
     {
@@ -30,12 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoCliente));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nroIdentificacion = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tipoIdentificacion = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.email = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.apellido = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
@@ -48,6 +45,9 @@
             this.rol1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.hotel1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.seleccionar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label2 = new System.Windows.Forms.Label();
+            this.email = new System.Windows.Forms.TextBox();
+            this.nroIdentificacion = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,14 +69,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
-            // 
-            // nroIdentificacion
-            // 
-            this.nroIdentificacion.Location = new System.Drawing.Point(103, 99);
-            this.nroIdentificacion.Mask = "99999999";
-            this.nroIdentificacion.Name = "nroIdentificacion";
-            this.nroIdentificacion.Size = new System.Drawing.Size(114, 20);
-            this.nroIdentificacion.TabIndex = 10;
             // 
             // label5
             // 
@@ -103,22 +95,6 @@
             this.label4.Size = new System.Drawing.Size(93, 13);
             this.label4.TabIndex = 5;
             this.label4.Text = "Tipo identificación";
-            // 
-            // email
-            // 
-            this.email.Location = new System.Drawing.Point(103, 125);
-            this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(114, 20);
-            this.email.TabIndex = 8;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 128);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "E-mail";
             // 
             // apellido
             // 
@@ -210,6 +186,30 @@
             this.seleccionar.DisplayIndex = 1;
             this.seleccionar.Text = "";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 128);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "E-mail";
+            // 
+            // email
+            // 
+            this.email.Location = new System.Drawing.Point(103, 125);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(114, 20);
+            this.email.TabIndex = 8;
+            // 
+            // nroIdentificacion
+            // 
+            this.nroIdentificacion.Location = new System.Drawing.Point(103, 99);
+            this.nroIdentificacion.Mask = "99999999";
+            this.nroIdentificacion.Name = "nroIdentificacion";
+            this.nroIdentificacion.Size = new System.Drawing.Size(114, 20);
+            this.nroIdentificacion.TabIndex = 10;
+            // 
             // ListadoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,7 +226,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Listado Clientes";
+            this.Text = "Listado Roles";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ListadoCliente_Load);
             this.groupBox1.ResumeLayout(false);
