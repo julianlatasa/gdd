@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoCliente));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nroIdentificacion = new System.Windows.Forms.MaskedTextBox();
@@ -42,13 +43,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
-            this.resultados = new System.Windows.Forms.ListView();
-            this.usuario1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.documento1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.rol1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.hotel1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.seleccionar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.result_busq = new System.Windows.Forms.DataGridView();
+            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
+            this.cLIENTEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cLIENTETableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.CLIENTETableAdapter();
+            this.modificar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.result_busq)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cLIENTEBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -65,7 +68,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(223, 153);
+            this.groupBox1.Size = new System.Drawing.Size(250, 153);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
@@ -75,7 +78,7 @@
             this.nroIdentificacion.Location = new System.Drawing.Point(103, 99);
             this.nroIdentificacion.Mask = "99999999";
             this.nroIdentificacion.Name = "nroIdentificacion";
-            this.nroIdentificacion.Size = new System.Drawing.Size(114, 20);
+            this.nroIdentificacion.Size = new System.Drawing.Size(137, 20);
             this.nroIdentificacion.TabIndex = 10;
             // 
             // label5
@@ -92,7 +95,7 @@
             this.tipoIdentificacion.FormattingEnabled = true;
             this.tipoIdentificacion.Location = new System.Drawing.Point(103, 71);
             this.tipoIdentificacion.Name = "tipoIdentificacion";
-            this.tipoIdentificacion.Size = new System.Drawing.Size(114, 21);
+            this.tipoIdentificacion.Size = new System.Drawing.Size(137, 21);
             this.tipoIdentificacion.TabIndex = 9;
             // 
             // label4
@@ -108,7 +111,7 @@
             // 
             this.email.Location = new System.Drawing.Point(103, 125);
             this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(114, 20);
+            this.email.Size = new System.Drawing.Size(137, 20);
             this.email.TabIndex = 8;
             // 
             // label2
@@ -124,7 +127,7 @@
             // 
             this.apellido.Location = new System.Drawing.Point(103, 45);
             this.apellido.Name = "apellido";
-            this.apellido.Size = new System.Drawing.Size(114, 20);
+            this.apellido.Size = new System.Drawing.Size(137, 20);
             this.apellido.TabIndex = 8;
             // 
             // label8
@@ -140,7 +143,7 @@
             // 
             this.nombre.Location = new System.Drawing.Point(103, 19);
             this.nombre.Name = "nombre";
-            this.nombre.Size = new System.Drawing.Size(114, 20);
+            this.nombre.Size = new System.Drawing.Size(137, 20);
             this.nombre.TabIndex = 1;
             // 
             // label1
@@ -164,7 +167,7 @@
             // 
             // buscar
             // 
-            this.buscar.Location = new System.Drawing.Point(161, 172);
+            this.buscar.Location = new System.Drawing.Point(178, 173);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(75, 23);
             this.buscar.TabIndex = 1;
@@ -172,50 +175,46 @@
             this.buscar.UseVisualStyleBackColor = true;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
-            // resultados
+            // result_busq
             // 
-            this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.usuario1,
-            this.documento1,
-            this.rol1,
-            this.hotel1,
-            this.seleccionar});
-            this.resultados.Location = new System.Drawing.Point(13, 202);
-            this.resultados.Name = "resultados";
-            this.resultados.Size = new System.Drawing.Size(223, 154);
-            this.resultados.TabIndex = 2;
-            this.resultados.UseCompatibleStateImageBehavior = false;
+            this.result_busq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.result_busq.Location = new System.Drawing.Point(12, 202);
+            this.result_busq.Name = "result_busq";
+            this.result_busq.Size = new System.Drawing.Size(241, 150);
+            this.result_busq.TabIndex = 3;
+            this.result_busq.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.result_busq_CellContentClick);
             // 
-            // usuario1
+            // gD1C2018DataSet
             // 
-            this.usuario1.Text = "Usuario";
+            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
+            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // documento1
+            // cLIENTEBindingSource
             // 
-            this.documento1.DisplayIndex = 2;
-            this.documento1.Text = "Documento";
+            this.cLIENTEBindingSource.DataMember = "CLIENTE";
+            this.cLIENTEBindingSource.DataSource = this.gD1C2018DataSet;
             // 
-            // rol1
+            // cLIENTETableAdapter
             // 
-            this.rol1.DisplayIndex = 3;
-            this.rol1.Text = "Rol";
+            this.cLIENTETableAdapter.ClearBeforeFill = true;
             // 
-            // hotel1
+            // modificar
             // 
-            this.hotel1.DisplayIndex = 4;
-            this.hotel1.Text = "Hotel";
-            // 
-            // seleccionar
-            // 
-            this.seleccionar.DisplayIndex = 1;
-            this.seleccionar.Text = "";
+            this.modificar.Location = new System.Drawing.Point(178, 370);
+            this.modificar.Name = "modificar";
+            this.modificar.Size = new System.Drawing.Size(75, 23);
+            this.modificar.TabIndex = 4;
+            this.modificar.Text = "Modificar";
+            this.modificar.UseVisualStyleBackColor = true;
+            this.modificar.Click += new System.EventHandler(this.modificar_Click);
             // 
             // ListadoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 366);
-            this.Controls.Add(this.resultados);
+            this.ClientSize = new System.Drawing.Size(275, 405);
+            this.Controls.Add(this.modificar);
+            this.Controls.Add(this.result_busq);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.groupBox1);
@@ -231,6 +230,9 @@
             this.Load += new System.EventHandler(this.ListadoCliente_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.result_busq)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cLIENTEBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -242,20 +244,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
-        private System.Windows.Forms.ListView resultados;
-        private System.Windows.Forms.ColumnHeader usuario1;
-        private System.Windows.Forms.ColumnHeader seleccionar;
         private System.Windows.Forms.ComboBox tipoIdentificacion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox apellido;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ColumnHeader documento1;
-        private System.Windows.Forms.ColumnHeader rol1;
-        private System.Windows.Forms.ColumnHeader hotel1;
         private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox nroIdentificacion;
+        private System.Windows.Forms.DataGridView result_busq;
+        private GD1C2018DataSet gD1C2018DataSet;
+        private System.Windows.Forms.BindingSource cLIENTEBindingSource;
+        private GD1C2018DataSetTableAdapters.CLIENTETableAdapter cLIENTETableAdapter;
+        private System.Windows.Forms.Button modificar;
 
 
     }
