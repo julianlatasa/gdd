@@ -69,12 +69,14 @@ namespace FrbaHotel.AbmCliente
         private void buscar_Click(object sender, EventArgs e)
         {
             db = new SqlConnection(Properties.Settings.Default.Conection);
-            string sql = "select * from CLIENTE WHERE clie_tipo_doc = "+tipoIdentificacion+
+            /*string sql = "select * from CLIENTE WHERE clie_tipo_doc = "+tipoIdentificacion+
                 " AND clie_numero_doc = "+nroIdentificacion+ " AND clie_nombre like '%" + nombre + 
                 "%' AND clie_apellido like '%" + apellido + "%' AND clie_email = '"+email+"'";
-            com = new SqlCommand(sql, db);
-
-            //com = new SqlCommand("CLIENTE_Buscar '','',1,'',''", db);
+            */
+            //com = new SqlCommand(sql, db);
+            
+            try
+            {
 
             com = new SqlCommand("CLIENTE_Buscar", db);
             com.CommandType = CommandType.StoredProcedure;
@@ -91,70 +93,10 @@ namespace FrbaHotel.AbmCliente
             result_busq.DataSource = dt;
             
 
-            try
-            {
-                /*sql = "Select pais_id from pais where pais_nombre like '%" + paisDeOrigen.Text + "%'";
-
-                com = new SqlCommand(sql, db);
-                DataTable dt = new DataTable();
-                DataColumn dc = new DataColumn();
-                SqlDataAdapter dba = new SqlDataAdapter(com);
-                dba.Fill(dt);
-
-                DataSet dbs = new DataSet();
-                DataRow row;
-                if (dt.Rows.Count >= 1)
-                {
-                    row = dt.Rows[0];
-                    id_pais = row.Field<int>("pais_id");
-                }
-                else
-                    id_pais = 0;
-
-
-                dt.Clear();
-                sql = "Select naci_id from NACIONALIDAD";
-
-
-                com = new SqlCommand(sql, db);
-                dba = new SqlDataAdapter(com);
-                dba.Fill(dt);
-
-                if (dt.Rows.Count >= 1)
-                {
-                    id_nac = dt.Rows[0].Field<int>("naci_id");
-                }
-                else
-                    id_nac = 0;
-
-                String domicilio = direccion.Text + ' ' + altura.Text + ' ' + departamento.Text;
-
-                com = new SqlCommand("CLIENTE_CREAR", db);
-                com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@tipo_doc", tipoDocumento.SelectedValue);
-                com.Parameters.AddWithValue("@numero_doc", documento.Text);
-                com.Parameters.AddWithValue("@nombre", nombre.Text);
-                com.Parameters.AddWithValue("@apellido", apellido.Text);
-                com.Parameters.AddWithValue("@email", email.Text);
-                com.Parameters.AddWithValue("@telefono", telefono.Text);
-                com.Parameters.AddWithValue("@domicilio", domicilio);
-                com.Parameters.AddWithValue("@fecha_nac", DateTime.Parse(fechaNacimiento.Text));
-                com.Parameters.AddWithValue("@pais", id_pais);
-                com.Parameters.AddWithValue("@nacionalidad", id_nac);
-
-                if (com.ExecuteNonQuery() > 0)
-                {
-                    MessageBox.Show("Cliente ingresado con exito", "Alta cliente");
-
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo ingresar al cliente", "Alta cliente");
-                }*/
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en el procedimiento de alta de Clientes: " + ex.Message, "Alta cliente");
+                MessageBox.Show("Error en el procedimiento de Busqueda de Clientes: " + ex.Message, "Lista clientes");
             }
 
         }
@@ -189,17 +131,55 @@ namespace FrbaHotel.AbmCliente
 
         private void result_busq_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            modificacionCliente modCli = new modificacionCliente(result_busq.CurrentRow, this);
+            modCli.Show();
         }
 
 
         private void modificar_Click(object sender, EventArgs e)
         {
             //DataRowView selectedRow = result_busq.CurrentRow.Cells["id"];
-            MessageBox.Show(result_busq.CurrentRow.Cells["clie_id"].Value.ToString());
-            modificacionCliente modCli = new modificacionCliente(result_busq.CurrentRow);
+            modificacionCliente modCli = new modificacionCliente(result_busq.CurrentRow, this);
             modCli.Show();
+
+            this.Hide();
             
+        }
+
+        private void Eliminar_Click_1(object sender, EventArgs e)
+        {
+
+            MessageBoxButtons msg_eliminar = MessageBoxButtons.YesNo;
+            if (MessageBox.Show("Desea eliminar el registro seleccionado?", "Eliminar cliente", msg_eliminar) == DialogResult.Yes)
+            {
+                try
+                {
+                    db = new SqlConnection(Properties.Settings.Default.Conection);
+                    db.Open();
+                    DataGridViewRow row = result_busq.CurrentRow;
+                    com = new SqlCommand("CLIENTE_Eliminar", db);
+                    com.CommandType = CommandType.StoredProcedure;
+                    com.Parameters.AddWithValue("@clie_id", row.Cells["clie_id"].Value.ToString());
+                    com.Parameters.AddWithValue("@tipoDocumento", row.Cells["clie_tipo_doc"].Value.ToString());
+                    com.Parameters.AddWithValue("@nroDocumento", row.Cells["clie_numero_doc"].Value.ToString());
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        MessageBox.Show("Cliente Eliminado con exito", "Eliminar cliente");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar al cliente", "Eliminar cliente");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Al eliminar Cliente: " + ex.Message, "Eliminar cliente");
+                }
+
+                result_busq.Refresh();
+            }
         }
     }
 }

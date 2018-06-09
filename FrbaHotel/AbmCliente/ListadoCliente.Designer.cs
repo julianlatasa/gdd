@@ -48,6 +48,7 @@
             this.cLIENTEBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cLIENTETableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.CLIENTETableAdapter();
             this.modificar = new System.Windows.Forms.Button();
+            this.Eliminar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.result_busq)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
@@ -208,11 +209,22 @@
             this.modificar.UseVisualStyleBackColor = true;
             this.modificar.Click += new System.EventHandler(this.modificar_Click);
             // 
+            // Eliminar
+            // 
+            this.Eliminar.Location = new System.Drawing.Point(12, 370);
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Size = new System.Drawing.Size(75, 23);
+            this.Eliminar.TabIndex = 5;
+            this.Eliminar.Text = "Eliminar";
+            this.Eliminar.UseVisualStyleBackColor = true;
+            this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click_1);
+            // 
             // ListadoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(275, 405);
+            this.Controls.Add(this.Eliminar);
             this.Controls.Add(this.modificar);
             this.Controls.Add(this.result_busq);
             this.Controls.Add(this.buscar);
@@ -257,6 +269,7 @@
         private System.Windows.Forms.BindingSource cLIENTEBindingSource;
         private GD1C2018DataSetTableAdapters.CLIENTETableAdapter cLIENTETableAdapter;
         private System.Windows.Forms.Button modificar;
+        private System.Windows.Forms.Button Eliminar;
 
 
     }

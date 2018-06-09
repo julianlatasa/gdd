@@ -15,10 +15,11 @@ namespace FrbaHotel.AbmCliente
     {
         SqlConnection db;
         SqlCommand com;
-        public modificacionCliente(DataGridViewRow row)
+        Form listaPrevia;
+        public modificacionCliente(DataGridViewRow row, Form ListaClientes)
         {
             InitializeComponent();
-
+            listaPrevia = ListaClientes;
             db = new SqlConnection(Properties.Settings.Default.Conection);
             String sql = "Select pais_nombre from pais where pais_id = " + row.Cells["clie_pais"].Value.ToString();
 
@@ -48,18 +49,18 @@ namespace FrbaHotel.AbmCliente
             String nac = rowNac.Field<String>("naci_descripcion");
 
             sql = "Select pers_telefono from persona where pers_tipo_doc = " + row.Cells["clie_tipo_doc"].Value.ToString() +
-                "and pers_numero_doc = " + row.Cells["clie_numero_doc"].Value.ToString();
+                " and pers_numero_doc = '" + row.Cells["clie_numero_doc"].Value.ToString() +"'";
 
             com = new SqlCommand(sql, db);
             dt = new DataTable();
-            dc = new DataColumn();
             dba = new SqlDataAdapter(com);
             dba.Fill(dt);
 
             dbs = new DataSet();
-
-            String tel = dt.Rows[0].Field<String>("pers_telefono");
-
+            String tel;
+            if(dt.Rows.Count > 0)
+             tel = dt.Rows[0].Field<String>("pers_telefono");
+            else tel = "";
             DateTime fechaNac = Convert.ToDateTime(row.Cells["clie_fecha_nac"].Value.ToString());
 
             this.nombre.Text = row.Cells["clie_nombre"].Value.ToString();
@@ -76,9 +77,8 @@ namespace FrbaHotel.AbmCliente
             this.nombre.Text = row.Cells["clie_nombre"].Value.ToString();
         }
 
-        private void AltaCliente_Load(object sender, EventArgs e)
+        private void Modificacion_Load(object sender, EventArgs e)
         {
-            
                 db = new SqlConnection(Properties.Settings.Default.Conection);
                 string sql = "select tipo_id, tipo_nombre from TIPO_DOCUMENTO";
                 com = new SqlCommand(sql, db);
@@ -174,13 +174,19 @@ namespace FrbaHotel.AbmCliente
                     }
                     else
                     {
+                       
                         MessageBox.Show("No se pudo Modificar al cliente","Modificacion cliente");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error en el procedimiento de alta de Clientes: "+ex.Message,"Modificacion cliente");
+                    MessageBox.Show("Error en el procedimiento de Modificacion de Clientes: "+ex.Message,"Modificacion cliente");
                 }
+
+                this.Close();
+                this.Dispose();
+                listaPrevia.Refresh();
+                listaPrevia.Show();
             }
         }
 
@@ -219,5 +225,25 @@ namespace FrbaHotel.AbmCliente
             habilitado.Checked = true;
         }
 
+
+        private void Cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+            listaPrevia.Refresh();
+            listaPrevia.Show();
+        }
+
+        public void Close()
+        {
+            this.Close();
+            this.Dispose();
+            listaPrevia.Refresh();
+            listaPrevia.Show();
+        
+        }
+
+
     }
+
 }

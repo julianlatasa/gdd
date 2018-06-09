@@ -15,9 +15,13 @@
         {
             if (disposing && (components != null))
             {
+
                 components.Dispose();
             }
             base.Dispose(disposing);
+
+            listaPrevia.Refresh();
+            listaPrevia.Show();
         }
 
         #region Windows Form Designer generated code
@@ -60,12 +64,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.Cancelar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // limpiar
             // 
-            this.limpiar.Location = new System.Drawing.Point(12, 398);
+            this.limpiar.Location = new System.Drawing.Point(12, 427);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
             this.limpiar.TabIndex = 16;
@@ -75,6 +80,7 @@
             // 
             // guardar
             // 
+            this.guardar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.guardar.Location = new System.Drawing.Point(161, 398);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(75, 23);
@@ -354,11 +360,25 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Nombre";
             // 
+            // Cancelar
+            // 
+            this.Cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Cancelar.Location = new System.Drawing.Point(161, 427);
+            this.Cancelar.Name = "Cancelar";
+            this.Cancelar.Size = new System.Drawing.Size(75, 23);
+            this.Cancelar.TabIndex = 17;
+            this.Cancelar.Text = "Cancelar";
+            this.Cancelar.UseVisualStyleBackColor = true;
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            // 
             // modificacionCliente
             // 
+            this.AcceptButton = this.guardar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 429);
+            this.CancelButton = this.Cancelar;
+            this.ClientSize = new System.Drawing.Size(248, 454);
+            this.Controls.Add(this.Cancelar);
             this.Controls.Add(this.guardar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.groupBox2);
@@ -371,7 +391,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Modificar Cliente";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.AltaCliente_Load);
+            this.Load += new System.EventHandler(this.Modificacion_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -411,6 +431,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox localidad;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Cancelar;
 
     }
 }
