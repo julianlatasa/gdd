@@ -17,5 +17,10 @@ namespace FrbaHotel
             this.id = reader.GetInt32(reader.GetOrdinal("func_id"));
             this.nombre = reader.GetString(reader.GetOrdinal("func_nombre"));
         }
+
+        public override string ToString()
+        {
+            return nombre;
+        }
     }
 }

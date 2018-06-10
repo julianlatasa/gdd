@@ -7,15 +7,15 @@ using System.Data.SqlClient;
 
 namespace FrbaHotel
 {
-    class Hotel
+    public class TipoDocumento
     {
         public int id { get; set; }
         public string nombre { get; set; }
 
-        public Hotel(SqlDataReader reader)
+        public TipoDocumento(SqlDataReader reader)
         {
-            this.id = reader.GetInt32(reader.GetOrdinal("hote_id"));
-            this.nombre = reader.GetString(reader.GetOrdinal("hote_nombre"));
+            this.id = reader.GetInt32(reader.GetOrdinal("tipo_id"));
+            this.nombre = reader.GetString(reader.GetOrdinal("tipo_nombre"));
         }
 
         public override string ToString()

@@ -11,43 +11,74 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmUsuario
 {
-    public partial class AltaUsuario : Form
+    public partial class ModificarUsuario : Form
     {
+        private Usuario usuario2;
         private List<Rol> roles;
         private List<Hotel> hoteles;
+        private int[] rolesMarcados;
+        private int[] hotelesMarcados;
 
-        public AltaUsuario(List<Rol> roles, List<Hotel> hoteles)
+        public ModificarUsuario(Usuario usuario, List<Rol> roles, List<Hotel> hoteles)
         {
+            this.usuario2 = usuario;
             this.roles = roles;
             this.hoteles = hoteles;
             InitializeComponent();
         }
 
-        private void AltaUsuario_Load(object sender, EventArgs e)
+        private void ModificarUsuario_Load(object sender, EventArgs e)
         {
             obtenerTiposDocumentos();
-            rolesList.Items.AddRange(roles.ToArray());
-            hotelesList.Items.AddRange(hoteles.ToArray());
+
+            usuario.Text = usuario2.usuario;
+            nombre.Text = usuario2.nombre;
+            apellido.Text = usuario2.apellido;
+            tipoIdentificacion.SelectedItem = tipoIdentificacion.Items.Cast<TipoDocumento>().First(tp => tp.id == usuario2.tipoDocumento);
+            nroIdentificacion.Text = usuario2.nroDocumento;
+            email.Text = usuario2.email;
+            telefono.Text = usuario2.telefono;
+            direccion.Text = usuario2.domicilio;
+            fechaNacimiento.Text = usuario2.fechaDeNacimiento;
+            habilitado.Checked = usuario2.habilitado;
+
+            rolesMarcados = obtenerRolesMarcados();
+            hotelesMarcados = obtenerHotelesMarcados();
+
+            roles.ForEach(r => { rolesList.Items.Add(r, rolesMarcados.Any(rm => rm == r.id)); });
+            hoteles.ForEach(h => { hotelesList.Items.Add(h, hotelesMarcados.Any(hm => hm == h.id)); });
         }
 
         private void guardar_Click(object sender, EventArgs e)
         {
             if (validar())
             {
-                if (crearUsuario())
+                modificarUsuario();
+
+                List<Rol> roles2 = rolesList.CheckedItems.Cast<Rol>().ToList();
+                List<Hotel> hoteles2 = hotelesList.CheckedItems.Cast<Hotel>().ToList();
+
+                roles2.FindAll(r => !rolesMarcados.Contains(r.id)).ForEach(r =>
                 {
-                    rolesList.CheckedItems.Cast<Rol>().ToList().ForEach(r =>
-                    {
-                        asignarRol(r.id);
-                    });
+                    asignarRol(r.id);
+                });
 
-                    hotelesList.CheckedItems.Cast<Hotel>().ToList().ForEach(h =>
-                    {
-                        asignarHotel(h.id);
-                    });
+                rolesMarcados.Where(r => roles2.Any(r2 => r2.id == r)).ToList().ForEach(r =>
+                {
+                    eliminarRol(r);
+                });
 
-                    Close();
-                }
+                hoteles2.FindAll(h => !hotelesMarcados.Contains(h.id)).ForEach(h =>
+                {
+                    asignarHotel(h.id);
+                });
+
+                hotelesMarcados.Where(h => hoteles2.Any(h2 => h2.id == h)).ToList().ForEach(h =>
+                {
+                    eliminarHotel(h);
+                });
+
+                Close();
             }
         }
 
@@ -94,14 +125,73 @@ namespace FrbaHotel.AbmUsuario
             fechaNacimiento.Clear();
             rolesList.ClearSelected();
             hotelesList.ClearSelected();
+            habilitado.Checked = true;
         }
 
-        private bool crearUsuario()
+        private int[] obtenerRolesMarcados()
+        {
+            List<int> idRoles = new List<int>();
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT rol_id FROM USUARIO_ROL WHERE usua_usuario = " + Conexion.usuario;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    idRoles.Add(reader.GetInt32(reader.GetOrdinal("rol_id")));
+                }
+            }
+
+            reader.Close();
+            sqlConnection.Close();
+
+            return idRoles.ToArray();
+        }
+
+        private int[] obtenerHotelesMarcados()
+        {
+            List<int> idHoteles = new List<int>();
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT hote_id FROM USUARIO_HOTEL WHERE usua_usuario = " + Conexion.usuario;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    idHoteles.Add(reader.GetInt32(reader.GetOrdinal("hote_id")));
+                }
+            }
+
+            reader.Close();
+            sqlConnection.Close();
+
+            return idHoteles.ToArray();
+        }
+
+        private bool modificarUsuario()
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "USUARIO_Crear";
+            cmd.CommandText = "USUARIO_Modificar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
             cmd.Parameters.Add("@contrasena", SqlDbType.VarChar).Value = contrasena.Text;
@@ -113,6 +203,7 @@ namespace FrbaHotel.AbmUsuario
             cmd.Parameters.Add("@telefono", SqlDbType.VarChar).Value = telefono.Text;
             cmd.Parameters.Add("@domicilio", SqlDbType.VarChar).Value = String.Format("%s|%s|%s", direccion.Text, altura.Text, departamento.Text);
             cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = fechaNacimiento.Text;
+            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = habilitado.Checked ? 1 : 0;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -150,6 +241,24 @@ namespace FrbaHotel.AbmUsuario
             sqlConnection.Close();
         }
 
+        private void eliminarHotel(int idHotel)
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "USUARIO_Eliminar_Hotel";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = Conexion.usuario;
+            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = idHotel;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+        }
+
         private void asignarRol(int idRol)
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
@@ -158,6 +267,24 @@ namespace FrbaHotel.AbmUsuario
             cmd.CommandText = "USUARIO_Asignar_Rol";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
+            cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+        }
+
+        private void eliminarRol(int idRol)
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "USUARIO_Eliminar_Rol";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
             cmd.Connection = sqlConnection;
 

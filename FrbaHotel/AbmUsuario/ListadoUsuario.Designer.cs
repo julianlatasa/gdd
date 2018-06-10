@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoUsuario));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.hotel = new System.Windows.Forms.ComboBox();
+            this.hotelCombobox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.rol = new System.Windows.Forms.ComboBox();
+            this.rolCombobox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.usuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,18 +40,15 @@
             this.buscar = new System.Windows.Forms.Button();
             this.resultados = new System.Windows.Forms.ListView();
             this.usuario1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.documento1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.rol1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.hotel1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.seleccionar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.hotel);
+            this.groupBox1.Controls.Add(this.hotelCombobox);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.rol);
+            this.groupBox1.Controls.Add(this.rolCombobox);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.usuario);
             this.groupBox1.Controls.Add(this.label1);
@@ -62,13 +59,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
             // 
-            // hotel
+            // hotelCombobox
             // 
-            this.hotel.FormattingEnabled = true;
-            this.hotel.Location = new System.Drawing.Point(103, 70);
-            this.hotel.Name = "hotel";
-            this.hotel.Size = new System.Drawing.Size(114, 21);
-            this.hotel.TabIndex = 6;
+            this.hotelCombobox.FormattingEnabled = true;
+            this.hotelCombobox.Location = new System.Drawing.Point(103, 70);
+            this.hotelCombobox.Name = "hotelCombobox";
+            this.hotelCombobox.Size = new System.Drawing.Size(114, 21);
+            this.hotelCombobox.TabIndex = 6;
             // 
             // label5
             // 
@@ -79,13 +76,13 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Hotel";
             // 
-            // rol
+            // rolCombobox
             // 
-            this.rol.FormattingEnabled = true;
-            this.rol.Location = new System.Drawing.Point(103, 43);
-            this.rol.Name = "rol";
-            this.rol.Size = new System.Drawing.Size(114, 21);
-            this.rol.TabIndex = 9;
+            this.rolCombobox.FormattingEnabled = true;
+            this.rolCombobox.Location = new System.Drawing.Point(103, 43);
+            this.rolCombobox.Name = "rolCombobox";
+            this.rolCombobox.Size = new System.Drawing.Size(114, 21);
+            this.rolCombobox.TabIndex = 9;
             // 
             // label4
             // 
@@ -135,46 +132,35 @@
             // resultados
             // 
             this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.usuario1,
-            this.documento1,
-            this.rol1,
-            this.hotel1,
-            this.seleccionar});
+            this.usuario1});
             this.resultados.Location = new System.Drawing.Point(13, 150);
+            this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 2;
             this.resultados.UseCompatibleStateImageBehavior = false;
+            this.resultados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseDoubleClick);
             // 
             // usuario1
             // 
             this.usuario1.Text = "Usuario";
             // 
-            // documento1
+            // nuevo
             // 
-            this.documento1.DisplayIndex = 2;
-            this.documento1.Text = "Documento";
-            // 
-            // rol1
-            // 
-            this.rol1.DisplayIndex = 3;
-            this.rol1.Text = "Rol";
-            // 
-            // hotel1
-            // 
-            this.hotel1.DisplayIndex = 4;
-            this.hotel1.Text = "Hotel";
-            // 
-            // seleccionar
-            // 
-            this.seleccionar.DisplayIndex = 1;
-            this.seleccionar.Text = "";
+            this.nuevo.Location = new System.Drawing.Point(161, 310);
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(75, 23);
+            this.nuevo.TabIndex = 3;
+            this.nuevo.Text = "Nuevo";
+            this.nuevo.UseVisualStyleBackColor = true;
+            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
             // ListadoUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 314);
+            this.ClientSize = new System.Drawing.Size(248, 338);
+            this.Controls.Add(this.nuevo);
             this.Controls.Add(this.resultados);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.limpiar);
@@ -204,14 +190,11 @@
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.ListView resultados;
         private System.Windows.Forms.ColumnHeader usuario1;
-        private System.Windows.Forms.ColumnHeader seleccionar;
-        private System.Windows.Forms.ComboBox rol;
+        private System.Windows.Forms.ComboBox rolCombobox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox hotel;
+        private System.Windows.Forms.ComboBox hotelCombobox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ColumnHeader documento1;
-        private System.Windows.Forms.ColumnHeader rol1;
-        private System.Windows.Forms.ColumnHeader hotel1;
+        private System.Windows.Forms.Button nuevo;
 
 
     }

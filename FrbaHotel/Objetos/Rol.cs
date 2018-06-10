@@ -11,11 +11,23 @@ namespace FrbaHotel
     {
         public int id { get; set; }
         public string nombre { get; set; }
+        public bool habilitado { get; set; }
 
         public Rol(SqlDataReader reader)
         {
             this.id = reader.GetInt32(reader.GetOrdinal("rol_id"));
             this.nombre = reader.GetString(reader.GetOrdinal("rol_nombre"));
+
+            try
+            {
+                this.habilitado = reader.GetBoolean(reader.GetOrdinal("rol_habilitado"));
+            }
+            catch (Exception) { }
+        }
+
+        public override string ToString()
+        {
+            return nombre;
         }
     }
 }
