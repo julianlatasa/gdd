@@ -105,11 +105,11 @@ CREATE TABLE CLIENTE (
 	clie_apellido varchar(100) NOT NULL,
 	clie_email varchar(150) NOT NULL,
 	clie_habilitado char(1) NOT NULL DEFAULT 1,
-	clie_domicilio varchar(200),
-	clie_fecha_nac smalldatetime NOT NULL,
+	clie_domicilio varchar(200) NOT NULL,
+	clie_fecha_nac smalldatetime,
 	clie_localidad varchar(50),
 	clie_pais int NOT NULL FOREIGN KEY REFERENCES PAIS(pais_id),
-	clie_nacionalidad int NOT NULL FOREIGN KEY REFERENCES NACIONALIDAD(naci_id)
+	clie_nacionalidad int FOREIGN KEY REFERENCES NACIONALIDAD(naci_id)
 	)
 CREATE INDEX IDX_CLIENTE_clie_email ON CLIENTE (clie_email DESC);
 
