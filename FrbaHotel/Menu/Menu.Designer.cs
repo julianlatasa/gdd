@@ -33,6 +33,7 @@
             this.panelBotones = new System.Windows.Forms.Panel();
             this.salir = new System.Windows.Forms.Button();
             this.rolNombre = new System.Windows.Forms.Label();
+            this.cambiarContrasena = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,12 +74,23 @@
             this.rolNombre.Text = "Rol";
             this.rolNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // cambiarContrasena
+            // 
+            this.cambiarContrasena.Location = new System.Drawing.Point(121, 237);
+            this.cambiarContrasena.Name = "cambiarContrasena";
+            this.cambiarContrasena.Size = new System.Drawing.Size(115, 23);
+            this.cambiarContrasena.TabIndex = 5;
+            this.cambiarContrasena.Text = "Cambiar contraseña";
+            this.cambiarContrasena.UseVisualStyleBackColor = true;
+            this.cambiarContrasena.Click += new System.EventHandler(this.cambiarContrasena_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 239);
+            this.ClientSize = new System.Drawing.Size(248, 267);
             this.Controls.Add(this.rolNombre);
+            this.Controls.Add(this.cambiarContrasena);
             this.Controls.Add(this.salir);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -102,6 +114,7 @@
         private System.Windows.Forms.Panel panelBotones;
         private System.Windows.Forms.Button salir;
         private System.Windows.Forms.Label rolNombre;
+        private System.Windows.Forms.Button cambiarContrasena;
 
 
     }

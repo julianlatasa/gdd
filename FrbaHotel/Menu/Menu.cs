@@ -125,5 +125,10 @@ namespace FrbaHotel
             (new PantallaInicio()).Show();
             Close();
         }
+
+        private void cambiarContrasena_Click(object sender, EventArgs e)
+        {
+            (new CambiarContrasena()).ShowDialog();
+        }
     }
 }
