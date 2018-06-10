@@ -46,6 +46,7 @@ namespace FrbaHotel.AbmRol
         {
             ModificarRol modificarRol = new ModificarRol(roles[resultados.SelectedItems[0].Index]);
             modificarRol.ShowDialog();
+            buscarRoles();
         }
 
         private void buscarRoles()
@@ -73,9 +74,10 @@ namespace FrbaHotel.AbmRol
                 }
             }
             roles.ForEach(r => { resultados.Items.Add(r.nombre); });
-
+            
             reader.Close();
             sqlConnection.Close();
         }
+
     }
 }

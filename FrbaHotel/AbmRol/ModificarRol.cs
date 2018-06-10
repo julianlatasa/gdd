@@ -38,17 +38,16 @@ namespace FrbaHotel
                 modificarRol();
 
                 List<Funcionalidad> funcionalidades2 = funcionalidades.CheckedItems.Cast<Funcionalidad>().ToList();
-
+                
                 funcionalidades2.FindAll(f => !funcionalidadesMarcadas.Contains(f.id)).ForEach(f =>
                 {
                     asignarFuncionalidad(rol.id, f.id);
                 });
 
-                funcionalidadesMarcadas.Where(f => funcionalidades2.Any(f2 => f2.id == f)).ToList().ForEach(f =>
+                funcionalidadesMarcadas.Where(f => !funcionalidades2.Any(f2 => f2.id == f)).ToList().ForEach(f =>
                 {
                     eliminarFuncionalidad(rol.id, f);
                 });
-
                 Close();
             }
         }
@@ -61,8 +60,9 @@ namespace FrbaHotel
                 esValido = false;
                 MessageBox.Show("Campo NOMBRE es obligatorio");
             }
-
-            if (funcionalidades.SelectedItems.Count == 0)
+            
+           // if (funcionalidades.SelectedItems.Count == 0)
+            if (funcionalidades.CheckedItems.Count == 0)
             {
                 esValido = false;
                 MessageBox.Show("Seleccione una funcionalidad");
@@ -113,13 +113,14 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM FUNCIONALIDADES";
+            cmd.CommandText = "SELECT * FROM FUNCIONALIDAD";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
 
             reader = cmd.ExecuteReader();
+
 
             if (reader.HasRows)
             {
@@ -155,20 +156,27 @@ namespace FrbaHotel
 
         private void asignarFuncionalidad(int idRol, int idFuncionalidad)
         {
-            SqlConnection sqlConnection = Conexion.getSqlConnection();
-            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                SqlConnection sqlConnection = Conexion.getSqlConnection();
+                SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "ROL_Asignar_Funcionalidad";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
-            cmd.Parameters.Add("@idFuncionalidad", SqlDbType.Int).Value = idFuncionalidad;
-            cmd.Connection = sqlConnection;
+                cmd.CommandText = "ROL_Asignar_Funcionalidad";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
+                cmd.Parameters.Add("@idFuncionalidad", SqlDbType.Int).Value = idFuncionalidad;
+                cmd.Connection = sqlConnection;
 
-            sqlConnection.Open();
+                sqlConnection.Open();
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            sqlConnection.Close();
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void eliminarFuncionalidad(int idRol, int idFuncionalidad)
