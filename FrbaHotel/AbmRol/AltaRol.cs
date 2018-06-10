@@ -69,7 +69,7 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM FUNCIONALIDADES";
+            cmd.CommandText = "SELECT * FROM FUNCIONALIDAD";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -99,13 +99,22 @@ namespace FrbaHotel
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@nombreRol", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Connection = sqlConnection;
-
             sqlConnection.Open();
 
+            int idRol = 0;
             reader = cmd.ExecuteReader();
-            reader.Read();
-            int idRol = reader.GetInt32(0);
+            
+            try
+            {
+              reader.Read();
+              idRol = reader.GetInt32(0);
 
+
+            }
+            catch (Exception se)
+            {
+                MessageBox.Show("Error en el alta de Rol: "+se.Message,"Alta de Rol");
+            }
             reader.Close();
             sqlConnection.Close();
 

@@ -12,7 +12,7 @@ namespace FrbaHotel.Objetos
         public int id { get; set; }
         public string nombre { get; set; }
         public bool habilitado { get; set; }
-
+        
         public Rol(SqlDataReader reader)
         {
             this.id = reader.GetInt32(reader.GetOrdinal("rol_id"));
@@ -20,9 +20,12 @@ namespace FrbaHotel.Objetos
 
             try
             {
-                this.habilitado = reader.GetBoolean(reader.GetOrdinal("rol_habilitado"));
+                this.habilitado = reader.GetString(reader.GetOrdinal("rol_habilitado")).Equals("1")?true:false;
+                
             }
             catch (Exception) { }
+
+            
         }
 
         public override string ToString()
