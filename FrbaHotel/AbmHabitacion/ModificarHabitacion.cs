@@ -12,24 +12,37 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmHabitacion
 {
-    public partial class AltaHabitacion : Form
+    public partial class ModificarHabitacion : Form
     {
-        public AltaHabitacion()
+        private Habitacion habitacion;
+        private int[] comodidadesMarcadas;
+
+        public ModificarHabitacion(Habitacion habitacion)
         {
+            this.habitacion = habitacion;
             InitializeComponent();
         }
 
-        private void AltaHabitacion_Load(object sender, EventArgs e)
+        private void ModificarHabitacion_Load(object sender, EventArgs e)
         {
+            nroHabitacion.Text = habitacion.numero.ToString();
+            pisoHabitacion.Text = habitacion.piso.ToString();
+            ubicacionHotel.SelectedIndex = habitacion.vista == "N" ? 1 : 0;
+            habilitado.Checked = habitacion.habilitado;
+
+            comodidadesMarcadas = obtenerComodidadesMarcadas();
+
             obtenerTipos();
             obtenerComodidades();
+
+            tipoHabitacion.SelectedItem = tipoHabitacion.Items.Cast<TipoHabitacion>().ToList().First(th => th.id == habitacion.tipo);
         }
 
         private void guardar_Click(object sender, EventArgs e)
         {
             if (validar())
             {
-                crearHabitacion();
+                modificarHabitacion();
 
                 comodidades.CheckedItems.Cast<Comodidad>().ToList().ForEach(c =>
                 {
@@ -67,6 +80,35 @@ namespace FrbaHotel.AbmHabitacion
             descripcion.Clear();
             comodidades.ClearSelected();
             habilitado.Checked = true;
+        }
+
+        private int[] obtenerComodidadesMarcadas()
+        {
+            List<int> idComodidades = new List<int>();
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM HABITACION_COMODIDAD WHERE habi_hotel = " + Conexion.hotel + " AND habi_numero = " + habitacion.numero;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    idComodidades.Add(reader.GetInt32(reader.GetOrdinal("como_id")));
+                }
+            }
+
+            reader.Close();
+            sqlConnection.Close();
+
+            return idComodidades.ToArray();
         }
 
         private void obtenerTipos()
@@ -113,7 +155,8 @@ namespace FrbaHotel.AbmHabitacion
             {
                 while (reader.Read())
                 {
-                    comodidades.Items.Add(new Comodidad(reader));
+                    Comodidad comodidad = new Comodidad(reader);
+                    comodidades.Items.Add(comodidad, comodidadesMarcadas.Any(f => f == comodidad.id));
                 }
             }
 
@@ -121,19 +164,19 @@ namespace FrbaHotel.AbmHabitacion
             sqlConnection.Close();
         }
 
-        private void crearHabitacion()
+        private void modificarHabitacion()
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "HABITACION_Crear";
+            cmd.CommandText = "HABITACION_Modificar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
             cmd.Parameters.Add("@nroHabitacion", SqlDbType.VarChar).Value = nroHabitacion.Text;
             cmd.Parameters.Add("@piso", SqlDbType.VarChar).Value = pisoHabitacion.Text;
             cmd.Parameters.Add("@vista", SqlDbType.Char).Value = ubicacionHotel.SelectedIndex == 0 ? 'S' : 'N';
-            cmd.Parameters.Add("@tipo", SqlDbType.Int).Value = ((TipoHabitacion) tipoHabitacion.SelectedItem).id;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion.Text;
+            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = habilitado.Checked ? 1 : 0;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -149,6 +192,25 @@ namespace FrbaHotel.AbmHabitacion
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "HABITACION_Asignar_Comodidad";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
+            cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = nroHabitacion.Text;
+            cmd.Parameters.Add("@idComodidad", SqlDbType.Int).Value = idComodidad;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+        }
+
+        private void eliminarComodidad(int idComodidad)
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "HABITACION_Eliminar_Comodidad";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
             cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = nroHabitacion.Text;
