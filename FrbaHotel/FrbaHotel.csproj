@@ -92,6 +92,12 @@
     <Compile Include="AbmRol\AltaRol.Designer.cs">
       <DependentUpon>AltaRol.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRol\ModificarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\ModificarRol.Designer.cs">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\ListadoRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,7 @@
     <Compile Include="AbmCliente\ListadoCliente.Designer.cs">
       <DependentUpon>ListadoCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Conexion\Conexion.cs" />
     <Compile Include="GenerarModificacionReserva\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +171,8 @@
     <Compile Include="Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objetos\Funcionalidad.cs" />
+    <Compile Include="Objetos\Rol.cs" />
     <Compile Include="PantallaInicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\ModificarRol.resx">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ListadoRol.resx">
       <DependentUpon>ListadoRol.cs</DependentUpon>

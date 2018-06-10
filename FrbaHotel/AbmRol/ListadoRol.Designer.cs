@@ -36,7 +36,7 @@
             this.buscar = new System.Windows.Forms.Button();
             this.resultados = new System.Windows.Forms.ListView();
             this.nombre1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.seleccionar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,28 +90,35 @@
             // resultados
             // 
             this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nombre1,
-            this.seleccionar});
+            this.nombre1});
             this.resultados.Location = new System.Drawing.Point(13, 96);
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 2;
             this.resultados.UseCompatibleStateImageBehavior = false;
+            this.resultados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseDoubleClick);
             // 
             // nombre1
             // 
             this.nombre1.Text = "Nombre";
             // 
-            // seleccionar
+            // nuevo
             // 
-            this.seleccionar.Text = "";
+            this.nuevo.Location = new System.Drawing.Point(161, 256);
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(75, 23);
+            this.nuevo.TabIndex = 1;
+            this.nuevo.Text = "Nuevo";
+            this.nuevo.UseVisualStyleBackColor = true;
+            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
             // ListadoRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 262);
+            this.ClientSize = new System.Drawing.Size(248, 285);
             this.Controls.Add(this.resultados);
+            this.Controls.Add(this.nuevo);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.groupBox1);
@@ -140,7 +147,7 @@
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.ListView resultados;
         private System.Windows.Forms.ColumnHeader nombre1;
-        private System.Windows.Forms.ColumnHeader seleccionar;
+        private System.Windows.Forms.Button nuevo;
 
 
     }
