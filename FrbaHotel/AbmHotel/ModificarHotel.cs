@@ -12,25 +12,30 @@ using FrbaHotel.Objetos;
 
 namespace FrbaHotel.AbmHotel
 {
-    public partial class AltaHotel : Form
+    public partial class ModificarHotel : Form
     {
         private List<Estrella> estrellas;
         private List<Pais> paises;
         private List<Ciudad> ciudades;
+        private int[] regimenesMarcados;
+        private Hotel hotel;
 
-        public AltaHotel(List<Estrella> estrellas, List<Pais> paises, List<Ciudad> ciudades)
+        public ModificarHotel(Hotel hotel, List<Estrella> estrellas, List<Pais> paises, List<Ciudad> ciudades)
         {
+            this.hotel = hotel;
             this.estrellas = estrellas;
             this.paises = paises;
             this.ciudades = ciudades;
             InitializeComponent();
         }
 
-        private void AltaHotel_Load(object sender, EventArgs e)
+        private void ModificarHotel_Load(object sender, EventArgs e)
         {
             estrellas2.Items.AddRange(estrellas.ToArray());
             pais.Items.AddRange(paises.ToArray());
             ciudad.Items.AddRange(ciudades.ToArray());
+
+            regimenesMarcados = obtenerRegimenesMarcados();
 
             obtenerRegimenes();
         }
@@ -39,11 +44,18 @@ namespace FrbaHotel.AbmHotel
         {
             if (validar())
             {
-                int idHotel = crearHotel();
+                modificarHotel();
 
-                regimenesList.CheckedItems.Cast<Regimen>().ToList().ForEach(r =>
+                List<Regimen> regimenes = regimenesList.CheckedItems.Cast<Regimen>().ToList();
+
+                regimenes.FindAll(r => !regimenesMarcados.Contains(r.id)).ForEach(r =>
                 {
-                    asignarRegimen(idHotel, r.id);
+                    asignarRegimen(hotel.id, r.id);
+                });
+
+                regimenesMarcados.Where(r => regimenes.Any(r2 => r2.id == r)).ToList().ForEach(r =>
+                {
+                    eliminarRegimen(hotel.id, r);
                 });
 
                 Close();
@@ -68,6 +80,18 @@ namespace FrbaHotel.AbmHotel
             return esValido;
         }
 
+        private void bajaTemporal_Click(object sender, EventArgs e)
+        {
+            using (BajaTemporal bajaTemporal = new BajaTemporal(hotel))
+            {
+                DialogResult dr = bajaTemporal.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    Close();
+                }
+            }
+        }
+
         private void limpiar_Click(object sender, EventArgs e)
         {
             nombre.Clear();
@@ -80,14 +104,14 @@ namespace FrbaHotel.AbmHotel
             fechaCreacion.Clear();
         }
 
-        private int crearHotel()
+        private void modificarHotel()
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader;
-            
-            cmd.CommandText = "HOTEL_Crear";
+
+            cmd.CommandText = "HOTEL_Modificar";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = hotel.id;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
             cmd.Parameters.Add("@telefono", SqlDbType.VarChar).Value = telefono.Text;
@@ -99,14 +123,38 @@ namespace FrbaHotel.AbmHotel
 
             sqlConnection.Open();
 
+            cmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+        }
+
+        private int[] obtenerRegimenesMarcados()
+        {
+            List<int> idRegimenes = new List<int>();
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT regi_id FROM HOTEL_REGIMEN WHERE hote_id = " + hotel.id;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
             reader = cmd.ExecuteReader();
-            reader.Read();
-            int idHotel = reader.GetInt32(0);
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    idRegimenes.Add(reader.GetInt32(reader.GetOrdinal("regi_id")));
+                }
+            }
 
             reader.Close();
             sqlConnection.Close();
 
-            return idHotel;
+            return idRegimenes.ToArray();
         }
 
         private void obtenerRegimenes()
@@ -127,7 +175,8 @@ namespace FrbaHotel.AbmHotel
             {
                 while (reader.Read())
                 {
-                    regimenesList.Items.Add(new Regimen(reader));
+                    Regimen regimen = new Regimen(reader);
+                    regimenesList.Items.Add(regimen, regimenesMarcados.Any(f => f == regimen.id));
                 }
             }
 
@@ -141,6 +190,24 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandText = "HOTEL_Asignar_Regimen";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = idHotel;
+            cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = idRegimen;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            sqlConnection.Close();
+        }
+
+        private void eliminarRegimen(int idHotel, int idRegimen)
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "HOTEL_Eliminar_Regimen";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = idHotel;
             cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = idRegimen;

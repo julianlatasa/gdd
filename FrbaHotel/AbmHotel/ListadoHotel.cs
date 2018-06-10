@@ -49,7 +49,7 @@ namespace FrbaHotel.AbmHotel
 
         private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
+            (new ModificarHotel(hoteles[resultados.SelectedItems[0].Index], estrellas.Items.Cast<Estrella>().ToList(), pais.Items.Cast<Pais>().ToList(), ciudad.Items.Cast<Ciudad>().ToList())).ShowDialog();
         }
 
         private void obtenerHoteles()
