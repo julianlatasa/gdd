@@ -62,7 +62,7 @@
             this.usuario.Location = new System.Drawing.Point(104, 18);
             this.usuario.Name = "usuario";
             this.usuario.Size = new System.Drawing.Size(114, 20);
-            this.usuario.TabIndex = 3;
+            this.usuario.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -82,7 +82,7 @@
             this.contrasena.Location = new System.Drawing.Point(104, 44);
             this.contrasena.Name = "contrasena";
             this.contrasena.Size = new System.Drawing.Size(114, 20);
-            this.contrasena.TabIndex = 3;
+            this.contrasena.TabIndex = 2;
             this.contrasena.UseSystemPasswordChar = true;
             // 
             // ingresar
@@ -90,7 +90,7 @@
             this.ingresar.Location = new System.Drawing.Point(161, 92);
             this.ingresar.Name = "ingresar";
             this.ingresar.Size = new System.Drawing.Size(75, 23);
-            this.ingresar.TabIndex = 5;
+            this.ingresar.TabIndex = 3;
             this.ingresar.Text = "Ingresar";
             this.ingresar.UseVisualStyleBackColor = true;
             this.ingresar.Click += new System.EventHandler(this.ingresar_Click);
@@ -100,7 +100,7 @@
             this.limpiar.Location = new System.Drawing.Point(12, 92);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 5;
+            this.limpiar.TabIndex = 4;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -119,7 +119,7 @@
             this.Name = "Login";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iniciar Sesión";
             this.TopMost = true;
             this.groupBox1.ResumeLayout(false);

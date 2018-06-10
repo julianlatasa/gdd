@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Objetos;
 
 namespace FrbaHotel
 {
@@ -56,14 +57,16 @@ namespace FrbaHotel
         {
             Boolean esValido = true;
             if (String.IsNullOrEmpty(nombre.Text))
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Campo NOMBRE es obligatorio");
+            }
 
             if (funcionalidades.SelectedItems.Count == 0)
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Seleccione una funcionalidad");
+            }
 
             return esValido;
         }

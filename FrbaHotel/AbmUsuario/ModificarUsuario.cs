@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Objetos;
 
 namespace FrbaHotel.AbmUsuario
 {
@@ -38,7 +39,9 @@ namespace FrbaHotel.AbmUsuario
             nroIdentificacion.Text = usuario2.nroDocumento;
             email.Text = usuario2.email;
             telefono.Text = usuario2.telefono;
-            direccion.Text = usuario2.domicilio;
+            direccion.Text = usuario2.domicilio.Split('|')[0];
+            altura.Text = usuario2.domicilio.Split('|')[1];
+            departamento.Text = usuario2.domicilio.Split('|')[2];
             fechaNacimiento.Text = usuario2.fechaDeNacimiento;
             habilitado.Checked = usuario2.habilitado;
 
@@ -98,14 +101,16 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show(errores, "ERROR");
 
             if (rolesList.SelectedItems.Count == 0)
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Seleccione un rol");
+            }
 
             if (hotelesList.SelectedItems.Count == 0)
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Seleccione un hotel");
+            }
 
             return esValido;
         }

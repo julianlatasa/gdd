@@ -31,19 +31,22 @@ namespace FrbaHotel
         {
             Boolean esValido = true;
             if (String.IsNullOrEmpty(contrasena.Text))
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Campo NUEVA CONTRASEÑA es obligatorio");
+            }
 
             if (String.IsNullOrEmpty(repetirContrasena.Text))
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Campo REPETIR CONTRASEÑA es obligatorio");
+            }
 
             if (contrasena.Text != repetirContrasena.Text)
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Ambos campos deben ser idénticos");
+            }
 
             return esValido;
         }

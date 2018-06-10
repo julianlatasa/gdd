@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 
-namespace FrbaHotel
+namespace FrbaHotel.Objetos
 {
-    class Usuario
+    public class Usuario
     {
         public string usuario { get; set; }
         public string email { get; set; }

@@ -382,7 +382,7 @@
             this.Name = "AltaUsuario";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Usuario";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.AltaUsuario_Load);

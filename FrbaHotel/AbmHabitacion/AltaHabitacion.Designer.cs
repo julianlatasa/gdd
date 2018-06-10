@@ -233,7 +233,7 @@
             this.Name = "AltaHabitacion";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Habitación";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.AltaHabitacion_Load);

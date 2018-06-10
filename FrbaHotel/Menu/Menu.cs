@@ -122,7 +122,6 @@ namespace FrbaHotel
 
         private void salir_Click(object sender, EventArgs e)
         {
-            (new PantallaInicio()).Show();
             Close();
         }
 

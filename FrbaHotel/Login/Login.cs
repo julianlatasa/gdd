@@ -27,18 +27,20 @@ namespace FrbaHotel.Login
             }
         }
 
-        private Boolean validar()
+        private bool validar()
         {
             Boolean esValido = true;
             if (String.IsNullOrEmpty(usuario.Text))
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Campo USUARIO es obligatorio");
+            }
 
             if (String.IsNullOrEmpty(contrasena.Text))
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Campo CONTRASEÑA es obligatorio");
+            }
 
             return esValido;
         }

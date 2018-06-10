@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Objetos;
 
 namespace FrbaHotel.AbmUsuario
 {
@@ -67,14 +68,16 @@ namespace FrbaHotel.AbmUsuario
                 MessageBox.Show(errores, "ERROR");
 
             if (rolesList.SelectedItems.Count == 0)
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Seleccione un rol");
+            }
 
             if (hotelesList.SelectedItems.Count == 0)
+            {
                 esValido = false;
-            else
                 MessageBox.Show("Seleccione un hotel");
+            }
 
             return esValido;
         }

@@ -108,7 +108,7 @@
             this.Name = "CambiarContrasena";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cambiar contraseña";
             this.TopMost = true;
             this.groupBox1.ResumeLayout(false);

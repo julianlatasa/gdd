@@ -86,6 +86,12 @@
     <Compile Include="AbmRegimen\BajaModRegimen.Designer.cs">
       <DependentUpon>BajaModRegimen.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmRegimen\ListadoRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRegimen\ListadoRegimen.Designer.cs">
+      <DependentUpon>ListadoRegimen.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\AltaRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,11 +110,17 @@
     <Compile Include="AbmRol\ListadoRol.Designer.cs">
       <DependentUpon>ListadoRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="CancelarReserva\Form1.cs">
+    <Compile Include="AbmUsuario\ModificarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CancelarReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmUsuario\ModificarUsuario.Designer.cs">
+      <DependentUpon>ModificarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CancelarReserva\CancelarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancelarReserva\CancelarReserva.Designer.cs">
+      <DependentUpon>CancelarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmUsuario\AltaUsuario.cs">
       <SubType>Form</SubType>
@@ -165,12 +177,43 @@
     <Compile Include="GenerarReserva\ModalCliente.Designer.cs">
       <DependentUpon>ModalCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\SeleccionarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\SeleccionarRol.Designer.cs">
+      <DependentUpon>SeleccionarRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\SeleccionarHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\SeleccionarHotel.Designer.cs">
+      <DependentUpon>SeleccionarHotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menu\CambiarContrasena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\CambiarContrasena.Designer.cs">
+      <DependentUpon>CambiarContrasena.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Objetos\Ciudad.cs" />
+    <Compile Include="Objetos\Regimen.cs" />
+    <Compile Include="Objetos\Estrella.cs" />
+    <Compile Include="Objetos\Pais.cs" />
+    <Compile Include="Objetos\TipoDocumento.cs" />
+    <Compile Include="Objetos\Usuario.cs" />
+    <Compile Include="Objetos\Hotel.cs" />
     <Compile Include="Objetos\Funcionalidad.cs" />
     <Compile Include="Objetos\Rol.cs" />
     <Compile Include="PantallaInicio.cs">
@@ -225,6 +268,9 @@
     <EmbeddedResource Include="AbmRegimen\BajaModRegimen.resx">
       <DependentUpon>BajaModRegimen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmRegimen\ListadoRegimen.resx">
+      <DependentUpon>ListadoRegimen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuario\AltaUsuario.resx">
       <DependentUpon>AltaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuario\ModificarUsuario.resx">
+      <DependentUpon>ModificarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuario\ListadoUsuario.resx">
       <DependentUpon>ListadoUsuario.cs</DependentUpon>
@@ -258,8 +307,20 @@
     <EmbeddedResource Include="GenerarReserva\ModalCliente.resx">
       <DependentUpon>ModalCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login\SeleccionarRol.resx">
+      <DependentUpon>SeleccionarRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\SeleccionarHotel.resx">
+      <DependentUpon>SeleccionarHotel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\CambiarContrasena.resx">
+      <DependentUpon>CambiarContrasena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PantallaInicio.resx">
       <DependentUpon>PantallaInicio.cs</DependentUpon>

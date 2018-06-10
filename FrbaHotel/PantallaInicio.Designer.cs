@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaInicio));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.user_button = new System.Windows.Forms.Button();
@@ -58,7 +59,7 @@
             // 
             this.user_button.Location = new System.Drawing.Point(55, 127);
             this.user_button.Name = "user_button";
-            this.user_button.Size = new System.Drawing.Size(163, 23);
+            this.user_button.Size = new System.Drawing.Size(163, 33);
             this.user_button.TabIndex = 2;
             this.user_button.Text = "Ingresar como usuario";
             this.user_button.UseVisualStyleBackColor = true;
@@ -66,15 +67,15 @@
             // 
             // guest_button
             // 
-            this.guest_button.Location = new System.Drawing.Point(55, 191);
+            this.guest_button.Location = new System.Drawing.Point(55, 181);
             this.guest_button.Name = "guest_button";
-            this.guest_button.Size = new System.Drawing.Size(163, 23);
+            this.guest_button.Size = new System.Drawing.Size(163, 33);
             this.guest_button.TabIndex = 3;
             this.guest_button.Text = "Ingresar como invitado";
             this.guest_button.UseVisualStyleBackColor = true;
             this.guest_button.Click += new System.EventHandler(this.guest_button_Click);
             // 
-            // Form1
+            // PantallaInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -83,7 +84,12 @@
             this.Controls.Add(this.user_button);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "PantallaInicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingreso al Sistema";
             this.ResumeLayout(false);
             this.PerformLayout();

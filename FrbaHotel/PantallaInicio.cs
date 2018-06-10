@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,16 +18,39 @@ namespace FrbaHotel
             InitializeComponent();
         }
 
-        //ACCION CLICK EN "INGRESAR COMO USUARIO"
         private void user_button_Click(object sender, EventArgs e)
         {
-            
+            FrbaHotel.Login.Login login = new FrbaHotel.Login.Login();
+            login.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
+            { Show(); };
+            login.Show();
+            Hide();
         }
 
-        //ACCION CLICK EN "INGRESAR COMO INVITADO"
         private void guest_button_Click(object sender, EventArgs e)
         {
-            
+            Conexion.rolNombre = "INVITADO";
+
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "GUEST_Login";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+            reader.Read();
+            Conexion.rol = reader.GetInt32(reader.GetOrdinal("rol_id"));
+            Conexion.usuario = reader.GetString(reader.GetOrdinal("usua_usuario"));
+
+            reader.Close();
+            sqlConnection.Close();
+
+            (new Menu()).Show();
+            Close();
         }
     }
 }

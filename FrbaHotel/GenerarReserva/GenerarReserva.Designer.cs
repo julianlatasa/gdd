@@ -242,7 +242,7 @@
             this.Name = "GenerarReserva";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generar Reserva";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.GenerarReserva_Load);

@@ -41,7 +41,6 @@
             this.registrado.TabIndex = 5;
             this.registrado.Text = "Registrado";
             this.registrado.UseVisualStyleBackColor = true;
-            this.registrado.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // sinRegistrar
             // 
@@ -51,7 +50,6 @@
             this.sinRegistrar.TabIndex = 5;
             this.sinRegistrar.Text = "Sin Registrar";
             this.sinRegistrar.UseVisualStyleBackColor = true;
-            this.sinRegistrar.Click += new System.EventHandler(this.guardar_Click);
             // 
             // ModalCliente
             // 
@@ -66,7 +64,7 @@
             this.Name = "ModalCliente";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ModalCliente_Load);
             this.ResumeLayout(false);

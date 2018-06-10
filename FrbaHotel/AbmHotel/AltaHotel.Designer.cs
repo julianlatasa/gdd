@@ -37,13 +37,13 @@
             this.labelHa = new System.Windows.Forms.Label();
             this.telefono = new System.Windows.Forms.MaskedTextBox();
             this.fechaCreacion = new System.Windows.Forms.MaskedTextBox();
-            this.cantEstrellas = new System.Windows.Forms.ComboBox();
+            this.pais = new System.Windows.Forms.ComboBox();
+            this.ciudad = new System.Windows.Forms.ComboBox();
+            this.estrellas2 = new System.Windows.Forms.ComboBox();
             this.regimen = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.pais = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.ciudad = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.direccion = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -82,13 +82,13 @@
             this.groupBox2.Controls.Add(this.labelHa);
             this.groupBox2.Controls.Add(this.telefono);
             this.groupBox2.Controls.Add(this.fechaCreacion);
-            this.groupBox2.Controls.Add(this.cantEstrellas);
+            this.groupBox2.Controls.Add(this.pais);
+            this.groupBox2.Controls.Add(this.ciudad);
+            this.groupBox2.Controls.Add(this.estrellas2);
             this.groupBox2.Controls.Add(this.regimen);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.pais);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.ciudad);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.direccion);
             this.groupBox2.Controls.Add(this.label11);
@@ -150,10 +150,10 @@
             this.fechaCreacion.TabIndex = 5;
             this.fechaCreacion.ValidatingType = typeof(System.DateTime);
             // 
-            // cantEstrellas
+            // pais
             // 
-            this.cantEstrellas.FormattingEnabled = true;
-            this.cantEstrellas.Items.AddRange(new object[] {
+            this.pais.FormattingEnabled = true;
+            this.pais.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -164,10 +164,48 @@
             "8",
             "9",
             "10"});
-            this.cantEstrellas.Location = new System.Drawing.Point(104, 122);
-            this.cantEstrellas.Name = "cantEstrellas";
-            this.cantEstrellas.Size = new System.Drawing.Size(114, 21);
-            this.cantEstrellas.TabIndex = 4;
+            this.pais.Location = new System.Drawing.Point(104, 175);
+            this.pais.Name = "pais";
+            this.pais.Size = new System.Drawing.Size(114, 21);
+            this.pais.TabIndex = 4;
+            // 
+            // ciudad
+            // 
+            this.ciudad.FormattingEnabled = true;
+            this.ciudad.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.ciudad.Location = new System.Drawing.Point(104, 149);
+            this.ciudad.Name = "ciudad";
+            this.ciudad.Size = new System.Drawing.Size(114, 21);
+            this.ciudad.TabIndex = 4;
+            // 
+            // estrellas2
+            // 
+            this.estrellas2.FormattingEnabled = true;
+            this.estrellas2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.estrellas2.Location = new System.Drawing.Point(104, 122);
+            this.estrellas2.Name = "estrellas2";
+            this.estrellas2.Size = new System.Drawing.Size(114, 21);
+            this.estrellas2.TabIndex = 4;
             // 
             // regimen
             // 
@@ -195,13 +233,6 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Cant de Estrellas";
             // 
-            // pais
-            // 
-            this.pais.Location = new System.Drawing.Point(104, 175);
-            this.pais.Name = "pais";
-            this.pais.Size = new System.Drawing.Size(114, 20);
-            this.pais.TabIndex = 3;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -210,13 +241,6 @@
             this.label4.Size = new System.Drawing.Size(29, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "País";
-            // 
-            // ciudad
-            // 
-            this.ciudad.Location = new System.Drawing.Point(104, 149);
-            this.ciudad.Name = "ciudad";
-            this.ciudad.Size = new System.Drawing.Size(114, 20);
-            this.ciudad.TabIndex = 3;
             // 
             // label2
             // 
@@ -298,7 +322,7 @@
             this.Name = "AltaHotel";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Hotel";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.AltaHotel_Load);
@@ -326,13 +350,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox habilitado;
         private System.Windows.Forms.Label labelHa;
-        private System.Windows.Forms.ComboBox cantEstrellas;
+        private System.Windows.Forms.ComboBox estrellas2;
         private System.Windows.Forms.ComboBox regimen;
-        private System.Windows.Forms.TextBox pais;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox ciudad;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox pais;
+        private System.Windows.Forms.ComboBox ciudad;
 
     }
 }

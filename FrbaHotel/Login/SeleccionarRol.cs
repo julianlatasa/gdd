@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Objetos;
 
 namespace FrbaHotel
 {
@@ -93,8 +94,10 @@ namespace FrbaHotel
         private void irAMenuPrincipal()
         {
             Menu menu = new Menu();
+            menu.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
+            { Close(); };
             menu.Show();
-            Close();
+            Hide();
         }
     }
 }

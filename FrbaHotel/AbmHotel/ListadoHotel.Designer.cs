@@ -30,32 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoHotel));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cantEstrellas = new System.Windows.Forms.ComboBox();
+            this.pais = new System.Windows.Forms.ComboBox();
+            this.ciudad = new System.Windows.Forms.ComboBox();
+            this.estrellas = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.ciudad = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.resultados = new System.Windows.Forms.ListView();
-            this.usuario1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.documento1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.rol1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.hotel1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.seleccionar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label5 = new System.Windows.Forms.Label();
-            this.pais = new System.Windows.Forms.TextBox();
+            this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cantEstrellas);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.pais);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.ciudad);
+            this.groupBox1.Controls.Add(this.estrellas);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.nombre);
             this.groupBox1.Controls.Add(this.label1);
@@ -66,10 +62,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
             // 
-            // cantEstrellas
+            // pais
             // 
-            this.cantEstrellas.FormattingEnabled = true;
-            this.cantEstrellas.Items.AddRange(new object[] {
+            this.pais.FormattingEnabled = true;
+            this.pais.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -80,10 +76,48 @@
             "8",
             "9",
             "10"});
-            this.cantEstrellas.Location = new System.Drawing.Point(103, 43);
-            this.cantEstrellas.Name = "cantEstrellas";
-            this.cantEstrellas.Size = new System.Drawing.Size(114, 21);
-            this.cantEstrellas.TabIndex = 9;
+            this.pais.Location = new System.Drawing.Point(103, 96);
+            this.pais.Name = "pais";
+            this.pais.Size = new System.Drawing.Size(114, 21);
+            this.pais.TabIndex = 9;
+            // 
+            // ciudad
+            // 
+            this.ciudad.FormattingEnabled = true;
+            this.ciudad.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.ciudad.Location = new System.Drawing.Point(103, 70);
+            this.ciudad.Name = "ciudad";
+            this.ciudad.Size = new System.Drawing.Size(114, 21);
+            this.ciudad.TabIndex = 9;
+            // 
+            // estrellas
+            // 
+            this.estrellas.FormattingEnabled = true;
+            this.estrellas.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.estrellas.Location = new System.Drawing.Point(103, 43);
+            this.estrellas.Name = "estrellas";
+            this.estrellas.Size = new System.Drawing.Size(114, 21);
+            this.estrellas.TabIndex = 9;
             // 
             // label4
             // 
@@ -94,12 +128,14 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Cant de Estrellas";
             // 
-            // ciudad
+            // label5
             // 
-            this.ciudad.Location = new System.Drawing.Point(103, 70);
-            this.ciudad.Name = "ciudad";
-            this.ciudad.Size = new System.Drawing.Size(114, 20);
-            this.ciudad.TabIndex = 1;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 99);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "País";
             // 
             // label3
             // 
@@ -148,64 +184,30 @@
             // 
             // resultados
             // 
-            this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.usuario1,
-            this.documento1,
-            this.rol1,
-            this.hotel1,
-            this.seleccionar});
             this.resultados.Location = new System.Drawing.Point(13, 174);
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 2;
             this.resultados.UseCompatibleStateImageBehavior = false;
+            this.resultados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseDoubleClick);
             // 
-            // usuario1
+            // nuevo
             // 
-            this.usuario1.Text = "Usuario";
-            // 
-            // documento1
-            // 
-            this.documento1.DisplayIndex = 2;
-            this.documento1.Text = "Documento";
-            // 
-            // rol1
-            // 
-            this.rol1.DisplayIndex = 3;
-            this.rol1.Text = "Rol";
-            // 
-            // hotel1
-            // 
-            this.hotel1.DisplayIndex = 4;
-            this.hotel1.Text = "Hotel";
-            // 
-            // seleccionar
-            // 
-            this.seleccionar.DisplayIndex = 1;
-            this.seleccionar.Text = "";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 99);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "País";
-            // 
-            // pais
-            // 
-            this.pais.Location = new System.Drawing.Point(103, 96);
-            this.pais.Name = "pais";
-            this.pais.Size = new System.Drawing.Size(114, 20);
-            this.pais.TabIndex = 1;
+            this.nuevo.Location = new System.Drawing.Point(161, 334);
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(75, 23);
+            this.nuevo.TabIndex = 1;
+            this.nuevo.Text = "Nuevo";
+            this.nuevo.UseVisualStyleBackColor = true;
+            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
             // ListadoHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 339);
+            this.ClientSize = new System.Drawing.Size(248, 365);
             this.Controls.Add(this.resultados);
+            this.Controls.Add(this.nuevo);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.groupBox1);
@@ -233,17 +235,13 @@
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.ListView resultados;
-        private System.Windows.Forms.ColumnHeader usuario1;
-        private System.Windows.Forms.ColumnHeader seleccionar;
-        private System.Windows.Forms.ComboBox cantEstrellas;
+        private System.Windows.Forms.ComboBox estrellas;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ColumnHeader documento1;
-        private System.Windows.Forms.ColumnHeader rol1;
-        private System.Windows.Forms.ColumnHeader hotel1;
-        private System.Windows.Forms.TextBox ciudad;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox pais;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button nuevo;
+        private System.Windows.Forms.ComboBox pais;
+        private System.Windows.Forms.ComboBox ciudad;
 
 
     }
