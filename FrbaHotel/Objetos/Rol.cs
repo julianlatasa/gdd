@@ -20,12 +20,9 @@ namespace FrbaHotel.Objetos
 
             try
             {
-                this.habilitado = reader.GetString(reader.GetOrdinal("rol_habilitado")).Equals("1")?true:false;
-                
+                this.habilitado = reader.GetString(reader.GetOrdinal("rol_habilitado")).Equals("1");
             }
             catch (Exception) { }
-
-            
         }
 
         public override string ToString()

@@ -32,10 +32,13 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.guardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ubicacionHotel = new System.Windows.Forms.ComboBox();
+            this.tipoHabitacion = new System.Windows.Forms.ComboBox();
             this.comodidades = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.habilitado = new System.Windows.Forms.CheckBox();
             this.labelHa = new System.Windows.Forms.Label();
+            this.pisoHabitacion = new System.Windows.Forms.MaskedTextBox();
             this.nroHabitacion = new System.Windows.Forms.MaskedTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,9 +46,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pisoHabitacion = new System.Windows.Forms.MaskedTextBox();
-            this.tipoHabitacion = new System.Windows.Forms.ComboBox();
-            this.ubicacionHotel = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +92,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Habitación";
             // 
+            // ubicacionHotel
+            // 
+            this.ubicacionHotel.FormattingEnabled = true;
+            this.ubicacionHotel.Items.AddRange(new object[] {
+            "Vista al exterior",
+            "Vista al interior"});
+            this.ubicacionHotel.Location = new System.Drawing.Point(128, 66);
+            this.ubicacionHotel.Name = "ubicacionHotel";
+            this.ubicacionHotel.Size = new System.Drawing.Size(114, 21);
+            this.ubicacionHotel.TabIndex = 13;
+            // 
+            // tipoHabitacion
+            // 
+            this.tipoHabitacion.Enabled = false;
+            this.tipoHabitacion.FormattingEnabled = true;
+            this.tipoHabitacion.Location = new System.Drawing.Point(128, 92);
+            this.tipoHabitacion.Name = "tipoHabitacion";
+            this.tipoHabitacion.Size = new System.Drawing.Size(114, 21);
+            this.tipoHabitacion.TabIndex = 13;
+            // 
             // comodidades
             // 
             this.comodidades.FormattingEnabled = true;
@@ -129,11 +149,21 @@
             this.labelHa.TabIndex = 9;
             this.labelHa.Text = "Habilitado";
             // 
-            // nrohabitacion
+            // pisoHabitacion
             // 
+            this.pisoHabitacion.Location = new System.Drawing.Point(128, 40);
+            this.pisoHabitacion.Mask = "99999";
+            this.pisoHabitacion.Name = "pisoHabitacion";
+            this.pisoHabitacion.Size = new System.Drawing.Size(114, 20);
+            this.pisoHabitacion.TabIndex = 7;
+            this.pisoHabitacion.ValidatingType = typeof(int);
+            // 
+            // nroHabitacion
+            // 
+            this.nroHabitacion.Enabled = false;
             this.nroHabitacion.Location = new System.Drawing.Point(128, 14);
             this.nroHabitacion.Mask = "99999";
-            this.nroHabitacion.Name = "nrohabitacion";
+            this.nroHabitacion.Name = "nroHabitacion";
             this.nroHabitacion.Size = new System.Drawing.Size(114, 20);
             this.nroHabitacion.TabIndex = 7;
             this.nroHabitacion.ValidatingType = typeof(int);
@@ -190,34 +220,6 @@
             this.label3.Size = new System.Drawing.Size(93, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Nro de Habitación";
-            // 
-            // pisoHabitacion
-            // 
-            this.pisoHabitacion.Location = new System.Drawing.Point(128, 40);
-            this.pisoHabitacion.Mask = "99999";
-            this.pisoHabitacion.Name = "pisoHabitacion";
-            this.pisoHabitacion.Size = new System.Drawing.Size(114, 20);
-            this.pisoHabitacion.TabIndex = 7;
-            this.pisoHabitacion.ValidatingType = typeof(int);
-            // 
-            // tipoHabitacion
-            // 
-            this.tipoHabitacion.FormattingEnabled = true;
-            this.tipoHabitacion.Location = new System.Drawing.Point(128, 92);
-            this.tipoHabitacion.Name = "tipoHabitacion";
-            this.tipoHabitacion.Size = new System.Drawing.Size(114, 21);
-            this.tipoHabitacion.TabIndex = 13;
-            // 
-            // ubicacionHotel
-            // 
-            this.ubicacionHotel.FormattingEnabled = true;
-            this.ubicacionHotel.Items.AddRange(new object[] {
-            "Vista al exterior",
-            "Vista al interior"});
-            this.ubicacionHotel.Location = new System.Drawing.Point(128, 66);
-            this.ubicacionHotel.Name = "ubicacionHotel";
-            this.ubicacionHotel.Size = new System.Drawing.Size(114, 21);
-            this.ubicacionHotel.TabIndex = 13;
             // 
             // ModificarHabitacion
             // 
