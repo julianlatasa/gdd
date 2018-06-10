@@ -12,6 +12,9 @@ namespace FrbaHotel
 {
     public static class Conexion
     {
+        public static String usuario { get; set; }
+        public static int hotel { get; set; }
+        public static int rol { get; set; }
         private static SqlConnection sqlConnection;
 
         public static SqlConnection getSqlConnection()

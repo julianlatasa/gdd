@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.Login
+namespace FrbaHotel
 {
-    public partial class Login : Form
+    public partial class Menu : Form
     {
-        public Login()
+        public Menu()
         {
             InitializeComponent();
         }
