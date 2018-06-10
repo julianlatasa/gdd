@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoCliente));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nroIdentificacion = new System.Windows.Forms.MaskedTextBox();
@@ -44,15 +43,10 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.result_busq = new System.Windows.Forms.DataGridView();
-            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
-            this.cLIENTEBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cLIENTETableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.CLIENTETableAdapter();
             this.modificar = new System.Windows.Forms.Button();
             this.Eliminar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.result_busq)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cLIENTEBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -185,20 +179,6 @@
             this.result_busq.TabIndex = 3;
             this.result_busq.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.result_busq_CellContentClick);
             // 
-            // gD1C2018DataSet
-            // 
-            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
-            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cLIENTEBindingSource
-            // 
-            this.cLIENTEBindingSource.DataMember = "CLIENTE";
-            this.cLIENTEBindingSource.DataSource = this.gD1C2018DataSet;
-            // 
-            // cLIENTETableAdapter
-            // 
-            this.cLIENTETableAdapter.ClearBeforeFill = true;
-            // 
             // modificar
             // 
             this.modificar.Location = new System.Drawing.Point(178, 370);
@@ -243,8 +223,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.result_busq)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cLIENTEBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -265,9 +243,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox nroIdentificacion;
         private System.Windows.Forms.DataGridView result_busq;
-        private GD1C2018DataSet gD1C2018DataSet;
-        private System.Windows.Forms.BindingSource cLIENTEBindingSource;
-        private GD1C2018DataSetTableAdapters.CLIENTETableAdapter cLIENTETableAdapter;
         private System.Windows.Forms.Button modificar;
         private System.Windows.Forms.Button Eliminar;
 

@@ -139,6 +139,30 @@ namespace FrbaHotel.AbmCliente
                 esValido = false;
             }
 
+            String sql = "select * from cliente where clie_email = '" + email.Text + "'";
+            db = new SqlConnection(Properties.Settings.Default.Conection);
+            try
+            {
+                db.Open();
+                com = new SqlCommand(sql, db);
+                DataTable dt = new DataTable();
+                DataColumn dc = new DataColumn();
+                SqlDataAdapter dba = new SqlDataAdapter(com);
+                dba.Fill(dt);
+
+                DataSet dbs = new DataSet();
+                if (dt.Rows.Count >= 1)
+                {
+                    errores += "El email " + email.Text + " ya fue utilizado.\n";
+                    esValido = false;
+                }
+                db.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en el procedimiento de Alta de Clientes: " + ex.Message, "Alta cliente");
+            }
+
             if (!esValido)
                 MessageBox.Show(errores, "ERROR");
 

@@ -23,8 +23,7 @@ namespace FrbaHotel.AbmCliente
 
         private void ListadoCliente_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2018DataSet.CLIENTE' table. You can move, or remove it, as needed.
-            this.cLIENTETableAdapter.Fill(this.gD1C2018DataSet.CLIENTE);
+           
 
 
 
@@ -59,7 +58,6 @@ namespace FrbaHotel.AbmCliente
             dba = new SqlDataAdapter(com);
 
             DataTable dtCli = new DataTable();
-            //dba.Fill(dt);
             dba.Fill(dtCli);
             
             result_busq.DataSource = dtCli;
@@ -69,11 +67,7 @@ namespace FrbaHotel.AbmCliente
         private void buscar_Click(object sender, EventArgs e)
         {
             db = new SqlConnection(Properties.Settings.Default.Conection);
-            /*string sql = "select * from CLIENTE WHERE clie_tipo_doc = "+tipoIdentificacion+
-                " AND clie_numero_doc = "+nroIdentificacion+ " AND clie_nombre like '%" + nombre + 
-                "%' AND clie_apellido like '%" + apellido + "%' AND clie_email = '"+email+"'";
-            */
-            //com = new SqlCommand(sql, db);
+            
             
             try
             {
@@ -133,17 +127,16 @@ namespace FrbaHotel.AbmCliente
         {
             modificacionCliente modCli = new modificacionCliente(result_busq.CurrentRow, this);
             modCli.Show();
+            this.Hide();
+            
         }
 
 
         private void modificar_Click(object sender, EventArgs e)
         {
-            //DataRowView selectedRow = result_busq.CurrentRow.Cells["id"];
             modificacionCliente modCli = new modificacionCliente(result_busq.CurrentRow, this);
             modCli.Show();
 
-            this.Hide();
-            
         }
 
         private void Eliminar_Click_1(object sender, EventArgs e)

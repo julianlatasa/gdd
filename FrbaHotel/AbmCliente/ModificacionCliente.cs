@@ -16,6 +16,7 @@ namespace FrbaHotel.AbmCliente
         SqlConnection db;
         SqlCommand com;
         Form listaPrevia;
+        String emailCliente;
         public modificacionCliente(DataGridViewRow row, Form ListaClientes)
         {
             InitializeComponent();
@@ -63,6 +64,8 @@ namespace FrbaHotel.AbmCliente
             else tel = "";
             DateTime fechaNac = Convert.ToDateTime(row.Cells["clie_fecha_nac"].Value.ToString());
 
+
+
             this.nombre.Text = row.Cells["clie_nombre"].Value.ToString();
             this.apellido.Text = row.Cells["clie_apellido"].Value.ToString();
             this.documento.Text = row.Cells["clie_numero_doc"].Value.ToString();
@@ -73,8 +76,9 @@ namespace FrbaHotel.AbmCliente
             this.nacionalidad.Text = nac;
             this.paisDeOrigen.Text = pais;
             this.localidad.Text = row.Cells["clie_pais"].Value.ToString();
-
             this.nombre.Text = row.Cells["clie_nombre"].Value.ToString();
+
+            emailCliente = row.Cells["clie_email"].Value.ToString();
         }
 
         private void Modificacion_Load(object sender, EventArgs e)
@@ -202,6 +206,32 @@ namespace FrbaHotel.AbmCliente
                 esValido = false;
             }
 
+            String sql = "select * from cliente where clie_email = '" +email.Text+"' and clie_email <> '"+emailCliente+"'";
+            db = new SqlConnection(Properties.Settings.Default.Conection);
+            try
+            {
+                 db.Open();
+                    com = new SqlCommand(sql, db);
+                    DataTable dt = new DataTable();
+                    DataColumn dc = new DataColumn();
+                    SqlDataAdapter dba = new SqlDataAdapter(com);
+                    dba.Fill(dt);
+                   
+                    DataSet dbs = new DataSet();
+                    if (dt.Rows.Count >= 1)
+                    {
+                      errores += "El email " + email.Text + " ya fue utilizado.\n";
+                      esValido = false;
+                    }
+                    db.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en el procedimiento de Modificacion de Clientes: " + ex.Message, "Modificacion cliente");
+            }
+
+
+
             if (!esValido)
                 MessageBox.Show(errores, "ERROR");
 
@@ -234,14 +264,6 @@ namespace FrbaHotel.AbmCliente
             listaPrevia.Show();
         }
 
-        public void Close()
-        {
-            this.Close();
-            this.Dispose();
-            listaPrevia.Refresh();
-            listaPrevia.Show();
-        
-        }
 
 
     }
