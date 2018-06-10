@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.AbmRol
+﻿namespace FrbaHotel
 {
     partial class AltaRol
     {
@@ -32,8 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.funcionalidades = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.activo = new System.Windows.Forms.CheckBox();
             this.nombre = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.limpiar = new System.Windows.Forms.Button();
@@ -67,26 +65,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Funcionalidades";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 143);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Habilitado";
-            // 
-            // activo
-            // 
-            this.activo.AutoSize = true;
-            this.activo.Checked = true;
-            this.activo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.activo.Location = new System.Drawing.Point(104, 143);
-            this.activo.Name = "activo";
-            this.activo.Size = new System.Drawing.Size(15, 14);
-            this.activo.TabIndex = 2;
-            this.activo.UseVisualStyleBackColor = true;
-            // 
             // nombre
             // 
             this.nombre.Location = new System.Drawing.Point(104, 18);
@@ -99,9 +77,7 @@
             this.groupBox1.Controls.Add(this.funcionalidades);
             this.groupBox1.Controls.Add(this.nombre);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.activo);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(224, 168);
@@ -158,8 +134,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox funcionalidades;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox activo;
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button limpiar;
