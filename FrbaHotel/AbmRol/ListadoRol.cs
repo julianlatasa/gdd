@@ -43,8 +43,8 @@ namespace FrbaHotel.AbmRol
 
         private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ModificarRol altaRol = new ModificarRol(roles[resultados.SelectedItems[0].Index]);
-            altaRol.ShowDialog();
+            ModificarRol modificarRol = new ModificarRol(roles[resultados.SelectedItems[0].Index]);
+            modificarRol.ShowDialog();
         }
 
         private void buscarRoles()

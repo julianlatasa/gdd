@@ -25,6 +25,7 @@ namespace FrbaHotel
         private void ModificarRol_Load(object sender, EventArgs e)
         {
             nombre.Text = rol.nombre;
+            activo.Checked = rol.habilitado;
             funcionalidadesMarcadas = marcarFuncionalidadesRol();
             llenarListaFuncionalidades(funcionalidadesMarcadas);
         }
