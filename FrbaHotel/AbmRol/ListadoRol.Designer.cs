@@ -92,6 +92,7 @@
             this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nombre1});
             this.resultados.Location = new System.Drawing.Point(13, 96);
+            this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 2;
