@@ -44,17 +44,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmHabitacion\Form1.cs">
+    <Compile Include="AbmCliente\ModificacionCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHabitacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmCliente\ModificacionCliente.Designer.cs">
+      <DependentUpon>ModificacionCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRegimen\Form1.cs">
+    <Compile Include="AbmHabitacion\AltaHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRegimen\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmHabitacion\AltaHabitacion.Designer.cs">
+      <DependentUpon>AltaHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHabitacion\ListadoHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\ListadoHabitacion.Designer.cs">
+      <DependentUpon>ListadoHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\AltaHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\AltaHotel.Designer.cs">
+      <DependentUpon>AltaHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\ListadoHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\ListadoHotel.Designer.cs">
+      <DependentUpon>ListadoHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRegimen\AltaRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRegimen\AltaRegimen.Designer.cs">
+      <DependentUpon>AltaRegimen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRegimen\BajaModRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRegimen\BajaModRegimen.Designer.cs">
+      <DependentUpon>BajaModRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\AltaRol.cs">
       <SubType>Form</SubType>
@@ -98,6 +128,36 @@
     <Compile Include="AbmCliente\ListadoCliente.Designer.cs">
       <DependentUpon>ListadoCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarModificacionReserva\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarReserva\AltaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarReserva\AltaCliente.Designer.cs">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarReserva\GenerarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarReserva\GenerarReserva.Designer.cs">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarReserva\ListadoCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarReserva\ListadoCliente.Designer.cs">
+      <DependentUpon>ListadoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarReserva\ModalCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarReserva\ModalCliente.Designer.cs">
+      <DependentUpon>ModalCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,12 +169,6 @@
     </Compile>
     <Compile Include="PantallaInicio.Designer.cs">
       <DependentUpon>PantallaInicio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\Form1.cs">
       <SubType>Form</SubType>
@@ -141,6 +195,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AbmCliente\ModificacionCliente.resx">
+      <DependentUpon>ModificacionCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\AltaHabitacion.resx">
+      <DependentUpon>AltaHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\ListadoHabitacion.resx">
+      <DependentUpon>ListadoHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\AltaHotel.resx">
+      <DependentUpon>AltaHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\ListadoHotel.resx">
+      <DependentUpon>ListadoHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRegimen\AltaRegimen.resx">
+      <DependentUpon>AltaRegimen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRegimen\BajaModRegimen.resx">
+      <DependentUpon>BajaModRegimen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,6 +233,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\ListadoCliente.resx">
       <DependentUpon>ListadoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarReserva\AltaCliente.resx">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarReserva\GenerarReserva.resx">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarReserva\ListadoCliente.resx">
+      <DependentUpon>ListadoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarReserva\ModalCliente.resx">
+      <DependentUpon>ModalCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -194,6 +281,7 @@
   <ItemGroup>
     <Content Include="ico-hotel.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
