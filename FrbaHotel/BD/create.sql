@@ -64,8 +64,8 @@ CREATE TABLE USUARIO (
 	usua_usuario char(50) NOT NULL PRIMARY KEY,
 	usua_password varchar(255) NOT NULL, /* este campo despues va a tener que ser un HASH*/
 	usua_email varchar(150) NOT NULL,
-	usua_rol_activo int NOT NULL FOREIGN KEY REFERENCES ROL(rol_id),
-	usua_hotel_activo int NOT NULL FOREIGN KEY REFERENCES HOTEL(hote_id), 
+	usua_rol_activo int FOREIGN KEY REFERENCES ROL(rol_id),
+	usua_hotel_activo int FOREIGN KEY REFERENCES HOTEL(hote_id), 
 	usua_intentos_login char(1) NOT NULL DEFAULT 0,
 	usua_habilitado char(1) NOT NULL DEFAULT 1,
 	usua_tipo_doc int NOT NULL ,
