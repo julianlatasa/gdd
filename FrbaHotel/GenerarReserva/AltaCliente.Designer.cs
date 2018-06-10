@@ -35,7 +35,6 @@
             this.telefono = new System.Windows.Forms.MaskedTextBox();
             this.altura = new System.Windows.Forms.MaskedTextBox();
             this.tipoDocumento = new System.Windows.Forms.ComboBox();
-            this.paisDeOrigen = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.localidad = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,12 +53,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.pais = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nacionalidad = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.fechaNacimiento = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // limpiar
             // 
-            this.limpiar.Location = new System.Drawing.Point(12, 324);
+            this.limpiar.Location = new System.Drawing.Point(12, 377);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
             this.limpiar.TabIndex = 5;
@@ -69,7 +73,7 @@
             // 
             // guardar
             // 
-            this.guardar.Location = new System.Drawing.Point(161, 324);
+            this.guardar.Location = new System.Drawing.Point(161, 377);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(75, 23);
             this.guardar.TabIndex = 5;
@@ -79,10 +83,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.fechaNacimiento);
             this.groupBox2.Controls.Add(this.telefono);
             this.groupBox2.Controls.Add(this.altura);
+            this.groupBox2.Controls.Add(this.nacionalidad);
+            this.groupBox2.Controls.Add(this.pais);
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.tipoDocumento);
-            this.groupBox2.Controls.Add(this.paisDeOrigen);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.localidad);
             this.groupBox2.Controls.Add(this.label1);
@@ -90,6 +97,7 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.direccion);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.email);
@@ -103,7 +111,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(224, 306);
+            this.groupBox2.Size = new System.Drawing.Size(224, 359);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Cliente";
@@ -132,13 +140,6 @@
             this.tipoDocumento.Name = "tipoDocumento";
             this.tipoDocumento.Size = new System.Drawing.Size(114, 21);
             this.tipoDocumento.TabIndex = 4;
-            // 
-            // paisDeOrigen
-            // 
-            this.paisDeOrigen.Location = new System.Drawing.Point(104, 278);
-            this.paisDeOrigen.Name = "paisDeOrigen";
-            this.paisDeOrigen.Size = new System.Drawing.Size(114, 20);
-            this.paisDeOrigen.TabIndex = 3;
             // 
             // label2
             // 
@@ -288,11 +289,54 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Nombre";
             // 
+            // pais
+            // 
+            this.pais.FormattingEnabled = true;
+            this.pais.Location = new System.Drawing.Point(104, 278);
+            this.pais.Name = "pais";
+            this.pais.Size = new System.Drawing.Size(114, 21);
+            this.pais.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 308);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Nacionalidad";
+            // 
+            // nacionalidad
+            // 
+            this.nacionalidad.FormattingEnabled = true;
+            this.nacionalidad.Location = new System.Drawing.Point(104, 305);
+            this.nacionalidad.Name = "nacionalidad";
+            this.nacionalidad.Size = new System.Drawing.Size(114, 21);
+            this.nacionalidad.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 334);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Fecha Nacimiento";
+            // 
+            // fechaNacimiento
+            // 
+            this.fechaNacimiento.Location = new System.Drawing.Point(104, 332);
+            this.fechaNacimiento.Mask = "00/00/0000";
+            this.fechaNacimiento.Name = "fechaNacimiento";
+            this.fechaNacimiento.Size = new System.Drawing.Size(114, 20);
+            this.fechaNacimiento.TabIndex = 7;
+            this.fechaNacimiento.ValidatingType = typeof(System.DateTime);
+            // 
             // AltaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 355);
+            this.ClientSize = new System.Drawing.Size(248, 408);
             this.Controls.Add(this.guardar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.groupBox2);
@@ -335,10 +379,14 @@
         private System.Windows.Forms.MaskedTextBox telefono;
         private System.Windows.Forms.MaskedTextBox altura;
         private System.Windows.Forms.TextBox email;
-        private System.Windows.Forms.TextBox paisDeOrigen;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox localidad;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox nacionalidad;
+        private System.Windows.Forms.ComboBox pais;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MaskedTextBox fechaNacimiento;
+        private System.Windows.Forms.Label label4;
 
     }
 }
