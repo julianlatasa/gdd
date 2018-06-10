@@ -26,7 +26,7 @@ namespace FrbaHotel
 
             if (roles.Count == 1)
             {
-                asignarRolActivo(roles[0].id);
+                asignarRolActivo(roles[0]);
                 irAMenuPrincipal();
             }
         }
@@ -65,7 +65,7 @@ namespace FrbaHotel
 
         private void seleccionarRol()
         {
-            int idRol = roles[listaRoles.SelectedItems[0].Index].id;
+            Rol rol = roles[listaRoles.SelectedItems[0].Index];
 
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -73,20 +73,21 @@ namespace FrbaHotel
             cmd.CommandText = "USUARIO_Asignar_Hotel_Activo";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = Conexion.usuario;
-            cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
+            cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = rol.id;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
 
             cmd.ExecuteNonQuery();
-            asignarRolActivo(idRol);
+            asignarRolActivo(rol);
 
             sqlConnection.Close();
         }
 
-        private void asignarRolActivo(int idRol)
+        private void asignarRolActivo(Rol rol)
         {
-            Conexion.rol = idRol;
+            Conexion.rol = rol.id;
+            Conexion.rolNombre = rol.nombre;
         }
 
         private void irAMenuPrincipal()
