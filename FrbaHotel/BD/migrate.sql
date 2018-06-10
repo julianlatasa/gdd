@@ -36,8 +36,10 @@ INSERT INTO HABITACION (habi_hotel, habi_numero, habi_piso, habi_vista, habi_tip
 SELECT DISTINCT hote_id, Habitacion_Numero,Habitacion_Piso,Habitacion_Frente,Habitacion_Tipo_Codigo, 1
   FROM gd_esquema.Maestra, HOTEL WHERE CAST((RTRIM(Hotel_Ciudad) + ' - ' + Hotel_Calle) AS VARCHAR(100)) = hote_nombre
 
-INSERT INTO CLIENTE (clie_tipo_doc, clie_numero_doc, clie_nombre, clie_apellido, clie_email, clie_pais, clie_nacionalidad, clie_fecha_nac)
-SELECT DISTINCT 1, Cliente_Pasaporte_Nro, Cliente_Nombre, Cliente_Apellido, Cliente_Mail, 1, (SELECT naci_id FROM NACIONALIDAD WHERE naci_descripcion = Cliente_Nacionalidad), Cliente_Fecha_Nac FROM gd_esquema.Maestra
+INSERT INTO CLIENTE (clie_tipo_doc, clie_numero_doc, clie_nombre, clie_apellido, clie_email, clie_pais, clie_nacionalidad, clie_fecha_nac, clie_domicilio)
+SELECT DISTINCT 1, Cliente_Pasaporte_Nro, Cliente_Nombre, Cliente_Apellido, Cliente_Mail, 1, (SELECT naci_id FROM NACIONALIDAD WHERE naci_descripcion = Cliente_Nacionalidad), Cliente_Fecha_Nac,  
+	CAST((RTRIM(LTRIM(Cliente_Dom_Calle)) + ' ' + CAST(Cliente_Nro_Calle AS VARCHAR(10)) + ' ' + CAST(Cliente_Piso AS VARCHAR(10)) + ' ' + RTRIM(LTRIM(Cliente_Depto))) AS VARCHAR(200))
+	FROM gd_esquema.Maestra
 
 UPDATE CLIENTE SET clie_habilitado = 0
 	WHERE clie_email IN (SELECT cl.clie_email FROM CLIENTE cl GROUP BY cl.clie_email HAVING COUNT(cl.clie_email) > 1) AND
@@ -58,16 +60,11 @@ INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id)
 
 SET IDENTITY_INSERT RESERVA ON
 
-INSERT INTO RESERVA (rese_id, rese_desde, rese_duracion, rese_tipo_habitacion, rese_regimen, rese_cliente, rese_precio, rese_hotel)
-SELECT DISTINCT Reserva_Codigo, Reserva_Fecha_Inicio, Reserva_Cant_Noches, Habitacion_Tipo_Codigo, 
-(SELECT regi_id FROM REGIMEN WHERE regi_descripcion = Regimen_Descripcion), 
-(SELECT clie_id FROM CLIENTE WHERE clie_email = Cliente_Mail AND clie_numero_doc = Cliente_Pasaporte_Nro),0,
-(SELECT hote_id FROM HOTEL WHERE CAST((RTRIM(Hotel_Ciudad) + ' - ' + Hotel_Calle) AS VARCHAR(100)) = hote_nombre)
-FROM gd_esquema.Maestra WHERE Estadia_Fecha_Inicio IS NULL AND (SELECT COUNT(*) FROM gd_esquema.Maestra m WHERE m.Reserva_Codigo = Reserva_Codigo) = 1
-
-INSERT INTO RESERVA_ESTADO (rese_id, esta_id, usua_id, rese_esta_fecha)
-	SELECT rese_id, 1, 'INVITADO', CAST(0 as smalldatetime) FROM RESERVA
-
+/* Inserto las reservas, por lo que se desprende de los datos 
+	TODAS las reservas se convirtieron en estadia
+	Hay mas de una reserva con el mismo numero, esto se da porque 
+	     hay un consumible por fila
+	*/
 INSERT INTO RESERVA (rese_id, rese_desde, rese_duracion, rese_tipo_habitacion, rese_regimen, rese_cliente, rese_precio, rese_hotel, rese_habitaciones)
 SELECT DISTINCT Reserva_Codigo, Reserva_Fecha_Inicio, Reserva_Cant_Noches, Habitacion_Tipo_Codigo, 
 (SELECT regi_id FROM REGIMEN WHERE regi_descripcion = Regimen_Descripcion), 
@@ -95,6 +92,7 @@ FROM gd_esquema.Maestra WHERE Consumible_Codigo IS NOT NULL
 
 INSERT INTO FORMA_PAGO (form_id, form_nombre) VALUES (1, 'Efectivo')
 
+/* El total de la factura no coincide con la suma de los items, pero es un problema que se arrastra de la tabla original */
 SET IDENTITY_INSERT FACTURA ON
 INSERT INTO FACTURA (fact_numero, fact_reserva, fact_forma_pago, fact_fecha, fact_total)
 SELECT Factura_Nro, Reserva_Codigo, 1, Factura_Fecha, Factura_Total
@@ -103,12 +101,14 @@ SELECT @max_id=MAX(fact_numero) FROM FACTURA
 DBCC CHECKIDENT ('FACTURA', RESEED, @max_id)
 SET IDENTITY_INSERT FACTURA OFF
 
+/* Agrega los items de la factura que son Consumibles */
 INSERT INTO FACTURA_LINEA (fact_numero, fact_es_consumible, fact_line_descripcion, fact_line_monto, fact_line_cantidad)
 SELECT Factura_Nro, 1, Consumible_Descripcion, Item_Factura_Monto, Item_Factura_Cantidad
 FROM gd_esquema.Maestra WHERE Estadia_Fecha_Inicio IS NOT NULL 
 	AND (SELECT COUNT(*) FROM [GD1C2018].[gd_esquema].[Maestra] m WHERE m.Reserva_Codigo = Reserva_Codigo) > 1
 	AND (Consumible_Codigo IS NOT NULL AND Factura_Total IS NOT NULL)
 
+/* Agrega los items de la factura que son cualquier cosa, menos consumibles */
 INSERT INTO FACTURA_LINEA (fact_numero, fact_es_consumible, fact_line_descripcion, fact_line_monto, fact_line_cantidad)
 SELECT Factura_Nro, 0, '', Item_Factura_Monto, Item_Factura_Cantidad
 FROM gd_esquema.Maestra WHERE Estadia_Fecha_Inicio IS NOT NULL 
