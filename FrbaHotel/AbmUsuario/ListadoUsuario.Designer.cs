@@ -172,7 +172,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Listado Roles";
+            this.Text = "Listado Usuario";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ListadoUsuario_Load);
             this.groupBox1.ResumeLayout(false);

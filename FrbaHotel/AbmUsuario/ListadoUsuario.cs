@@ -87,7 +87,7 @@ namespace FrbaHotel.AbmUsuario
             {
                 while (reader.Read())
                 {
-                    hotelCombobox.Items.Add(new Rol(reader));
+                    hotelCombobox.Items.Add(new Hotel(reader));
                 }
             }
 
