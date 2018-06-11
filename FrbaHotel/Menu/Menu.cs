@@ -108,7 +108,7 @@ namespace FrbaHotel
                 case 10:
                     boton.Text = "Registrar Consumibles";
                     boton.Click += delegate(System.Object o, System.EventArgs e)
-                    { (new FrbaHotel.RegistrarConsumible.Form1()).ShowDialog(); };
+                    { (new FrbaHotel.RegistrarConsumible.RegistrarConsumible()).ShowDialog(); };
                     break;
                 case 11:
                     boton.Text = "Listado Estadístico";
