@@ -76,7 +76,7 @@ namespace FrbaHotel.GenerarReserva
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader = new SqlDataReader();
+            SqlDataReader reader;
 
             cmd.CommandText = "CLIENTE_Crear";
             cmd.CommandType = CommandType.StoredProcedure;

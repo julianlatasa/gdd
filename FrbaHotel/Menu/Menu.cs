@@ -93,24 +93,19 @@ namespace FrbaHotel
                 case 7:
                     boton.Text = "Modificar una Reserva";
                     boton.Click += delegate(System.Object o, System.EventArgs e)
-                    { (new FrbaHotel.GenerarModificacionReserva.ModificarReserva()).ShowDialog(); };
+                    { (new FrbaHotel.GenerarModificacionReserva.IngresarReserva()).ShowDialog(); };
                     break;
                 case 8:
-                    boton.Text = "Cancelar Reserva";
-                    boton.Click += delegate(System.Object o, System.EventArgs e)
-                    { (new FrbaHotel.CancelarReserva.Form1()).ShowDialog(); };
-                    break;
-                case 9:
                     boton.Text = "Registrar Estadía(check-in/check-out)";
                     boton.Click += delegate(System.Object o, System.EventArgs e)
                     { (new FrbaHotel.RegistrarEstadia.Form1()).ShowDialog(); };
                     break;
-                case 10:
+                case 9:
                     boton.Text = "Registrar Consumibles";
                     boton.Click += delegate(System.Object o, System.EventArgs e)
                     { (new FrbaHotel.RegistrarConsumible.Form1()).ShowDialog(); };
                     break;
-                case 11:
+                case 10:
                     boton.Text = "Listado Estadístico";
                     boton.Click += delegate(System.Object o, System.EventArgs e)
                     { (new FrbaHotel.ListadoEstadistico.Form1()).ShowDialog(); };

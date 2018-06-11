@@ -58,7 +58,7 @@
             // 
             // reservar
             // 
-            this.reservar.Location = new System.Drawing.Point(161, 413);
+            this.reservar.Location = new System.Drawing.Point(162, 412);
             this.reservar.Name = "reservar";
             this.reservar.Size = new System.Drawing.Size(75, 23);
             this.reservar.TabIndex = 5;
@@ -76,15 +76,15 @@
             this.groupBox2.Controls.Add(this.fechaDesde);
             this.groupBox2.Controls.Add(this.tipoRegimen);
             this.groupBox2.Controls.Add(this.hotel);
-            this.groupBox2.Controls.Add(this.tipoHabitacion);
             this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.tipoHabitacion);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(224, 206);
+            this.groupBox2.Size = new System.Drawing.Size(224, 205);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Reserva";
@@ -235,7 +235,7 @@
             this.rol1,
             this.hotel1,
             this.seleccionar});
-            this.resultados.Location = new System.Drawing.Point(13, 253);
+            this.resultados.Location = new System.Drawing.Point(13, 252);
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
@@ -268,7 +268,7 @@
             // 
             // consultarDisponibilidad
             // 
-            this.consultarDisponibilidad.Location = new System.Drawing.Point(161, 224);
+            this.consultarDisponibilidad.Location = new System.Drawing.Point(161, 223);
             this.consultarDisponibilidad.Name = "consultarDisponibilidad";
             this.consultarDisponibilidad.Size = new System.Drawing.Size(75, 23);
             this.consultarDisponibilidad.TabIndex = 6;
@@ -278,7 +278,7 @@
             // 
             // limpiar
             // 
-            this.limpiar.Location = new System.Drawing.Point(13, 224);
+            this.limpiar.Location = new System.Drawing.Point(13, 223);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
             this.limpiar.TabIndex = 7;
@@ -289,7 +289,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 179);
+            this.label6.Location = new System.Drawing.Point(9, 178);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 13);
             this.label6.TabIndex = 0;
@@ -297,7 +297,7 @@
             // 
             // nroHabitaciones
             // 
-            this.nroHabitaciones.Location = new System.Drawing.Point(104, 177);
+            this.nroHabitaciones.Location = new System.Drawing.Point(104, 176);
             this.nroHabitaciones.Mask = "99999";
             this.nroHabitaciones.Name = "nroHabitaciones";
             this.nroHabitaciones.Size = new System.Drawing.Size(114, 20);
@@ -308,7 +308,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 443);
+            this.ClientSize = new System.Drawing.Size(248, 441);
             this.Controls.Add(this.resultados);
             this.Controls.Add(this.consultarDisponibilidad);
             this.Controls.Add(this.limpiar);
