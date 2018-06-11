@@ -113,7 +113,7 @@ namespace FrbaHotel
                 case 11:
                     boton.Text = "Listado Estadístico";
                     boton.Click += delegate(System.Object o, System.EventArgs e)
-                    { (new FrbaHotel.ListadoEstadistico.Form1()).ShowDialog(); };
+                    { (new FrbaHotel.ListadoEstadistico.ListadoEstadistico()).ShowDialog(); };
                     break;
             }
 
