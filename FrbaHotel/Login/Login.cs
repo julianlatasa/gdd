@@ -88,7 +88,11 @@ namespace FrbaHotel.Login
         private void irASeleccionarHotelActivo()
         {
             SeleccionarHotel seleccionarHotel = new SeleccionarHotel();
-            seleccionarHotel.Show();
+            this.Hide();
+            seleccionarHotel.ShowDialog();
+            //SeleccionarRol seleccionarRol = new SeleccionarRol();
+            //seleccionarRol.ShowDialog();
+            //(new Menu()).Show();
             Close();
         }
     }

@@ -30,7 +30,7 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT f.func_id, f.func_nombre FROM FUNCIONALIDADES f JOIN FUNCIONALIDAD_ROL fr ON fr.func_id = f.func_id AND fr.rol_id = " + Conexion.rol;
+            cmd.CommandText = "SELECT f.func_id, f.func_nombre FROM FUNCIONALIDAD f JOIN FUNCIONALIDAD_ROL fr ON fr.func_id = f.func_id AND fr.rol_id = " + Conexion.rol;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -117,7 +117,7 @@ namespace FrbaHotel
                     break;
             }
 
-            this.Controls.Add(boton);
+            panelBotones.Controls.Add(boton);
         }
 
         private void salir_Click(object sender, EventArgs e)

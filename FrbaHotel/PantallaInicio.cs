@@ -49,7 +49,8 @@ namespace FrbaHotel
             reader.Close();
             sqlConnection.Close();
 
-            (new Menu()).Show();
+            (new Menu()).ShowDialog();
+            this.Hide();
             Close();
         }
     }
