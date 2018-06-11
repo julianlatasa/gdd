@@ -60,23 +60,32 @@ namespace FrbaHotel
 
         private void seleccionarHotel()
         {
-            int idHotel = hoteles[listaHoteles.SelectedItems[0].Index].id;
+            if (listaHoteles.SelectedItems.Count > 0)
+            {
 
-            SqlConnection sqlConnection = Conexion.getSqlConnection();
-            SqlCommand cmd = new SqlCommand();
+                int idHotel = hoteles[listaHoteles.SelectedItems[0].Index].id;
 
-            cmd.CommandText = "USUARIO_Asignar_Hotel_Activo";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = Conexion.usuario;
-            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = idHotel;
-            cmd.Connection = sqlConnection;
+                SqlConnection sqlConnection = Conexion.getSqlConnection();
+                SqlCommand cmd = new SqlCommand();
 
-            sqlConnection.Open();
+                cmd.CommandText = "USUARIO_Asignar_Hotel_Activo";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = Conexion.usuario;
+                cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = idHotel;
+                cmd.Connection = sqlConnection;
 
-            cmd.ExecuteNonQuery();
-            Conexion.hotel = idHotel;
+                sqlConnection.Open();
 
-            sqlConnection.Close();
+                cmd.ExecuteNonQuery();
+                Conexion.hotel = idHotel;
+
+                sqlConnection.Close();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un hotel","Error");
+            }
+
         }
 
         private void irASeleccionarRolActivo()

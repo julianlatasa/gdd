@@ -39,6 +39,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.panelBotones);
             this.groupBox1.Location = new System.Drawing.Point(12, 42);
             this.groupBox1.Name = "groupBox1";

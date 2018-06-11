@@ -25,7 +25,7 @@ namespace FrbaHotel.Objetos
         {
             this.usuario = reader.GetString(reader.GetOrdinal("usua_usuario"));
             this.email = reader.GetString(reader.GetOrdinal("usua_email"));
-            this.habilitado = reader.GetString(reader.GetOrdinal("usua_habilitado")).Equals("1")?true:false;
+            this.habilitado = reader.GetString(reader.GetOrdinal("usua_habilitado")).Equals("1");
             this.tipoDocumento = reader.GetInt32(reader.GetOrdinal("usua_tipo_doc"));
             this.nroDocumento = reader.GetString(reader.GetOrdinal("usua_numero_doc"));
 

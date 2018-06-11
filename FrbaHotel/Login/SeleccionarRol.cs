@@ -77,6 +77,7 @@ namespace FrbaHotel
             asignarRolActivo(rol);
 
             sqlConnection.Close();
+            //this.Close();
         }
 
         private void asignarRolActivo(Rol rol)
