@@ -72,7 +72,7 @@ namespace FrbaHotel.GenerarReserva
             nacionalidad.SelectedIndex = 0;
         }
 
-        private int crearCliente()
+        private void crearCliente()
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();

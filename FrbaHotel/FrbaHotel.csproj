@@ -56,6 +56,12 @@
     <Compile Include="AbmHabitacion\AltaHabitacion.Designer.cs">
       <DependentUpon>AltaHabitacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\ModificarHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\ModificarHabitacion.Designer.cs">
+      <DependentUpon>ModificarHabitacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHabitacion\ListadoHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,12 +134,6 @@
     <Compile Include="AbmUsuario\ModificarUsuario.Designer.cs">
       <DependentUpon>ModificarUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="CancelarReserva\CancelarReserva.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CancelarReserva\CancelarReserva.Designer.cs">
-      <DependentUpon>CancelarReserva.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmUsuario\AltaUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,11 +159,23 @@
       <DependentUpon>ListadoCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Conexion\Conexion.cs" />
-    <Compile Include="GenerarModificacionReserva\Form1.cs">
+    <Compile Include="GenerarModificacionReserva\CancelarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GenerarModificacionReserva\CancelarReserva.Designer.cs">
+      <DependentUpon>CancelarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\IngresarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\IngresarReserva.Designer.cs">
+      <DependentUpon>IngresarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ModificarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ModificarReserva.Designer.cs">
+      <DependentUpon>ModificarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerarReserva\AltaCliente.cs">
       <SubType>Form</SubType>
@@ -182,12 +194,6 @@
     </Compile>
     <Compile Include="GenerarReserva\ListadoCliente.Designer.cs">
       <DependentUpon>ListadoCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GenerarReserva\ModalCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerarReserva\ModalCliente.Designer.cs">
-      <DependentUpon>ModalCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\SeleccionarRol.cs">
       <SubType>Form</SubType>
@@ -220,6 +226,12 @@
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Objetos\Ciudad.cs" />
+    <Compile Include="Objetos\Comodidad.cs" />
+    <Compile Include="Objetos\Consulta.cs" />
+    <Compile Include="Objetos\Cliente.cs" />
+    <Compile Include="Objetos\Nacionalidad.cs" />
+    <Compile Include="Objetos\TipoHabitacion.cs" />
+    <Compile Include="Objetos\Habitacion.cs" />
     <Compile Include="Objetos\Regimen.cs" />
     <Compile Include="Objetos\Estrella.cs" />
     <Compile Include="Objetos\Pais.cs" />
@@ -264,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\AltaHabitacion.resx">
       <DependentUpon>AltaHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\ModificarHabitacion.resx">
+      <DependentUpon>ModificarHabitacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\ListadoHabitacion.resx">
       <DependentUpon>ListadoHabitacion.cs</DependentUpon>
@@ -313,6 +328,15 @@
     <EmbeddedResource Include="AbmCliente\ListadoCliente.resx">
       <DependentUpon>ListadoCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\CancelarReserva.resx">
+      <DependentUpon>CancelarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\IngresarReserva.resx">
+      <DependentUpon>IngresarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\ModificarReserva.resx">
+      <DependentUpon>ModificarReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarReserva\AltaCliente.resx">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -321,9 +345,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarReserva\ListadoCliente.resx">
       <DependentUpon>ListadoCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GenerarReserva\ModalCliente.resx">
-      <DependentUpon>ModalCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\SeleccionarRol.resx">
       <DependentUpon>SeleccionarRol.cs</DependentUpon>
