@@ -26,6 +26,8 @@ namespace FrbaHotel.AbmUsuario
             obtenerRoles();
             obtenerHoteles();
             obtenerUsuarios();
+            hotelCombobox.SelectedIndex = 0;
+            rolCombobox.SelectedIndex = 0;
         }
 
         private void buscar_Click(object sender, EventArgs e)
@@ -49,8 +51,8 @@ namespace FrbaHotel.AbmUsuario
             cmd.CommandText = "USUARIO_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
-            cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = ((Rol) rolCombobox.SelectedItem).id;
-            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel) hotelCombobox.SelectedItem).id;
+            cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = ((Rol)rolCombobox.SelectedItem).id;
+            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel)hotelCombobox.SelectedItem).id;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -61,7 +63,9 @@ namespace FrbaHotel.AbmUsuario
             {
                 while (reader.Read())
                 {
-                    hotelCombobox.Items.Add(new Rol(reader));
+                    //hotelCombobox.Items.Add(new Hotel(reader));
+                    resultados.Items.Add(reader.GetString(0));
+                    usuarios.Add(new Usuario(reader));
                 }
             }
 
@@ -90,7 +94,7 @@ namespace FrbaHotel.AbmUsuario
                     hotelCombobox.Items.Add(new Hotel(reader));
                 }
             }
-
+            hotelCombobox.SelectedIndex = 0;
             reader.Close();
             sqlConnection.Close();
         }
@@ -114,16 +118,17 @@ namespace FrbaHotel.AbmUsuario
                 while (reader.Read())
                 {
                     rolCombobox.Items.Add(new Rol(reader));
+                    //MessageBox.Show(reader.GetInt32(reader.GetOrdinal("rol_id")).ToString());
                 }
             }
-
+            rolCombobox.SelectedIndex = 0;
             reader.Close();
             sqlConnection.Close();
         }
 
         private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ModificarUsuario modificarUsuario = new ModificarUsuario(usuarios[resultados.SelectedItems[0].Index], rolCombobox.Items.Cast<Rol>().ToList(), hotelCombobox.Items.Cast<Hotel>().ToList());
+            ModificarUsuario modificarUsuario = new ModificarUsuario((Usuario)usuarios[resultados.SelectedItems[0].Index], rolCombobox.Items.Cast<Rol>().ToList(), hotelCombobox.Items.Cast<Hotel>().ToList());
             modificarUsuario.ShowDialog();
         }
 
@@ -131,6 +136,10 @@ namespace FrbaHotel.AbmUsuario
         {
             AltaUsuario altaUsuario = new AltaUsuario(rolCombobox.Items.Cast<Rol>().ToList(), hotelCombobox.Items.Cast<Hotel>().ToList());
             altaUsuario.ShowDialog();
+
+            obtenerUsuarios();
+
         }
+
     }
 }

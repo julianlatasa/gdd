@@ -39,10 +39,13 @@ namespace FrbaHotel.AbmUsuario
             nroIdentificacion.Text = usuario2.nroDocumento;
             email.Text = usuario2.email;
             telefono.Text = usuario2.telefono;
-            direccion.Text = usuario2.domicilio.Split('|')[0];
-            altura.Text = usuario2.domicilio.Split('|')[1];
-            departamento.Text = usuario2.domicilio.Split('|')[2];
-            fechaNacimiento.Text = usuario2.fechaDeNacimiento;
+            if (usuario2.domicilio != null)
+            {
+                direccion.Text = usuario2.domicilio.Split('|')[0];
+                altura.Text = usuario2.domicilio.Split('|')[1];
+                departamento.Text = usuario2.domicilio.Split('|')[2];
+            }
+            fechaNacimiento.Text = Convert.ToDateTime(usuario2.fechaDeNacimiento).ToString("dd/MM/yyyy");
             habilitado.Checked = usuario2.habilitado;
 
             rolesMarcados = obtenerRolesMarcados();
@@ -140,7 +143,7 @@ namespace FrbaHotel.AbmUsuario
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT rol_id FROM USUARIO_ROL WHERE usua_usuario = " + Conexion.usuario;
+            cmd.CommandText = "SELECT rol_id FROM USUARIO_ROL WHERE usua_usuario = '" + usuario2.usuario +"'";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -169,7 +172,7 @@ namespace FrbaHotel.AbmUsuario
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT hote_id FROM USUARIO_HOTEL WHERE usua_usuario = " + Conexion.usuario;
+            cmd.CommandText = "SELECT hote_id FROM USUARIO_HOTEL WHERE usua_usuario = '" + usuario2.usuario + "'";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -217,6 +220,7 @@ namespace FrbaHotel.AbmUsuario
             {
                 cmd.ExecuteNonQuery();
                 sqlConnection.Close();
+                MessageBox.Show("Usuario modificado con exito.","Modificar Usuario");
                 return true;
             }
             catch (SqlException se)
