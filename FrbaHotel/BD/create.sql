@@ -104,6 +104,7 @@ CREATE TABLE CLIENTE (
 	clie_nombre varchar(100) NOT NULL,
 	clie_apellido varchar(100) NOT NULL,
 	clie_email varchar(150) NOT NULL,
+	clie_telefono varchar(50),
 	clie_habilitado char(1) NOT NULL DEFAULT 1,
 	clie_domicilio varchar(200) NOT NULL,
 	clie_fecha_nac smalldatetime,

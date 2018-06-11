@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.AbmCliente
 {
-    partial class modificacionCliente
+    partial class ModificarCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -15,13 +15,9 @@
         {
             if (disposing && (components != null))
             {
-
                 components.Dispose();
             }
             base.Dispose(disposing);
-
-            listaPrevia.Refresh();
-            listaPrevia.Show();
         }
 
         #region Windows Form Designer generated code
@@ -32,20 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(modificacionCliente));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificarCliente));
             this.limpiar = new System.Windows.Forms.Button();
             this.guardar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.habilitado = new System.Windows.Forms.CheckBox();
+            this.fechaNacimiento = new System.Windows.Forms.MaskedTextBox();
             this.telefono = new System.Windows.Forms.MaskedTextBox();
             this.altura = new System.Windows.Forms.MaskedTextBox();
-            this.fechaNacimiento = new System.Windows.Forms.MaskedTextBox();
+            this.nacionalidad = new System.Windows.Forms.ComboBox();
+            this.pais = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tipoDocumento = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.nacionalidad = new System.Windows.Forms.TextBox();
-            this.labelHa = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.paisDeOrigen = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.localidad = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,6 +46,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.direccion = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.TextBox();
@@ -64,27 +58,27 @@
             this.label6 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Cancelar = new System.Windows.Forms.Button();
+            this.habilitado = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // limpiar
             // 
-            this.limpiar.Location = new System.Drawing.Point(12, 427);
+            this.limpiar.Location = new System.Drawing.Point(12, 397);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 16;
+            this.limpiar.TabIndex = 5;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // guardar
             // 
-            this.guardar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.guardar.Location = new System.Drawing.Point(161, 398);
+            this.guardar.Location = new System.Drawing.Point(161, 397);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(75, 23);
-            this.guardar.TabIndex = 15;
+            this.guardar.TabIndex = 5;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = true;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
@@ -92,15 +86,14 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.habilitado);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.fechaNacimiento);
             this.groupBox2.Controls.Add(this.telefono);
             this.groupBox2.Controls.Add(this.altura);
-            this.groupBox2.Controls.Add(this.fechaNacimiento);
-            this.groupBox2.Controls.Add(this.tipoDocumento);
-            this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.nacionalidad);
-            this.groupBox2.Controls.Add(this.labelHa);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.paisDeOrigen);
+            this.groupBox2.Controls.Add(this.pais);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.tipoDocumento);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.localidad);
             this.groupBox2.Controls.Add(this.label1);
@@ -108,6 +101,7 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.direccion);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.email);
@@ -121,21 +115,19 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(224, 380);
+            this.groupBox2.Size = new System.Drawing.Size(224, 379);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Cliente";
             // 
-            // habilitado
+            // fechaNacimiento
             // 
-            this.habilitado.AutoSize = true;
-            this.habilitado.Checked = true;
-            this.habilitado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.habilitado.Location = new System.Drawing.Point(104, 359);
-            this.habilitado.Name = "habilitado";
-            this.habilitado.Size = new System.Drawing.Size(15, 14);
-            this.habilitado.TabIndex = 14;
-            this.habilitado.UseVisualStyleBackColor = true;
+            this.fechaNacimiento.Location = new System.Drawing.Point(104, 332);
+            this.fechaNacimiento.Mask = "00/00/0000";
+            this.fechaNacimiento.Name = "fechaNacimiento";
+            this.fechaNacimiento.Size = new System.Drawing.Size(114, 20);
+            this.fechaNacimiento.TabIndex = 7;
+            this.fechaNacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // telefono
             // 
@@ -143,7 +135,7 @@
             this.telefono.Mask = "(999)0000-0000";
             this.telefono.Name = "telefono";
             this.telefono.Size = new System.Drawing.Size(114, 20);
-            this.telefono.TabIndex = 6;
+            this.telefono.TabIndex = 7;
             // 
             // altura
             // 
@@ -151,17 +143,33 @@
             this.altura.Mask = "99999";
             this.altura.Name = "altura";
             this.altura.Size = new System.Drawing.Size(114, 20);
-            this.altura.TabIndex = 8;
+            this.altura.TabIndex = 6;
             this.altura.ValidatingType = typeof(int);
             // 
-            // fechaNacimiento
+            // nacionalidad
             // 
-            this.fechaNacimiento.Location = new System.Drawing.Point(104, 252);
-            this.fechaNacimiento.Mask = "00/00/0000";
-            this.fechaNacimiento.Name = "fechaNacimiento";
-            this.fechaNacimiento.Size = new System.Drawing.Size(114, 20);
-            this.fechaNacimiento.TabIndex = 10;
-            this.fechaNacimiento.ValidatingType = typeof(System.DateTime);
+            this.nacionalidad.FormattingEnabled = true;
+            this.nacionalidad.Location = new System.Drawing.Point(104, 305);
+            this.nacionalidad.Name = "nacionalidad";
+            this.nacionalidad.Size = new System.Drawing.Size(114, 21);
+            this.nacionalidad.TabIndex = 4;
+            // 
+            // pais
+            // 
+            this.pais.FormattingEnabled = true;
+            this.pais.Location = new System.Drawing.Point(104, 278);
+            this.pais.Name = "pais";
+            this.pais.Size = new System.Drawing.Size(114, 21);
+            this.pais.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 308);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Nacionalidad";
             // 
             // tipoDocumento
             // 
@@ -169,53 +177,12 @@
             this.tipoDocumento.Location = new System.Drawing.Point(104, 69);
             this.tipoDocumento.Name = "tipoDocumento";
             this.tipoDocumento.Size = new System.Drawing.Size(114, 21);
-            this.tipoDocumento.TabIndex = 3;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(9, 255);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(91, 13);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Fecha nacimiento";
-            // 
-            // nacionalidad
-            // 
-            this.nacionalidad.Location = new System.Drawing.Point(104, 330);
-            this.nacionalidad.Name = "nacionalidad";
-            this.nacionalidad.Size = new System.Drawing.Size(114, 20);
-            this.nacionalidad.TabIndex = 13;
-            // 
-            // labelHa
-            // 
-            this.labelHa.AutoSize = true;
-            this.labelHa.Location = new System.Drawing.Point(9, 359);
-            this.labelHa.Name = "labelHa";
-            this.labelHa.Size = new System.Drawing.Size(54, 13);
-            this.labelHa.TabIndex = 0;
-            this.labelHa.Text = "Habilitado";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 333);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Nacionalidad";
-            // 
-            // paisDeOrigen
-            // 
-            this.paisDeOrigen.Location = new System.Drawing.Point(104, 304);
-            this.paisDeOrigen.Name = "paisDeOrigen";
-            this.paisDeOrigen.Size = new System.Drawing.Size(114, 20);
-            this.paisDeOrigen.TabIndex = 12;
+            this.tipoDocumento.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 307);
+            this.label2.Location = new System.Drawing.Point(9, 281);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 0;
@@ -223,15 +190,15 @@
             // 
             // localidad
             // 
-            this.localidad.Location = new System.Drawing.Point(104, 278);
+            this.localidad.Location = new System.Drawing.Point(104, 252);
             this.localidad.Name = "localidad";
             this.localidad.Size = new System.Drawing.Size(114, 20);
-            this.localidad.TabIndex = 11;
+            this.localidad.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 281);
+            this.label1.Location = new System.Drawing.Point(9, 255);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 0;
@@ -242,7 +209,7 @@
             this.departamento.Location = new System.Drawing.Point(104, 226);
             this.departamento.Name = "departamento";
             this.departamento.Size = new System.Drawing.Size(114, 20);
-            this.departamento.TabIndex = 9;
+            this.departamento.TabIndex = 3;
             // 
             // label13
             // 
@@ -267,7 +234,16 @@
             this.direccion.Location = new System.Drawing.Point(104, 174);
             this.direccion.Name = "direccion";
             this.direccion.Size = new System.Drawing.Size(114, 20);
-            this.direccion.TabIndex = 7;
+            this.direccion.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 334);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Fecha Nacimiento";
             // 
             // label11
             // 
@@ -292,7 +268,7 @@
             this.email.Location = new System.Drawing.Point(104, 122);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(114, 20);
-            this.email.TabIndex = 5;
+            this.email.TabIndex = 3;
             // 
             // label9
             // 
@@ -308,7 +284,7 @@
             this.documento.Location = new System.Drawing.Point(104, 96);
             this.documento.Name = "documento";
             this.documento.Size = new System.Drawing.Size(114, 20);
-            this.documento.TabIndex = 4;
+            this.documento.TabIndex = 3;
             // 
             // label8
             // 
@@ -333,7 +309,7 @@
             this.apellido.Location = new System.Drawing.Point(104, 44);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(114, 20);
-            this.apellido.TabIndex = 2;
+            this.apellido.TabIndex = 3;
             // 
             // label6
             // 
@@ -349,7 +325,7 @@
             this.nombre.Location = new System.Drawing.Point(104, 18);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(114, 20);
-            this.nombre.TabIndex = 1;
+            this.nombre.TabIndex = 3;
             // 
             // label3
             // 
@@ -360,38 +336,44 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Nombre";
             // 
-            // Cancelar
+            // habilitado
             // 
-            this.Cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cancelar.Location = new System.Drawing.Point(161, 427);
-            this.Cancelar.Name = "Cancelar";
-            this.Cancelar.Size = new System.Drawing.Size(75, 23);
-            this.Cancelar.TabIndex = 17;
-            this.Cancelar.Text = "Cancelar";
-            this.Cancelar.UseVisualStyleBackColor = true;
-            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            this.habilitado.AutoSize = true;
+            this.habilitado.Checked = true;
+            this.habilitado.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.habilitado.Location = new System.Drawing.Point(104, 358);
+            this.habilitado.Name = "habilitado";
+            this.habilitado.Size = new System.Drawing.Size(15, 14);
+            this.habilitado.TabIndex = 15;
+            this.habilitado.UseVisualStyleBackColor = true;
             // 
-            // modificacionCliente
+            // label14
             // 
-            this.AcceptButton = this.guardar;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(9, 358);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(54, 13);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "Habilitado";
+            // 
+            // ModificarCliente
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.Cancelar;
-            this.ClientSize = new System.Drawing.Size(248, 454);
-            this.Controls.Add(this.Cancelar);
+            this.ClientSize = new System.Drawing.Size(248, 427);
             this.Controls.Add(this.guardar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "modificacionCliente";
+            this.Name = "ModificarCliente";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Modificar Cliente";
+            this.Text = "Crear Cliente";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.Modificacion_Load);
+            this.Load += new System.EventHandler(this.AltaCliente_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -416,22 +398,21 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox departamento;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.MaskedTextBox telefono;
         private System.Windows.Forms.MaskedTextBox altura;
-        private System.Windows.Forms.MaskedTextBox fechaNacimiento;
         private System.Windows.Forms.TextBox email;
-        private System.Windows.Forms.CheckBox habilitado;
-        private System.Windows.Forms.TextBox nacionalidad;
-        private System.Windows.Forms.Label labelHa;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox paisDeOrigen;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox localidad;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Cancelar;
+        private System.Windows.Forms.ComboBox nacionalidad;
+        private System.Windows.Forms.ComboBox pais;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MaskedTextBox fechaNacimiento;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox habilitado;
+        private System.Windows.Forms.Label label14;
 
     }
 }

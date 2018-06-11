@@ -42,11 +42,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
-            this.result_busq = new System.Windows.Forms.DataGridView();
-            this.modificar = new System.Windows.Forms.Button();
-            this.Eliminar = new System.Windows.Forms.Button();
+            this.resultados = new System.Windows.Forms.ListView();
+            this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.result_busq)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -63,7 +61,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 153);
+            this.groupBox1.Size = new System.Drawing.Size(223, 153);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de búsqueda";
@@ -73,7 +71,7 @@
             this.nroIdentificacion.Location = new System.Drawing.Point(103, 99);
             this.nroIdentificacion.Mask = "99999999";
             this.nroIdentificacion.Name = "nroIdentificacion";
-            this.nroIdentificacion.Size = new System.Drawing.Size(137, 20);
+            this.nroIdentificacion.Size = new System.Drawing.Size(114, 20);
             this.nroIdentificacion.TabIndex = 10;
             // 
             // label5
@@ -90,7 +88,7 @@
             this.tipoIdentificacion.FormattingEnabled = true;
             this.tipoIdentificacion.Location = new System.Drawing.Point(103, 71);
             this.tipoIdentificacion.Name = "tipoIdentificacion";
-            this.tipoIdentificacion.Size = new System.Drawing.Size(137, 21);
+            this.tipoIdentificacion.Size = new System.Drawing.Size(114, 21);
             this.tipoIdentificacion.TabIndex = 9;
             // 
             // label4
@@ -106,7 +104,7 @@
             // 
             this.email.Location = new System.Drawing.Point(103, 125);
             this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(137, 20);
+            this.email.Size = new System.Drawing.Size(114, 20);
             this.email.TabIndex = 8;
             // 
             // label2
@@ -122,7 +120,7 @@
             // 
             this.apellido.Location = new System.Drawing.Point(103, 45);
             this.apellido.Name = "apellido";
-            this.apellido.Size = new System.Drawing.Size(137, 20);
+            this.apellido.Size = new System.Drawing.Size(114, 20);
             this.apellido.TabIndex = 8;
             // 
             // label8
@@ -138,7 +136,7 @@
             // 
             this.nombre.Location = new System.Drawing.Point(103, 19);
             this.nombre.Name = "nombre";
-            this.nombre.Size = new System.Drawing.Size(137, 20);
+            this.nombre.Size = new System.Drawing.Size(114, 20);
             this.nombre.TabIndex = 1;
             // 
             // label1
@@ -162,7 +160,7 @@
             // 
             // buscar
             // 
-            this.buscar.Location = new System.Drawing.Point(178, 173);
+            this.buscar.Location = new System.Drawing.Point(161, 172);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(75, 23);
             this.buscar.TabIndex = 1;
@@ -170,43 +168,33 @@
             this.buscar.UseVisualStyleBackColor = true;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
-            // result_busq
+            // resultados
             // 
-            this.result_busq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.result_busq.Location = new System.Drawing.Point(12, 202);
-            this.result_busq.Name = "result_busq";
-            this.result_busq.Size = new System.Drawing.Size(241, 150);
-            this.result_busq.TabIndex = 3;
-            this.result_busq.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.result_busq_CellContentClick);
+            this.resultados.Location = new System.Drawing.Point(13, 202);
+            this.resultados.MultiSelect = false;
+            this.resultados.Name = "resultados";
+            this.resultados.Size = new System.Drawing.Size(223, 154);
+            this.resultados.TabIndex = 2;
+            this.resultados.UseCompatibleStateImageBehavior = false;
+            this.resultados.MouseClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseClick);
             // 
-            // modificar
+            // nuevo
             // 
-            this.modificar.Location = new System.Drawing.Point(178, 370);
-            this.modificar.Name = "modificar";
-            this.modificar.Size = new System.Drawing.Size(75, 23);
-            this.modificar.TabIndex = 4;
-            this.modificar.Text = "Modificar";
-            this.modificar.UseVisualStyleBackColor = true;
-            this.modificar.Click += new System.EventHandler(this.modificar_Click);
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.Location = new System.Drawing.Point(12, 370);
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Size = new System.Drawing.Size(75, 23);
-            this.Eliminar.TabIndex = 5;
-            this.Eliminar.Text = "Eliminar";
-            this.Eliminar.UseVisualStyleBackColor = true;
-            this.Eliminar.Click += new System.EventHandler(this.Eliminar_Click_1);
+            this.nuevo.Location = new System.Drawing.Point(161, 362);
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(75, 23);
+            this.nuevo.TabIndex = 1;
+            this.nuevo.Text = "Nuevo";
+            this.nuevo.UseVisualStyleBackColor = true;
+            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
             // ListadoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(275, 405);
-            this.Controls.Add(this.Eliminar);
-            this.Controls.Add(this.modificar);
-            this.Controls.Add(this.result_busq);
+            this.ClientSize = new System.Drawing.Size(248, 390);
+            this.Controls.Add(this.resultados);
+            this.Controls.Add(this.nuevo);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.groupBox1);
@@ -217,12 +205,11 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Listado Clientes";
+            this.Text = "Listado Cliente";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.ListadoCliente_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.result_busq)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -234,6 +221,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
+        private System.Windows.Forms.ListView resultados;
         private System.Windows.Forms.ComboBox tipoIdentificacion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox apellido;
@@ -242,9 +230,7 @@
         private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox nroIdentificacion;
-        private System.Windows.Forms.DataGridView result_busq;
-        private System.Windows.Forms.Button modificar;
-        private System.Windows.Forms.Button Eliminar;
+        private System.Windows.Forms.Button nuevo;
 
 
     }

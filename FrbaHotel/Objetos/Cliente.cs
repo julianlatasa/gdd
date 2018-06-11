@@ -15,6 +15,7 @@ namespace FrbaHotel.Objetos
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string email { get; set; }
+        public string telefono { get; set; }
         public string domicilio { get; set; }
         public string fechaNacimiento { get; set; }
         public string localidad { get; set; }
@@ -30,6 +31,7 @@ namespace FrbaHotel.Objetos
             this.nombre = reader.GetString(reader.GetOrdinal("clie_nombre"));
             this.apellido = reader.GetString(reader.GetOrdinal("clie_apellido"));
             this.email = reader.GetString(reader.GetOrdinal("clie_email"));
+            this.telefono = reader.GetString(reader.GetOrdinal("clie_telefono"));
             this.domicilio = reader.GetString(reader.GetOrdinal("clie_domicilio"));
             this.fechaNacimiento = reader.GetString(reader.GetOrdinal("clie_fecha_nac"));
             this.localidad = reader.GetString(reader.GetOrdinal("clie_localidad"));

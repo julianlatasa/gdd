@@ -12,12 +12,13 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmCliente
 {
-    public partial class AltaCliente : Form
+    public partial class ModificarCliente : Form
     {
-        public int idCliente;
+        Cliente cliente;
 
-        public AltaCliente()
+        public ModificarCliente(Cliente cliente)
         {
+            this.cliente = cliente;
             InitializeComponent();
         }
 
@@ -26,14 +27,26 @@ namespace FrbaHotel.AbmCliente
             obtenerPaises();
             obtenerNacionalidad();
             obtenerTipoDocumento();
+
+            nombre.Text = cliente.nombre;
+            apellido.Text = cliente.apellido;
+            tipoDocumento.SelectedItem = tipoDocumento.Items.Cast<TipoDocumento>().ToList().First(tp => tp.id == cliente.tipoDocumento);
+            documento.Text = cliente.numeroDocumento;
+            email.Text = cliente.email;
+            telefono.Text = cliente.telefono;
+            direccion.Text = cliente.domicilio.Split('|')[0];
+            altura.Text = cliente.domicilio.Split('|')[1];
+            departamento.Text = cliente.domicilio.Split('|')[2];
+            localidad.Text = cliente.localidad;
+            pais.SelectedItem = pais.Items.Cast<Pais>().ToList().First(tp => tp.id == cliente.pais);
+            nacionalidad.SelectedItem = nacionalidad.Items.Cast<Nacionalidad>().ToList().First(tp => tp.id == cliente.nacionalidad);
         }
 
         private void guardar_Click(object sender, EventArgs e)
         {
             if (validar())
             {
-                crearCliente();
-                DialogResult = DialogResult.OK;
+                modificarCliente();
                 Close();
             }
         }
@@ -72,14 +85,14 @@ namespace FrbaHotel.AbmCliente
             nacionalidad.SelectedIndex = 0;
         }
 
-        private void crearCliente()
+        private void modificarCliente()
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader;
 
-            cmd.CommandText = "CLIENTE_Crear";
+            cmd.CommandText = "CLIENTE_Modificar";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = cliente.id;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
             cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento)tipoDocumento.SelectedItem).id;
@@ -91,16 +104,14 @@ namespace FrbaHotel.AbmCliente
             cmd.Parameters.Add("@pais", SqlDbType.Int).Value = ((Pais)pais.SelectedItem).id;
             cmd.Parameters.Add("@nacionalidad", SqlDbType.Int).Value = ((Nacionalidad)nacionalidad.SelectedItem).id;
             cmd.Parameters.Add("@localidad", SqlDbType.VarChar).Value = localidad.Text;
+            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = habilitado.Checked ? 1 : 0;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
 
             try
             {
-                reader = cmd.ExecuteReader();
-                reader.Read();
-                idCliente = reader.GetInt32(0);
-                reader.Close();
+                cmd.ExecuteNonQuery();
             }
             catch (SqlException se)
             {
