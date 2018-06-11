@@ -69,7 +69,7 @@ namespace FrbaHotel.Login
             {
                 reader = cmd.ExecuteReader();
                 reader.Read();
-                Conexion.usuario = reader.GetString(0);
+                Conexion.usuario = reader.GetString(0).Trim();
                 reader.Close();
                 sqlConnection.Close();
 
@@ -88,8 +88,10 @@ namespace FrbaHotel.Login
         private void irASeleccionarHotelActivo()
         {
             SeleccionarHotel seleccionarHotel = new SeleccionarHotel();
+            seleccionarHotel.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
+            { Close(); };
             seleccionarHotel.Show();
-            Close();
+            Hide();
         }
     }
 }

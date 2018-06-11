@@ -113,7 +113,10 @@ namespace FrbaHotel.AbmCliente
                     clientes.Add(new Cliente(reader));
                 }
             }
-            clientes.ForEach(c => { resultados.Items.Add(c.ToString()); });
+            clientes.ForEach(c => {
+                string[] cols = { c.apellido, c.nombre };
+                resultados.Items.Add(c.numeroDocumento).SubItems.AddRange(cols);
+            });
 
             reader.Close();
             sqlConnection.Close();

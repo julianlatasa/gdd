@@ -63,7 +63,6 @@ namespace FrbaHotel.AbmUsuario
             {
                 while (reader.Read())
                 {
-                    //hotelCombobox.Items.Add(new Hotel(reader));
                     resultados.Items.Add(reader.GetString(0));
                     usuarios.Add(new Usuario(reader));
                 }

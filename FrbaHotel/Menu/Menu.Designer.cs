@@ -102,7 +102,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menú Principal";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.Menu_Load);
+            this.Shown += new System.EventHandler(this.Menu_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

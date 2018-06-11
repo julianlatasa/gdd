@@ -268,7 +268,6 @@
     <Compile Include="Objetos\Consumible.cs" />
     <Compile Include="Objetos\LineaFactura.cs" />
     <Compile Include="Objetos\FormaDePago.cs" />
-    <Compile Include="Objetos\Nacionalidad.cs" />
     <Compile Include="Objetos\TipoHabitacion.cs" />
     <Compile Include="Objetos\Habitacion.cs" />
     <Compile Include="Objetos\Regimen.cs" />
@@ -322,6 +321,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilidades\ConvertFecha.cs" />
     <EmbeddedResource Include="AbmCliente\AltaCliente.resx">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </EmbeddedResource>

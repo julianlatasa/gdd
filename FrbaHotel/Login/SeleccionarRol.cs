@@ -24,15 +24,9 @@ namespace FrbaHotel
         private void SeleccionarRol_Load(object sender, EventArgs e)
         {
             obtenerRoles();
-
-            if (roles.Count == 1)
-            {
-                asignarRolActivo(roles[0]);
-                irAMenuPrincipal();
-            }
         }
 
-        private void seleccionar_Click(object sender, EventArgs e)
+        private void listaRoles_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             seleccionarRol();
             irAMenuPrincipal();
@@ -44,7 +38,7 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT r.rol_nombre, r.rol_id FROM ROL r JOIN USUARIO_ROL ur ON r.rol_id = ur.rol_id AND ur.usua_usuario = " + Conexion.usuario + " WHERE r.rol_habilitado = 1";
+            cmd.CommandText = "SELECT r.rol_nombre, r.rol_id FROM ROL r JOIN USUARIO_ROL ur ON r.rol_id = ur.rol_id AND ur.usua_usuario = '" + Conexion.usuario + "' WHERE r.rol_habilitado = 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -71,7 +65,7 @@ namespace FrbaHotel
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "USUARIO_Asignar_Hotel_Activo";
+            cmd.CommandText = "USUARIO_Asignar_Rol_Activo";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = rol.id;

@@ -39,7 +39,6 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.resultados = new System.Windows.Forms.ListView();
-            this.usuario1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -131,8 +130,6 @@
             // 
             // resultados
             // 
-            this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.usuario1});
             this.resultados.Location = new System.Drawing.Point(13, 150);
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
@@ -140,10 +137,6 @@
             this.resultados.TabIndex = 2;
             this.resultados.UseCompatibleStateImageBehavior = false;
             this.resultados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseDoubleClick);
-            // 
-            // usuario1
-            // 
-            this.usuario1.Text = "Usuario";
             // 
             // nuevo
             // 
@@ -189,7 +182,6 @@
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.ListView resultados;
-        private System.Windows.Forms.ColumnHeader usuario1;
         private System.Windows.Forms.ComboBox rolCombobox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox hotelCombobox;

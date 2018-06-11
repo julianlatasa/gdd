@@ -77,7 +77,13 @@ namespace FrbaHotel.AbmHotel
                     hoteles.Add(new Hotel(reader));
                 }
             }
-            hoteles.ForEach(h => { resultados.Items.Add(h.ToString()); });
+            hoteles.ForEach(h =>
+            {
+                string[] cols = { h.estrellas.ToString(), 
+                                    ciudad.Items.Cast<Ciudad>().ToList().First(c => c.id == h.ciudad).nombre, 
+                                    pais.Items.Cast<Pais>().ToList().First(p => p.id == h.pais).nombre };
+                resultados.Items.Add(h.nombre).SubItems.AddRange(cols);
+            });
 
             reader.Close();
             sqlConnection.Close();

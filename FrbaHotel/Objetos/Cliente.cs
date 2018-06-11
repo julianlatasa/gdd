@@ -33,7 +33,7 @@ namespace FrbaHotel.Objetos
             this.email = reader.GetString(reader.GetOrdinal("clie_email"));
             this.telefono = reader.GetString(reader.GetOrdinal("clie_telefono"));
             this.domicilio = reader.GetString(reader.GetOrdinal("clie_domicilio"));
-            this.fechaNacimiento = reader.GetString(reader.GetOrdinal("clie_fecha_nac"));
+            this.fechaNacimiento = ConvertFecha.fechaBdAVs(reader.GetString(reader.GetOrdinal("clie_fecha_nac")));
             this.localidad = reader.GetString(reader.GetOrdinal("clie_localidad"));
             this.pais = reader.GetInt32(reader.GetOrdinal("clie_pais"));
             this.nacionalidad = reader.GetInt32(reader.GetOrdinal("clie_nacionalidad"));

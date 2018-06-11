@@ -206,7 +206,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel) hotel.SelectedItem).id;
-            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = fechaDesde.Text;
+            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
             cmd.Parameters.Add("@duracion", SqlDbType.Int).Value = duracion.Text;
             cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion) tipoHabitacion.SelectedItem).id;
             cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen) tipoRegimen.SelectedItem).id;
@@ -238,7 +238,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmd.CommandText = "RESERVA_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel) hotel.SelectedItem).id;
-            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = fechaDesde.Text;
+            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
             cmd.Parameters.Add("@duracion", SqlDbType.Int).Value = duracion.Text;
             cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion) tipoHabitacion.SelectedItem).id;
             if(tipoRegimen.SelectedIndex >= 0)
@@ -260,7 +260,12 @@ namespace FrbaHotel.GenerarModificacionReserva
                         consultas.Add(new Consulta(reader));
                     }
                 }
-                consultas.ForEach(c => { resultados.Items.Add(c.ToString()); });
+                consultas.ForEach(c =>
+                {
+                    string[] cols = { c.precio.ToString(), 
+                                    c.habitaciones.ToString() };
+                    resultados.Items.Add(c.descripcionRegimen).SubItems.AddRange(cols);
+                });
             }
             catch (Exception se)
             {

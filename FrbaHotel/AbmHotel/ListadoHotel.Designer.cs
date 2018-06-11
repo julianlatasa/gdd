@@ -42,6 +42,10 @@
             this.buscar = new System.Windows.Forms.Button();
             this.resultados = new System.Windows.Forms.ListView();
             this.nuevo = new System.Windows.Forms.Button();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,6 +188,11 @@
             // 
             // resultados
             // 
+            this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
             this.resultados.Location = new System.Drawing.Point(13, 174);
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
@@ -200,6 +209,22 @@
             this.nuevo.Text = "Nuevo";
             this.nuevo.UseVisualStyleBackColor = true;
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Nombre";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Estrellas";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Ciudad";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "País";
             // 
             // ListadoHotel
             // 
@@ -242,6 +267,10 @@
         private System.Windows.Forms.Button nuevo;
         private System.Windows.Forms.ComboBox pais;
         private System.Windows.Forms.ComboBox ciudad;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
 
 
     }

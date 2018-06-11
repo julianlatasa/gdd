@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeleccionarRol));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listaRoles = new System.Windows.Forms.ListView();
-            this.seleccionar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,23 +52,14 @@
             this.listaRoles.Size = new System.Drawing.Size(211, 211);
             this.listaRoles.TabIndex = 0;
             this.listaRoles.UseCompatibleStateImageBehavior = false;
-            // 
-            // seleccionar
-            // 
-            this.seleccionar.Location = new System.Drawing.Point(161, 255);
-            this.seleccionar.Name = "seleccionar";
-            this.seleccionar.Size = new System.Drawing.Size(75, 23);
-            this.seleccionar.TabIndex = 5;
-            this.seleccionar.Text = "Seleccionar";
-            this.seleccionar.UseVisualStyleBackColor = true;
-            this.seleccionar.Click += new System.EventHandler(this.seleccionar_Click);
+            this.listaRoles.View = System.Windows.Forms.View.Tile;
+            this.listaRoles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listaRoles_MouseDoubleClick);
             // 
             // SeleccionarRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 290);
-            this.Controls.Add(this.seleccionar);
+            this.ClientSize = new System.Drawing.Size(248, 260);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -80,7 +70,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seleccionar Rol";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.SeleccionarRol_Load);
+            this.Shown += new System.EventHandler(this.SeleccionarRol_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -89,7 +79,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button seleccionar;
         private System.Windows.Forms.ListView listaRoles;
 
     }

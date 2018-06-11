@@ -210,7 +210,7 @@ namespace FrbaHotel.AbmUsuario
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
             cmd.Parameters.Add("@telefono", SqlDbType.VarChar).Value = telefono.Text;
             cmd.Parameters.Add("@domicilio", SqlDbType.VarChar).Value = String.Format("{0}|{1}|{2}", direccion.Text, altura.Text, departamento.Text);
-            cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = fechaNacimiento.Text;
+            cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaNacimiento.Text);
             cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = habilitado.Checked ? 1 : 0;
             cmd.Connection = sqlConnection;
 

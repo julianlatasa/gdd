@@ -26,9 +26,10 @@ namespace FrbaHotel
             obtenerHoteles();
         }
 
-        private void seleccionar_Click(object sender, EventArgs e)
+        private void listaHoteles_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             seleccionarHotel();
+            irASeleccionarRolActivo();
         }
 
         private void obtenerHoteles()
@@ -37,7 +38,7 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT h.hote_nombre, h.hote_id FROM HOTEL h JOIN USUARIO_HOTEL uh ON h.hote_id = uh.hote_id AND uh.usua_usuario = " + Conexion.usuario;
+            cmd.CommandText = "SELECT h.hote_nombre, h.hote_id FROM HOTEL h JOIN USUARIO_HOTEL uh ON h.hote_id = uh.hote_id AND uh.usua_usuario = '" + Conexion.usuario + "'";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -80,10 +81,10 @@ namespace FrbaHotel
 
         private void irASeleccionarRolActivo()
         {
-            SeleccionarHotel seleccionarHotel = new SeleccionarHotel();
-            seleccionarHotel.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
+            SeleccionarRol seleccionarRol = new SeleccionarRol();
+            seleccionarRol.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
             { Close(); };
-            seleccionarHotel.Show();
+            seleccionarRol.Show();
             Hide();
         }
     }

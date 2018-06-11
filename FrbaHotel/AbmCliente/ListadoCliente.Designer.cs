@@ -44,6 +44,9 @@
             this.buscar = new System.Windows.Forms.Button();
             this.resultados = new System.Windows.Forms.ListView();
             this.nuevo = new System.Windows.Forms.Button();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -170,6 +173,10 @@
             // 
             // resultados
             // 
+            this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
             this.resultados.Location = new System.Drawing.Point(13, 202);
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
@@ -187,6 +194,18 @@
             this.nuevo.Text = "Nuevo";
             this.nuevo.UseVisualStyleBackColor = true;
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Documento";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Apellido";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Nombre";
             // 
             // ListadoCliente
             // 
@@ -231,6 +250,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox nroIdentificacion;
         private System.Windows.Forms.Button nuevo;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
 
 
     }

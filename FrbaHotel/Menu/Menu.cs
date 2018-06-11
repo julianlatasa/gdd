@@ -21,6 +21,10 @@ namespace FrbaHotel
         private void Menu_Load(object sender, EventArgs e)
         {
             rolNombre.Text = Conexion.rolNombre;
+
+            if (Conexion.rolNombre == "INVITADO")
+                cambiarContrasena.Visible = false;
+
             popularBotones();
         }
 
@@ -30,7 +34,7 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT f.func_id, f.func_nombre FROM FUNCIONALIDADES f JOIN FUNCIONALIDAD_ROL fr ON fr.func_id = f.func_id AND fr.rol_id = " + Conexion.rol;
+            cmd.CommandText = "SELECT f.func_id, f.func_nombre FROM FUNCIONALIDAD f JOIN FUNCIONALIDAD_ROL fr ON fr.func_id = f.func_id AND fr.rol_id = " + Conexion.rol;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -54,7 +58,7 @@ namespace FrbaHotel
         {
             Button boton = new Button();
             boton.Location = new System.Drawing.Point(3, panelBotones.Controls.Count * 43);
-            boton.Size = new System.Drawing.Size(205, 40);
+            boton.Size = new System.Drawing.Size(180, 40);
             boton.TabIndex = panelBotones.Controls.Count;
             boton.UseVisualStyleBackColor = true;
 
@@ -117,7 +121,7 @@ namespace FrbaHotel
                     break;
             }
 
-            this.Controls.Add(boton);
+            panelBotones.Controls.Add(boton);
         }
 
         private void salir_Click(object sender, EventArgs e)

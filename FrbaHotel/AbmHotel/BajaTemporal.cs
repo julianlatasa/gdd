@@ -66,8 +66,8 @@ namespace FrbaHotel.AbmHotel
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = hotel.id;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion.Text;
-            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = fechaDesde.Text;
-            cmd.Parameters.Add("@fechaHasta", SqlDbType.SmallDateTime).Value = fechaHasta.Text;
+            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
+            cmd.Parameters.Add("@fechaHasta", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaHasta.Text);
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();

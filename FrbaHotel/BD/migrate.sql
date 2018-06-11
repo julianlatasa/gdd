@@ -1,8 +1,9 @@
 USE [GD1C2018]
 
+INSERT INTO TIPO_DOCUMENTO (tipo_nombre) VALUES ('DNI')
+INSERT INTO TIPO_DOCUMENTO (tipo_nombre) VALUES ('LE')
+INSERT INTO TIPO_DOCUMENTO (tipo_nombre) VALUES ('LC')
 INSERT INTO TIPO_DOCUMENTO (tipo_nombre) VALUES ('PASAPORTE')
-
-INSERT INTO PAIS (pais_nombre) VALUES ('ARGENTINA')
 
 INSERT INTO CIUDAD (ciud_nombre) 
 SELECT DISTINCT Hotel_Ciudad FROM gd_esquema.Maestra
@@ -10,7 +11,7 @@ SELECT DISTINCT Hotel_Ciudad FROM gd_esquema.Maestra
 INSERT INTO ESTRELLAS (estr_numero, estr_recargo)
 SELECT DISTINCT Hotel_CantEstrella, Hotel_Recarga_Estrella FROM gd_esquema.Maestra
 
-INSERT INTO NACIONALIDAD (naci_descripcion)
+INSERT INTO PAIS (pais_nombre)
 SELECT DISTINCT Cliente_Nacionalidad FROM gd_esquema.Maestra
 
 INSERT INTO TIPO_HABITACION (tipo_id, tipo_descripcion, tipo_precio)
@@ -37,8 +38,8 @@ SELECT DISTINCT hote_id, Habitacion_Numero,Habitacion_Piso,Habitacion_Frente,Hab
   FROM gd_esquema.Maestra, HOTEL WHERE CAST((RTRIM(Hotel_Ciudad) + ' - ' + Hotel_Calle) AS VARCHAR(100)) = hote_nombre
 
 INSERT INTO CLIENTE (clie_tipo_doc, clie_numero_doc, clie_nombre, clie_apellido, clie_email, clie_pais, clie_nacionalidad, clie_fecha_nac, clie_domicilio)
-SELECT DISTINCT 1, Cliente_Pasaporte_Nro, Cliente_Nombre, Cliente_Apellido, Cliente_Mail, 1, (SELECT naci_id FROM NACIONALIDAD WHERE naci_descripcion = Cliente_Nacionalidad), Cliente_Fecha_Nac,  
-	CAST((RTRIM(LTRIM(Cliente_Dom_Calle)) + ' ' + CAST(Cliente_Nro_Calle AS VARCHAR(10)) + ' ' + CAST(Cliente_Piso AS VARCHAR(10)) + ' ' + RTRIM(LTRIM(Cliente_Depto))) AS VARCHAR(200))
+SELECT DISTINCT 1, Cliente_Pasaporte_Nro, Cliente_Nombre, Cliente_Apellido, Cliente_Mail, 1, (SELECT pais_id FROM PAIS WHERE pais_nombre = Cliente_Nacionalidad), Cliente_Fecha_Nac,  
+	CAST((RTRIM(LTRIM(Cliente_Dom_Calle)) + '|' + CAST(Cliente_Nro_Calle AS VARCHAR(10)) + '|' + CAST(Cliente_Piso AS VARCHAR(10)) + RTRIM(LTRIM(Cliente_Depto))) AS VARCHAR(200))
 	FROM gd_esquema.Maestra
 
 UPDATE CLIENTE SET clie_habilitado = 0
@@ -49,14 +50,55 @@ INSERT INTO ESTADO (esta_descripcion) VALUES ('RESERVADO')
 INSERT INTO ESTADO (esta_descripcion) VALUES ('CANCELADO')
 INSERT INTO ESTADO (esta_descripcion) VALUES ('HOSPEDADO')
 
-INSERT INTO ROL (rol_id, rol_nombre, rol_habilitado) VALUES (1,'INVITADO', 1)
-INSERT INTO PERSONA (pers_tipo_doc, pers_numero_doc, pers_nombre, pers_apellido, pers_fecha_nac) 
-	VALUES (1, '00000000', 'INVITADO', 'INVITADO', CAST(0 AS smalldatetime))
-INSERT INTO USUARIO (usua_usuario, usua_password, usua_email, usua_rol_activo, usua_hotel_activo, usua_intentos_login, usua_habilitado, usua_tipo_doc, usua_numero_doc)
-	VALUES ('INVITADO', '', '', 1, 1, 0, 1, 1, '00000000')
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('ABM de Rol');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('ABM de Usuario');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('ABM de Cliente');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('ABM de Hotel');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('ABM de Habitación');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('Generar una Reserva');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('Modificar una Reserva');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('Registrar Estadía(check-in)');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('Registrar Estadía(check-out)');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('Registrar Consumibles');
+INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('Listado Estadístico');
+
+INSERT INTO ROL (rol_nombre, rol_habilitado) VALUES ('ADMINISTRADOR', 1);
+INSERT INTO ROL (rol_nombre, rol_habilitado) VALUES ('RECEPCIONISTA', 1);
+INSERT INTO ROL (rol_nombre, rol_habilitado) VALUES ('INVITADO', 1);
+
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (1, 1);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (1, 2);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (2, 3);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (1, 4);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (1, 5);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (2, 6);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (3, 6);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (2, 7);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (3, 7);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (2, 8);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (2, 9);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (2, 10);
+INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (1, 11);
+
+INSERT INTO USUARIO (usua_usuario, usua_password, usua_email, usua_rol_activo, usua_tipo_doc, usua_numero_doc, usua_nombre, usua_apellido, usua_fecha_nac)
+	VALUES ('invitado', '', '', 3, 1, '00000000', 'INVITADO', 'INVITADO', CAST(0 AS smalldatetime)),
+			('recepcionista', HASHBYTES('SHA2_256', '123456'), '', 2, 1, '00000000', 'RECEPCIONISTA', 'RECEPCIONISTA', CAST(0 AS smalldatetime)),
+			('administrador', HASHBYTES('SHA2_256', '123456'), '', 1, 1, '00000000', 'ADMINISTRADOR', 'ADMINISTRADOR', CAST(0 AS smalldatetime)),
+			('test', HASHBYTES('SHA2_256', '123456'), '', 1, 1, '00000000', 'TEST', 'TEST', CAST(0 AS smalldatetime))
 
 INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id) 
-	SELECT 'INVITADO', hote_id FROM HOTEL
+	SELECT 'invitado', hote_id FROM HOTEL
+	
+INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id) 
+	SELECT 'recepcionista', hote_id FROM HOTEL
+	
+INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id) 
+	SELECT 'administrador', hote_id FROM HOTEL
+	
+INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id) 
+	SELECT 'test', hote_id FROM HOTEL
+
+INSERT INTO USUARIO_ROL (usua_usuario, rol_id) VALUES ('invitado', 3), ('recepcionista', 2), ('administrador', 1), ('test', 2), ('test', 3)
 
 SET IDENTITY_INSERT RESERVA ON
 
@@ -90,7 +132,7 @@ INSERT INTO CONSUMIBLE_ESTADIA (rese_id, cons_id, cons_cantidad)
 SELECT Reserva_Codigo, Consumible_Codigo, Item_Factura_Monto
 FROM gd_esquema.Maestra WHERE Consumible_Codigo IS NOT NULL 
 
-INSERT INTO FORMA_PAGO (form_id, form_nombre) VALUES (1, 'Efectivo')
+INSERT INTO FORMA_PAGO (form_nombre) VALUES ('Efectivo'), ('Cheque'), ('Tarjeta de Crédito');
 
 /* El total de la factura no coincide con la suma de los items, pero es un problema que se arrastra de la tabla original */
 SET IDENTITY_INSERT FACTURA ON

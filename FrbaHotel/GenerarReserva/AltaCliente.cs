@@ -24,7 +24,6 @@ namespace FrbaHotel.GenerarReserva
         private void AltaCliente_Load(object sender, EventArgs e)
         {
             obtenerPaises();
-            obtenerNacionalidad();
             obtenerTipoDocumento();
         }
 
@@ -87,9 +86,9 @@ namespace FrbaHotel.GenerarReserva
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
             cmd.Parameters.Add("@telefono", SqlDbType.VarChar).Value = telefono.Text;
             cmd.Parameters.Add("@domicilio", SqlDbType.VarChar).Value = String.Format("{0}|{1}|{2}", direccion.Text, altura.Text, departamento.Text);
-            cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = fechaNacimiento.Text;
+            cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaNacimiento.Text);
             cmd.Parameters.Add("@pais", SqlDbType.Int).Value = ((Pais)pais.SelectedItem).id;
-            cmd.Parameters.Add("@nacionalidad", SqlDbType.Int).Value = ((Nacionalidad)nacionalidad.SelectedItem).id;
+            cmd.Parameters.Add("@nacionalidad", SqlDbType.Int).Value = ((Pais)nacionalidad.SelectedItem).id;
             cmd.Parameters.Add("@localidad", SqlDbType.VarChar).Value = localidad.Text;
             cmd.Connection = sqlConnection;
 
@@ -136,32 +135,6 @@ namespace FrbaHotel.GenerarReserva
             sqlConnection.Close();
         }
 
-        private void obtenerNacionalidad()
-        {
-            SqlConnection sqlConnection = Conexion.getSqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader;
-
-            cmd.CommandText = "SELECT * FROM NACIONALIDAD";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = sqlConnection;
-
-            sqlConnection.Open();
-
-            reader = cmd.ExecuteReader();
-
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    pais.Items.Add(new Nacionalidad(reader));
-                }
-            }
-
-            reader.Close();
-            sqlConnection.Close();
-        }
-
         private void obtenerPaises()
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
@@ -180,6 +153,7 @@ namespace FrbaHotel.GenerarReserva
             {
                 while (reader.Read())
                 {
+                    nacionalidad.Items.Add(new Pais(reader));
                     pais.Items.Add(new Pais(reader));
                 }
             }

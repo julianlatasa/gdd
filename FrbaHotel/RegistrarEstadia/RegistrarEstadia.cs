@@ -102,7 +102,10 @@ namespace FrbaHotel.RegistrarEstadia
                     habitaciones.Add(new Habitacion(reader));
                 }
             }
-            habitaciones.ForEach(h => { resultados.Items.Add(h.ToString()); });
+            habitaciones.ForEach(h =>
+            {
+                resultados.Items.Add(h.numero.ToString()).SubItems.Add(h.piso.ToString());
+            });
 
             reader.Close();
             sqlConnection.Close();

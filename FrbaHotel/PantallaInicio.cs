@@ -49,8 +49,11 @@ namespace FrbaHotel
             reader.Close();
             sqlConnection.Close();
 
-            (new Menu()).Show();
-            Close();
+            Menu menu = new Menu();
+            menu.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
+            { Show(); };
+            menu.Show();
+            Hide();
         }
     }
 }

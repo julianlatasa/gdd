@@ -35,7 +35,7 @@ namespace FrbaHotel.Objetos
                 this.apellido = reader.GetString(reader.GetOrdinal("pers_apellido"));
                 this.telefono = reader.GetString(reader.GetOrdinal("pers_telefono"));
                 this.domicilio = reader.GetString(reader.GetOrdinal("pers_domicilio"));
-                this.fechaDeNacimiento = reader.GetString(reader.GetOrdinal("pers_fecha_nac"));
+                this.fechaDeNacimiento = ConvertFecha.fechaBdAVs(reader.GetString(reader.GetOrdinal("pers_fecha_nac")));
             }
             catch (Exception) { }
         }
