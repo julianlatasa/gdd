@@ -90,7 +90,7 @@
             this.usuario.Location = new System.Drawing.Point(104, 18);
             this.usuario.Name = "usuario";
             this.usuario.Size = new System.Drawing.Size(114, 20);
-            this.usuario.TabIndex = 3;
+            this.usuario.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -101,7 +101,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(224, 73);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Usuario";
             // 
@@ -110,7 +110,7 @@
             this.contrasena.Location = new System.Drawing.Point(104, 44);
             this.contrasena.Name = "contrasena";
             this.contrasena.Size = new System.Drawing.Size(114, 20);
-            this.contrasena.TabIndex = 3;
+            this.contrasena.TabIndex = 2;
             this.contrasena.UseSystemPasswordChar = true;
             // 
             // limpiar
@@ -118,7 +118,7 @@
             this.limpiar.Location = new System.Drawing.Point(12, 401);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 5;
+            this.limpiar.TabIndex = 18;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -128,7 +128,7 @@
             this.guardar.Location = new System.Drawing.Point(353, 401);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(75, 23);
-            this.guardar.TabIndex = 5;
+            this.guardar.TabIndex = 17;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = true;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
@@ -139,7 +139,7 @@
             this.groupBox3.Location = new System.Drawing.Point(243, 13);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(185, 190);
-            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Roles";
             // 
@@ -149,7 +149,7 @@
             this.rolesList.Location = new System.Drawing.Point(7, 21);
             this.rolesList.Name = "rolesList";
             this.rolesList.Size = new System.Drawing.Size(172, 154);
-            this.rolesList.TabIndex = 0;
+            this.rolesList.TabIndex = 14;
             // 
             // groupBox4
             // 
@@ -157,7 +157,7 @@
             this.groupBox4.Location = new System.Drawing.Point(243, 213);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(185, 182);
-            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hoteles";
             // 
@@ -167,7 +167,7 @@
             this.hotelesList.Location = new System.Drawing.Point(7, 20);
             this.hotelesList.Name = "hotelesList";
             this.hotelesList.Size = new System.Drawing.Size(172, 154);
-            this.hotelesList.TabIndex = 0;
+            this.hotelesList.TabIndex = 16;
             // 
             // label3
             // 
@@ -183,7 +183,7 @@
             this.nombre.Location = new System.Drawing.Point(104, 18);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(114, 20);
-            this.nombre.TabIndex = 3;
+            this.nombre.TabIndex = 4;
             // 
             // label6
             // 
@@ -199,7 +199,7 @@
             this.apellido.Location = new System.Drawing.Point(104, 44);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(114, 20);
-            this.apellido.TabIndex = 3;
+            this.apellido.TabIndex = 5;
             // 
             // label7
             // 
@@ -233,7 +233,7 @@
             this.email.Location = new System.Drawing.Point(104, 122);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(114, 20);
-            this.email.TabIndex = 3;
+            this.email.TabIndex = 8;
             // 
             // label10
             // 
@@ -258,7 +258,7 @@
             this.direccion.Location = new System.Drawing.Point(104, 174);
             this.direccion.Name = "direccion";
             this.direccion.Size = new System.Drawing.Size(114, 20);
-            this.direccion.TabIndex = 3;
+            this.direccion.TabIndex = 10;
             // 
             // label12
             // 
@@ -283,7 +283,7 @@
             this.departamento.Location = new System.Drawing.Point(104, 226);
             this.departamento.Name = "departamento";
             this.departamento.Size = new System.Drawing.Size(114, 20);
-            this.departamento.TabIndex = 3;
+            this.departamento.TabIndex = 12;
             // 
             // label14
             // 
@@ -300,7 +300,7 @@
             this.tipoIdentificacion.Location = new System.Drawing.Point(104, 69);
             this.tipoIdentificacion.Name = "tipoIdentificacion";
             this.tipoIdentificacion.Size = new System.Drawing.Size(114, 21);
-            this.tipoIdentificacion.TabIndex = 4;
+            this.tipoIdentificacion.TabIndex = 6;
             // 
             // fechaNacimiento
             // 
@@ -308,7 +308,7 @@
             this.fechaNacimiento.Mask = "00/00/0000";
             this.fechaNacimiento.Name = "fechaNacimiento";
             this.fechaNacimiento.Size = new System.Drawing.Size(114, 20);
-            this.fechaNacimiento.TabIndex = 5;
+            this.fechaNacimiento.TabIndex = 13;
             this.fechaNacimiento.ValidatingType = typeof(System.DateTime);
             // 
             // altura
@@ -317,7 +317,7 @@
             this.altura.Mask = "99999";
             this.altura.Name = "altura";
             this.altura.Size = new System.Drawing.Size(114, 20);
-            this.altura.TabIndex = 6;
+            this.altura.TabIndex = 11;
             this.altura.ValidatingType = typeof(int);
             // 
             // telefono
@@ -326,7 +326,7 @@
             this.telefono.Mask = "(999)0000-0000";
             this.telefono.Name = "telefono";
             this.telefono.Size = new System.Drawing.Size(114, 20);
-            this.telefono.TabIndex = 7;
+            this.telefono.TabIndex = 9;
             // 
             // nroIdentificacion
             // 
@@ -361,7 +361,7 @@
             this.groupBox2.Location = new System.Drawing.Point(13, 91);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(224, 304);
-            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos Persona";
             // 

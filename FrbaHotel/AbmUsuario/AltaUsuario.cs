@@ -124,6 +124,7 @@ namespace FrbaHotel.AbmUsuario
             {
                 cmd.ExecuteNonQuery();
                 sqlConnection.Close();
+                MessageBox.Show("Usuario cargado con exito", "Alta Usuario");
                 return true;
             }
             catch (SqlException se)
