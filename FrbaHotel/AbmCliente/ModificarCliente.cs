@@ -39,6 +39,7 @@ namespace FrbaHotel.AbmCliente
             localidad.Text = cliente.localidad;
             pais.SelectedItem = pais.Items.Cast<Pais>().ToList().First(tp => tp.id == cliente.pais);
             nacionalidad.SelectedItem = nacionalidad.Items.Cast<Pais>().ToList().First(tp => tp.id == cliente.nacionalidad);
+            fechaNacimiento.Text = cliente.fechaNacimiento;
         }
 
         private void guardar_Click(object sender, EventArgs e)

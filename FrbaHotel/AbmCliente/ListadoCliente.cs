@@ -98,16 +98,17 @@ namespace FrbaHotel.AbmCliente
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
             cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento) tipoIdentificacion.SelectedItem).id;
-            cmd.Parameters.Add("@nroDocumento", SqlDbType.Int).Value = nroIdentificacion.Text;
-            cmd.Parameters.Add("@email", SqlDbType.Int).Value = email.Text;
+            cmd.Parameters.Add("@nroDocumento", SqlDbType.VarChar).Value = nroIdentificacion.Text;
+            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
             cmd.Connection = sqlConnection;
+
 
             sqlConnection.Open();
 
             reader = cmd.ExecuteReader();
-
+            
             if (reader.HasRows)
-            {
+            {;
                 while (reader.Read())
                 {
                     clientes.Add(new Cliente(reader));
@@ -117,7 +118,6 @@ namespace FrbaHotel.AbmCliente
                 string[] cols = { c.apellido, c.nombre };
                 resultados.Items.Add(c.numeroDocumento).SubItems.AddRange(cols);
             });
-
             reader.Close();
             sqlConnection.Close();
         }
