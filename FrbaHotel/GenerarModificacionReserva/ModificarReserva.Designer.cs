@@ -46,12 +46,12 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.resultados = new System.Windows.Forms.ListView();
-            this.consultarDisponibilidad = new System.Windows.Forms.Button();
-            this.limpiar = new System.Windows.Forms.Button();
-            this.cancelar = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.consultarDisponibilidad = new System.Windows.Forms.Button();
+            this.limpiar = new System.Windows.Forms.Button();
+            this.cancelar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,7 +121,7 @@
             this.nroPersonas.Mask = "99999";
             this.nroPersonas.Name = "nroPersonas";
             this.nroPersonas.Size = new System.Drawing.Size(114, 20);
-            this.nroPersonas.TabIndex = 7;
+            this.nroPersonas.TabIndex = 6;
             this.nroPersonas.ValidatingType = typeof(int);
             // 
             // duracion
@@ -130,7 +130,7 @@
             this.duracion.Mask = "99999";
             this.duracion.Name = "duracion";
             this.duracion.Size = new System.Drawing.Size(114, 20);
-            this.duracion.TabIndex = 7;
+            this.duracion.TabIndex = 3;
             this.duracion.ValidatingType = typeof(int);
             // 
             // fechaDesde
@@ -139,7 +139,7 @@
             this.fechaDesde.Mask = "00/00/0000";
             this.fechaDesde.Name = "fechaDesde";
             this.fechaDesde.Size = new System.Drawing.Size(114, 20);
-            this.fechaDesde.TabIndex = 7;
+            this.fechaDesde.TabIndex = 2;
             this.fechaDesde.ValidatingType = typeof(System.DateTime);
             // 
             // tipoRegimen
@@ -159,7 +159,7 @@
             this.tipoRegimen.Location = new System.Drawing.Point(104, 123);
             this.tipoRegimen.Name = "tipoRegimen";
             this.tipoRegimen.Size = new System.Drawing.Size(114, 21);
-            this.tipoRegimen.TabIndex = 4;
+            this.tipoRegimen.TabIndex = 5;
             // 
             // hotel
             // 
@@ -178,7 +178,7 @@
             this.hotel.Location = new System.Drawing.Point(104, 17);
             this.hotel.Name = "hotel";
             this.hotel.Size = new System.Drawing.Size(114, 21);
-            this.hotel.TabIndex = 4;
+            this.hotel.TabIndex = 1;
             // 
             // tipoHabitacion
             // 
@@ -257,12 +257,24 @@
             this.resultados.TabIndex = 8;
             this.resultados.UseCompatibleStateImageBehavior = false;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Regimen";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Precio";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Disponibles";
+            // 
             // consultarDisponibilidad
             // 
             this.consultarDisponibilidad.Location = new System.Drawing.Point(161, 224);
             this.consultarDisponibilidad.Name = "consultarDisponibilidad";
             this.consultarDisponibilidad.Size = new System.Drawing.Size(75, 23);
-            this.consultarDisponibilidad.TabIndex = 6;
+            this.consultarDisponibilidad.TabIndex = 8;
             this.consultarDisponibilidad.Text = "Consultar";
             this.consultarDisponibilidad.UseVisualStyleBackColor = true;
             this.consultarDisponibilidad.Click += new System.EventHandler(this.consultarDisponibilidad_Click);
@@ -272,7 +284,7 @@
             this.limpiar.Location = new System.Drawing.Point(13, 224);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 7;
+            this.limpiar.TabIndex = 9;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -286,18 +298,6 @@
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Regimen";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Precio";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Disponibles";
             // 
             // ModificarReserva
             // 

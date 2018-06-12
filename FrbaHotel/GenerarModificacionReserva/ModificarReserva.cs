@@ -29,11 +29,12 @@ namespace FrbaHotel.GenerarModificacionReserva
             obtenerHoteles();
             obtenerTiposHabitacion();
             obtenerRegimenes();
+            obtenerReserva(idReserva);
 
             if(Conexion.usuario != "INVITADO")
             {
                 hotel.Enabled = false;
-                hotel.SelectedItem = hotel.Items.Cast<Hotel>().ToList().First(h => h.id == Conexion.hotel);
+                hotel.SelectedItem = hotel.Items.OfType<Hotel>().ToList().First(h => h.id == Conexion.hotel);
             }
         }
 
@@ -170,6 +171,35 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             reader.Close();
             sqlConnection.Close();
+        }
+
+        private void obtenerReserva(int idReserva)
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "Select rese_desde, rese_duracion, rese_tipo_habitacion, rese_regimen from RESERVA where rese_id = "+idReserva.ToString();
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                fechaDesde.Text = reader.GetDateTime(reader.GetOrdinal("rese_desde")).ToString("dd/MM/yyyy");
+                duracion.Text = reader.GetInt32(reader.GetOrdinal("rese_duracion")).ToString();
+                tipoRegimen.SelectedItem = tipoRegimen.Items.OfType<Regimen>().ToList().Find(r =>
+                    r.id == reader.GetInt32(reader.GetOrdinal("rese_regimen")));
+                tipoHabitacion.SelectedItem = tipoHabitacion.Items.OfType<TipoHabitacion>().ToList().Find(h =>
+                    h.id == reader.GetInt32(reader.GetOrdinal("rese_tipo_habitacion")));
+
+            }
+
         }
 
         private void cancelarReserva2(string motivo)
