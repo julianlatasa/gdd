@@ -22,10 +22,7 @@ namespace FrbaHotel.ListadoEstadistico
             this.desde = desde;
             this.hasta = hasta;
             InitializeComponent();
-        }
 
-        private void Estadistico4_Load(object sender, EventArgs e)
-        {
             resultados.Items.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -45,7 +42,7 @@ namespace FrbaHotel.ListadoEstadistico
             {
                 while (reader.Read())
                 {
-                    string[] cols = {reader.GetString(1), reader.GetString(2), reader.GetString(3)};
+                    string[] cols = { reader.GetInt32(1).ToString(), reader.GetInt32(2).ToString(), reader.GetInt32(3).ToString() };
                     resultados.Items.Add(reader.GetString(0)).SubItems.AddRange(cols);
                 }
             }

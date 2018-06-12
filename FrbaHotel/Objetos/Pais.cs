@@ -12,6 +12,8 @@ namespace FrbaHotel.Objetos
         public int id { get; set; }
         public string nombre { get; set; }
 
+        public Pais() { nombre = ""; id = 0; }
+
         public Pais(SqlDataReader reader)
         {
             this.id = reader.GetInt32(reader.GetOrdinal("pais_id"));

@@ -31,12 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BajaTemporal));
             this.aceptar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.fechaDesde = new System.Windows.Forms.MaskedTextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.descripcion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.fechaHasta = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.fechaDesde = new System.Windows.Forms.MaskedTextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.limpiar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -66,13 +66,47 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Baja Temporal";
             // 
+            // descripcion
+            // 
+            this.descripcion.Location = new System.Drawing.Point(104, 19);
+            this.descripcion.Name = "descripcion";
+            this.descripcion.Size = new System.Drawing.Size(114, 20);
+            this.descripcion.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Descripción";
+            // 
+            // fechaHasta
+            // 
+            this.fechaHasta.Location = new System.Drawing.Point(104, 71);
+            this.fechaHasta.Mask = "00/00/0000";
+            this.fechaHasta.Name = "fechaHasta";
+            this.fechaHasta.Size = new System.Drawing.Size(114, 20);
+            this.fechaHasta.TabIndex = 3;
+            this.fechaHasta.ValidatingType = typeof(System.DateTime);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 74);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Fecha hasta";
+            // 
             // fechaDesde
             // 
             this.fechaDesde.Location = new System.Drawing.Point(104, 45);
             this.fechaDesde.Mask = "00/00/0000";
             this.fechaDesde.Name = "fechaDesde";
             this.fechaDesde.Size = new System.Drawing.Size(114, 20);
-            this.fechaDesde.TabIndex = 7;
+            this.fechaDesde.TabIndex = 2;
             this.fechaDesde.ValidatingType = typeof(System.DateTime);
             // 
             // label14
@@ -84,46 +118,12 @@
             this.label14.TabIndex = 6;
             this.label14.Text = "Fecha desde";
             // 
-            // descripcion
-            // 
-            this.descripcion.Location = new System.Drawing.Point(104, 19);
-            this.descripcion.Name = "descripcion";
-            this.descripcion.Size = new System.Drawing.Size(114, 20);
-            this.descripcion.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Descripción";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Fecha hasta";
-            // 
-            // fechaHasta
-            // 
-            this.fechaHasta.Location = new System.Drawing.Point(104, 71);
-            this.fechaHasta.Mask = "00/00/0000";
-            this.fechaHasta.Name = "fechaHasta";
-            this.fechaHasta.Size = new System.Drawing.Size(114, 20);
-            this.fechaHasta.TabIndex = 7;
-            this.fechaHasta.ValidatingType = typeof(System.DateTime);
-            // 
             // limpiar
             // 
             this.limpiar.Location = new System.Drawing.Point(15, 117);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 5;
+            this.limpiar.TabIndex = 4;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);

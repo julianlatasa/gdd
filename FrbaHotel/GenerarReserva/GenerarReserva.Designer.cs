@@ -144,17 +144,6 @@
             // tipoRegimen
             // 
             this.tipoRegimen.FormattingEnabled = true;
-            this.tipoRegimen.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
             this.tipoRegimen.Location = new System.Drawing.Point(104, 123);
             this.tipoRegimen.Name = "tipoRegimen";
             this.tipoRegimen.Size = new System.Drawing.Size(114, 21);
@@ -163,17 +152,6 @@
             // hotel
             // 
             this.hotel.FormattingEnabled = true;
-            this.hotel.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
             this.hotel.Location = new System.Drawing.Point(104, 17);
             this.hotel.Name = "hotel";
             this.hotel.Size = new System.Drawing.Size(114, 21);
@@ -191,17 +169,6 @@
             // tipoHabitacion
             // 
             this.tipoHabitacion.FormattingEnabled = true;
-            this.tipoHabitacion.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
             this.tipoHabitacion.Location = new System.Drawing.Point(104, 96);
             this.tipoHabitacion.Name = "tipoHabitacion";
             this.tipoHabitacion.Size = new System.Drawing.Size(114, 21);
@@ -253,6 +220,8 @@
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
+            this.resultados.View = System.Windows.Forms.View.Details;
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.TabIndex = 10;
             this.resultados.UseCompatibleStateImageBehavior = false;
             // 

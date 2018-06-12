@@ -31,11 +31,11 @@ namespace FrbaHotel.Objetos
 
             try
             {
-                this.nombre = reader.GetString(reader.GetOrdinal("pers_nombre"));
-                this.apellido = reader.GetString(reader.GetOrdinal("pers_apellido"));
-                this.telefono = reader.GetString(reader.GetOrdinal("pers_telefono"));
-                this.domicilio = reader.GetString(reader.GetOrdinal("pers_domicilio"));
-                this.fechaDeNacimiento = ConvertFecha.fechaBdAVs(reader.GetString(reader.GetOrdinal("pers_fecha_nac")));
+                this.nombre = reader.GetString(reader.GetOrdinal("usua_nombre"));
+                this.apellido = reader.GetString(reader.GetOrdinal("usua_apellido"));
+                this.telefono = reader.GetString(reader.GetOrdinal("usua_telefono"));
+                this.domicilio = reader.GetString(reader.GetOrdinal("usua_domicilio"));
+                this.fechaDeNacimiento = ConvertFecha.fechaBdAVs(reader.GetDateTime(reader.GetOrdinal("usua_fecha_nac")));
             }
             catch (Exception) { }
         }

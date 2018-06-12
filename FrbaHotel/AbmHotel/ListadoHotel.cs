@@ -19,10 +19,7 @@ namespace FrbaHotel.AbmHotel
         public ListadoHotel()
         {
             InitializeComponent();
-        }
 
-        private void ListadoUsuario_Load(object sender, EventArgs e)
-        {
             obtenerEstrellas();
             obtenerPaises();
             obtenerCiudades();
@@ -44,16 +41,22 @@ namespace FrbaHotel.AbmHotel
 
         private void nuevo_Click(object sender, EventArgs e)
         {
-            (new AltaHotel(estrellas.Items.Cast<Estrella>().ToList(), pais.Items.Cast<Pais>().ToList(), ciudad.Items.Cast<Ciudad>().ToList())).ShowDialog();
+            AltaHotel altaHotel = new AltaHotel();
+            altaHotel.ShowDialog();
+            obtenerHoteles();
         }
 
         private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            (new ModificarHotel(hoteles[resultados.SelectedItems[0].Index], estrellas.Items.Cast<Estrella>().ToList(), pais.Items.Cast<Pais>().ToList(), ciudad.Items.Cast<Ciudad>().ToList())).ShowDialog();
+            ModificarHotel modificarHotel = new ModificarHotel(hoteles[resultados.SelectedItems[0].Index]);
+            modificarHotel.ShowDialog();
+            obtenerHoteles();
         }
 
         private void obtenerHoteles()
         {
+            hoteles.Clear();
+            resultados.Items.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -61,9 +64,12 @@ namespace FrbaHotel.AbmHotel
             cmd.CommandText = "HOTEL_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
-            cmd.Parameters.Add("@pais", SqlDbType.Int).Value = ((Pais) pais.SelectedItem).id;
-            cmd.Parameters.Add("@ciudad", SqlDbType.Int).Value = ((Ciudad) ciudad.SelectedItem).id;
-            cmd.Parameters.Add("@estrellas", SqlDbType.Char).Value = ((Estrella) estrellas.SelectedItem).numero;
+            if (pais.SelectedIndex > 0)
+                cmd.Parameters.Add("@pais", SqlDbType.Int).Value = ((Pais)pais.SelectedItem).id;
+            if (ciudad.SelectedIndex > 0)
+                cmd.Parameters.Add("@ciudad", SqlDbType.Int).Value = ((Ciudad)ciudad.SelectedItem).id;
+            if (estrellas.SelectedIndex > 0)
+                cmd.Parameters.Add("@estrellas", SqlDbType.Char).Value = ((Estrella)estrellas.SelectedItem).numero;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -91,6 +97,7 @@ namespace FrbaHotel.AbmHotel
 
         private void obtenerCiudades()
         {
+            ciudad.Items.Add(new Ciudad());
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -117,6 +124,7 @@ namespace FrbaHotel.AbmHotel
 
         private void obtenerPaises()
         {
+            pais.Items.Add(new Pais());
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -143,6 +151,7 @@ namespace FrbaHotel.AbmHotel
 
         private void obtenerEstrellas()
         {
+            estrellas.Items.Add(new Estrella());
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;

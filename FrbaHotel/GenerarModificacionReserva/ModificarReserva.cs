@@ -31,7 +31,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             obtenerRegimenes();
             obtenerReserva(idReserva);
 
-            if(Conexion.usuario != "INVITADO")
+            if (Conexion.usuario != "INVITADO")
             {
                 hotel.Enabled = false;
                 hotel.SelectedItem = hotel.Items.OfType<Hotel>().ToList().First(h => h.id == Conexion.hotel);
@@ -40,7 +40,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void reservar_Click(object sender, EventArgs e)
         {
-            if(resultados.SelectedItems.Count > 0)
+            if (resultados.SelectedItems.Count > 0)
             {
                 modificarReserva();
                 Close();
@@ -179,7 +179,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "Select rese_desde, rese_duracion, rese_tipo_habitacion, rese_regimen from RESERVA where rese_id = "+idReserva.ToString();
+            cmd.CommandText = "Select rese_desde, rese_duracion, rese_tipo_habitacion, rese_regimen from RESERVA where rese_id = " + idReserva.ToString();
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
@@ -235,11 +235,15 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmd.CommandText = "RESERVA_Modificar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
-            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel) hotel.SelectedItem).id;
-            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
+            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel)hotel.SelectedItem).id;
+            try
+            {
+                cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
+            }
+            catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return; }
             cmd.Parameters.Add("@duracion", SqlDbType.Int).Value = duracion.Text;
-            cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion) tipoHabitacion.SelectedItem).id;
-            cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen) tipoRegimen.SelectedItem).id;
+            cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion)tipoHabitacion.SelectedItem).id;
+            cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen)tipoRegimen.SelectedItem).id;
             cmd.Parameters.Add("@precio", SqlDbType.Int).Value = consultas[resultados.SelectedItems[0].Index].precio;
             cmd.Parameters.Add("@habitaciones", SqlDbType.VarChar).Value = nroHabitaciones.Text;
             cmd.Connection = sqlConnection;
@@ -267,12 +271,16 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             cmd.CommandText = "RESERVA_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel) hotel.SelectedItem).id;
-            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
+            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel)hotel.SelectedItem).id;
+            try
+            {
+                cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
+            }
+            catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return; }
             cmd.Parameters.Add("@duracion", SqlDbType.Int).Value = duracion.Text;
-            cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion) tipoHabitacion.SelectedItem).id;
-            if(tipoRegimen.SelectedIndex >= 0)
-                cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen) tipoRegimen.SelectedItem).id;
+            cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion)tipoHabitacion.SelectedItem).id;
+            if (tipoRegimen.SelectedIndex >= 0)
+                cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen)tipoRegimen.SelectedItem).id;
             cmd.Parameters.Add("@nroPersonas", SqlDbType.VarChar).Value = nroPersonas.Text;
             cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Connection = sqlConnection;

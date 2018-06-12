@@ -32,7 +32,10 @@ namespace FrbaHotel.RegistrarEstadia
             if (resultados.SelectedItems.Count > 0)
             {
                 ListadoCliente listadoCliente = new ListadoCliente();
+                listadoCliente.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
+                { Show(); };
                 DialogResult dr = listadoCliente.ShowDialog();
+                Hide();
 
                 if (dr == DialogResult.OK)
                 {

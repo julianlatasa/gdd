@@ -17,10 +17,7 @@ namespace FrbaHotel.AbmHabitacion
         public AltaHabitacion()
         {
             InitializeComponent();
-        }
 
-        private void AltaHabitacion_Load(object sender, EventArgs e)
-        {
             obtenerTipos();
             obtenerComodidades();
         }
@@ -52,6 +49,12 @@ namespace FrbaHotel.AbmHabitacion
                 esValido = false;
             }
 
+            if (comodidades.CheckedItems.Count == 0)
+            {
+                errores += "Seleccione una comodidad.\n";
+                esValido = false;
+            }
+
             if (!esValido)
                 MessageBox.Show(errores, "ERROR");
 
@@ -65,8 +68,7 @@ namespace FrbaHotel.AbmHabitacion
             ubicacionHotel.SelectedIndex = 0;
             tipoHabitacion.SelectedIndex = 0;
             descripcion.Clear();
-            comodidades.ClearSelected();
-            habilitado.Checked = true;
+            for (int i = 0; i < comodidades.Items.Count; i++) comodidades.SetItemChecked(i, false);
         }
 
         private void obtenerTipos()
@@ -129,16 +131,20 @@ namespace FrbaHotel.AbmHabitacion
             cmd.CommandText = "HABITACION_Crear";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
-            cmd.Parameters.Add("@nroHabitacion", SqlDbType.VarChar).Value = nroHabitacion.Text;
-            cmd.Parameters.Add("@piso", SqlDbType.VarChar).Value = pisoHabitacion.Text;
+            cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = Int32.Parse(nroHabitacion.Text);
+            cmd.Parameters.Add("@piso", SqlDbType.Int).Value = Int32.Parse(pisoHabitacion.Text);
             cmd.Parameters.Add("@vista", SqlDbType.Char).Value = ubicacionHotel.SelectedIndex == 0 ? 'S' : 'N';
-            cmd.Parameters.Add("@tipo", SqlDbType.Int).Value = ((TipoHabitacion) tipoHabitacion.SelectedItem).id;
+            cmd.Parameters.Add("@tipo", SqlDbType.Int).Value = ((TipoHabitacion)tipoHabitacion.SelectedItem).id;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion.Text;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
 
-            cmd.ExecuteNonQuery();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception) { MessageBox.Show("La habitación ya existe.", "Crear Habitación"); }
 
             sqlConnection.Close();
         }

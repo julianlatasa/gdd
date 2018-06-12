@@ -61,7 +61,6 @@ namespace FrbaHotel
                 MessageBox.Show("Campo NOMBRE es obligatorio");
             }
             
-           // if (funcionalidades.SelectedItems.Count == 0)
             if (funcionalidades.CheckedItems.Count == 0)
             {
                 esValido = false;
@@ -74,7 +73,7 @@ namespace FrbaHotel
         private void limpiar_Click(object sender, EventArgs e)
         {
             nombre.Clear();
-            funcionalidades.ClearSelected();
+            for (int i = 0; i < funcionalidades.Items.Count; i++) funcionalidades.SetItemChecked(i, false);
             activo.Checked = true;
         }
 
@@ -144,7 +143,7 @@ namespace FrbaHotel
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = rol.id;
             cmd.Parameters.Add("@nombreRol", SqlDbType.VarChar).Value = nombre.Text;
-            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = activo.Checked ? 1 : 0;
+            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = activo.Checked ? '1' : '0';
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();

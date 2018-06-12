@@ -21,7 +21,7 @@ namespace FrbaHotel.Objetos
 
             try
             {
-                this.habilitado = reader.GetBoolean(reader.GetOrdinal("regi_habilitado"));
+                this.habilitado = reader.GetString(reader.GetOrdinal("regi_habilitado")).Equals("1");
                 this.precioBase = reader.GetFloat(reader.GetOrdinal("regi_precio_base"));
             }
             catch (Exception) { }

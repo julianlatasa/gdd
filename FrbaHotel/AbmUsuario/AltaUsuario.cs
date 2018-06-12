@@ -14,21 +14,16 @@ namespace FrbaHotel.AbmUsuario
 {
     public partial class AltaUsuario : Form
     {
-        private List<Rol> roles;
-        private List<Hotel> hoteles;
-
-        public AltaUsuario(List<Rol> roles, List<Hotel> hoteles)
+        public AltaUsuario()
         {
-            this.roles = roles;
-            this.hoteles = hoteles;
             InitializeComponent();
         }
 
         private void AltaUsuario_Load(object sender, EventArgs e)
         {
+            obtenerRoles();
+            obtenerHoteles();
             obtenerTiposDocumentos();
-            rolesList.Items.AddRange(roles.ToArray());
-            hotelesList.Items.AddRange(hoteles.ToArray());
         }
 
         private void guardar_Click(object sender, EventArgs e)
@@ -54,7 +49,7 @@ namespace FrbaHotel.AbmUsuario
 
         private Boolean validar()
         {
-            Control[] controles = { usuario, contrasena, nombre, apellido, tipoIdentificacion, nroIdentificacion, email, telefono, direccion, altura, fechaNacimiento };
+            Control[] controles = { usuario, contrasena, nombre, apellido, tipoIdentificacion, nroIdentificacion, email, direccion, altura, departamento };
 
             Boolean esValido = true;
             String errores = "";
@@ -64,20 +59,27 @@ namespace FrbaHotel.AbmUsuario
                 esValido = false;
             }
 
+            MaskedTextBox[] controles2 = { telefono, fechaNacimiento };
+            foreach (MaskedTextBox control in controles2.Where(e => !e.MaskCompleted))
+            {
+                errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
+                esValido = false;
+            }
+
+            if (rolesList.CheckedItems.Count == 0)
+            {
+                errores += "Seleccione un rol.\n";
+                esValido = false;
+            }
+
+            if (hotelesList.CheckedItems.Count == 0)
+            {
+                errores += "Seleccione un hotel.\n";
+                esValido = false;
+            }
+
             if (!esValido)
                 MessageBox.Show(errores, "ERROR");
-
-            if (rolesList.SelectedItems.Count == 0)
-            {
-                esValido = false;
-                MessageBox.Show("Seleccione un rol");
-            }
-
-            if (hotelesList.SelectedItems.Count == 0)
-            {
-                esValido = false;
-                MessageBox.Show("Seleccione un hotel");
-            }
 
             return esValido;
         }
@@ -95,8 +97,58 @@ namespace FrbaHotel.AbmUsuario
             altura.Clear();
             departamento.Clear();
             fechaNacimiento.Clear();
-            rolesList.ClearSelected();
-            hotelesList.ClearSelected();
+            for (int i = 0; i < rolesList.Items.Count; i++) rolesList.SetItemChecked(i, false);
+            for (int i = 0; i < hotelesList.Items.Count; i++) hotelesList.SetItemChecked(i, false);
+        }
+
+        private void obtenerHoteles()
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM HOTEL";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    hotelesList.Items.Add(new Hotel(reader));
+                }
+            }
+            reader.Close();
+            sqlConnection.Close();
+        }
+
+        private void obtenerRoles()
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM ROL WHERE rol_habilitado = 1";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    rolesList.Items.Add(new Rol(reader));
+                }
+            }
+            reader.Close();
+            sqlConnection.Close();
         }
 
         private bool crearUsuario()
@@ -110,12 +162,16 @@ namespace FrbaHotel.AbmUsuario
             cmd.Parameters.Add("@contrasena", SqlDbType.VarChar).Value = contrasena.Text;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
-            cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento) tipoIdentificacion.SelectedItem).id;
+            cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento)tipoIdentificacion.SelectedItem).id;
             cmd.Parameters.Add("@nroDocumento", SqlDbType.VarChar).Value = nroIdentificacion.Text;
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
             cmd.Parameters.Add("@telefono", SqlDbType.VarChar).Value = telefono.Text;
             cmd.Parameters.Add("@domicilio", SqlDbType.VarChar).Value = String.Format("{0}|{1}|{2}", direccion.Text, altura.Text, departamento.Text);
-            cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaNacimiento.Text);
+            try
+            {
+                cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaNacimiento.Text);
+            }
+            catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return false; }
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();

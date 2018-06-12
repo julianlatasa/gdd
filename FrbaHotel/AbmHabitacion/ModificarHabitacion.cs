@@ -21,14 +21,12 @@ namespace FrbaHotel.AbmHabitacion
         {
             this.habitacion = habitacion;
             InitializeComponent();
-        }
 
-        private void ModificarHabitacion_Load(object sender, EventArgs e)
-        {
             nroHabitacion.Text = habitacion.numero.ToString();
             pisoHabitacion.Text = habitacion.piso.ToString();
-            ubicacionHotel.SelectedIndex = habitacion.vista == "N" ? 1 : 0;
+            ubicacionHotel.SelectedIndex = habitacion.vista == "S" ? 0 : 1;
             habilitado.Checked = habitacion.habilitado;
+            descripcion.Text = habitacion.descripcion;
 
             comodidadesMarcadas = obtenerComodidadesMarcadas();
 
@@ -65,6 +63,12 @@ namespace FrbaHotel.AbmHabitacion
                 esValido = false;
             }
 
+            if (comodidades.CheckedItems.Count == 0)
+            {
+                errores += "Seleccione una comodidad.\n";
+                esValido = false;
+            }
+
             if (!esValido)
                 MessageBox.Show(errores, "ERROR");
 
@@ -73,12 +77,9 @@ namespace FrbaHotel.AbmHabitacion
 
         private void limpiar_Click(object sender, EventArgs e)
         {
-            nroHabitacion.Clear();
-            pisoHabitacion.Clear();
             ubicacionHotel.SelectedIndex = 0;
-            tipoHabitacion.SelectedIndex = 0;
             descripcion.Clear();
-            comodidades.ClearSelected();
+            for (int i = 0; i < comodidades.Items.Count; i++) comodidades.SetItemChecked(i, false);
             habilitado.Checked = true;
         }
 
@@ -176,7 +177,7 @@ namespace FrbaHotel.AbmHabitacion
             cmd.Parameters.Add("@piso", SqlDbType.VarChar).Value = pisoHabitacion.Text;
             cmd.Parameters.Add("@vista", SqlDbType.Char).Value = ubicacionHotel.SelectedIndex == 0 ? 'S' : 'N';
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion.Text;
-            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = habilitado.Checked ? 1 : 0;
+            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = habilitado.Checked ? '1' : '0';
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();

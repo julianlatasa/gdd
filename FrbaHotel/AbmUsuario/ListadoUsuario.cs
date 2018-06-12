@@ -19,15 +19,10 @@ namespace FrbaHotel.AbmUsuario
         public ListadoUsuario()
         {
             InitializeComponent();
-        }
 
-        private void ListadoUsuario_Load(object sender, EventArgs e)
-        {
             obtenerRoles();
             obtenerHoteles();
             obtenerUsuarios();
-            hotelCombobox.SelectedIndex = 0;
-            rolCombobox.SelectedIndex = 0;
         }
 
         private void buscar_Click(object sender, EventArgs e)
@@ -38,12 +33,28 @@ namespace FrbaHotel.AbmUsuario
         private void limpiar_Click(object sender, EventArgs e)
         {
             usuario.Clear();
+            rolCombobox.SelectedIndex = 0;
+            hotelCombobox.SelectedIndex = 0;
+        }
+
+        private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ModificarUsuario modificarUsuario = new ModificarUsuario((Usuario)usuarios[resultados.SelectedItems[0].Index]);
+            modificarUsuario.ShowDialog();
+            obtenerUsuarios();
+        }
+
+        private void nuevo_Click(object sender, EventArgs e)
+        {
+            AltaUsuario altaUsuario = new AltaUsuario();
+            altaUsuario.ShowDialog();
+            obtenerUsuarios();
         }
 
         private void obtenerUsuarios()
         {
             usuarios.Clear();
-            resultados.Clear();
+            resultados.Items.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -51,8 +62,10 @@ namespace FrbaHotel.AbmUsuario
             cmd.CommandText = "USUARIO_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
-            cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = ((Rol)rolCombobox.SelectedItem).id;
-            cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel)hotelCombobox.SelectedItem).id;
+            if (rolCombobox.SelectedIndex > 0)
+                cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = ((Rol)rolCombobox.SelectedItem).id;
+            if (hotelCombobox.SelectedIndex > 0)
+                cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel)hotelCombobox.SelectedItem).id;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -74,6 +87,7 @@ namespace FrbaHotel.AbmUsuario
 
         private void obtenerHoteles()
         {
+            hotelCombobox.Items.Add(new Hotel());
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -93,13 +107,13 @@ namespace FrbaHotel.AbmUsuario
                     hotelCombobox.Items.Add(new Hotel(reader));
                 }
             }
-            hotelCombobox.SelectedIndex = 0;
             reader.Close();
             sqlConnection.Close();
         }
 
         private void obtenerRoles()
         {
+            rolCombobox.Items.Add(new Rol());
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -117,27 +131,10 @@ namespace FrbaHotel.AbmUsuario
                 while (reader.Read())
                 {
                     rolCombobox.Items.Add(new Rol(reader));
-                    //MessageBox.Show(reader.GetInt32(reader.GetOrdinal("rol_id")).ToString());
                 }
             }
-            rolCombobox.SelectedIndex = 0;
             reader.Close();
             sqlConnection.Close();
-        }
-
-        private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            ModificarUsuario modificarUsuario = new ModificarUsuario((Usuario)usuarios[resultados.SelectedItems[0].Index], rolCombobox.Items.Cast<Rol>().ToList(), hotelCombobox.Items.Cast<Hotel>().ToList());
-            modificarUsuario.ShowDialog();
-        }
-
-        private void nuevo_Click(object sender, EventArgs e)
-        {
-            AltaUsuario altaUsuario = new AltaUsuario(rolCombobox.Items.Cast<Rol>().ToList(), hotelCombobox.Items.Cast<Hotel>().ToList());
-            altaUsuario.ShowDialog();
-
-            obtenerUsuarios();
-
         }
 
     }

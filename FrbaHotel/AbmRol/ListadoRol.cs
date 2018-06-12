@@ -40,6 +40,7 @@ namespace FrbaHotel.AbmRol
         {
             AltaRol altaRol = new AltaRol();
             altaRol.ShowDialog();
+            buscarRoles();
         }
 
         private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)

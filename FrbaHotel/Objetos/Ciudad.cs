@@ -12,10 +12,12 @@ namespace FrbaHotel.Objetos
         public int id { get; set; }
         public string nombre { get; set; }
 
+        public Ciudad() { nombre = ""; id = 0; }
+
         public Ciudad(SqlDataReader reader)
         {
             this.id = reader.GetInt32(reader.GetOrdinal("ciud_id"));
-            this.nombre = reader.GetString(reader.GetOrdinal("ciud_nombre"));
+            this.nombre = reader.GetString(reader.GetOrdinal("ciud_nombre")).Trim();
         }
 
         public override string ToString()

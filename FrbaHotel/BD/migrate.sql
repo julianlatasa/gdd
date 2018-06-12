@@ -134,6 +134,8 @@ FROM gd_esquema.Maestra WHERE Consumible_Codigo IS NOT NULL
 
 INSERT INTO FORMA_PAGO (form_nombre) VALUES ('Efectivo'), ('Cheque'), ('Tarjeta de Crédito');
 
+INSERT INTO COMODIDAD (como_descripcion) VALUES ('Toallas limpias'), ('WIFI'), ('Cama inflable');
+
 /* El total de la factura no coincide con la suma de los items, pero es un problema que se arrastra de la tabla original */
 SET IDENTITY_INSERT FACTURA ON
 INSERT INTO FACTURA (fact_numero, fact_reserva, fact_forma_pago, fact_fecha, fact_total)

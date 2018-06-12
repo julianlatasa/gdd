@@ -39,11 +39,18 @@ namespace FrbaHotel.GenerarReserva
 
         private Boolean validar()
         {
-            Control[] controles = { nombre, apellido, tipoDocumento, documento, email, telefono, direccion, altura, pais };
+            Control[] controles = { nombre, apellido, tipoDocumento, documento, email, direccion, altura, pais };
 
             Boolean esValido = true;
             String errores = "";
             foreach (Control control in controles.Where(e => String.IsNullOrWhiteSpace(e.Text)))
+            {
+                errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
+                esValido = false;
+            }
+
+            MaskedTextBox[] controles2 = { telefono, fechaNacimiento };
+            foreach (MaskedTextBox control in controles2.Where(e => !e.MaskCompleted))
             {
                 errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
                 esValido = false;
@@ -86,7 +93,11 @@ namespace FrbaHotel.GenerarReserva
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
             cmd.Parameters.Add("@telefono", SqlDbType.VarChar).Value = telefono.Text;
             cmd.Parameters.Add("@domicilio", SqlDbType.VarChar).Value = String.Format("{0}|{1}|{2}", direccion.Text, altura.Text, departamento.Text);
-            cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaNacimiento.Text);
+            try
+            {
+                cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaNacimiento.Text);
+            }
+            catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return; }
             cmd.Parameters.Add("@pais", SqlDbType.Int).Value = ((Pais)pais.SelectedItem).id;
             cmd.Parameters.Add("@nacionalidad", SqlDbType.Int).Value = ((Pais)nacionalidad.SelectedItem).id;
             cmd.Parameters.Add("@localidad", SqlDbType.VarChar).Value = localidad.Text;

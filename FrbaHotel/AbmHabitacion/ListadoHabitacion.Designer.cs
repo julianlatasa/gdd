@@ -44,6 +44,8 @@
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 2;
+            this.resultados.View = System.Windows.Forms.View.Details;
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.UseCompatibleStateImageBehavior = false;
             this.resultados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseDoubleClick);
             // 
@@ -81,7 +83,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado Habitaciones";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ListadoHabitacion_Load);
             this.ResumeLayout(false);
 
         }

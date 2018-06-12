@@ -81,7 +81,7 @@ CREATE TABLE CIUDAD (
 	)
 
 CREATE TABLE ESTRELLAS (
-	estr_numero char(1) NOT NULL PRIMARY KEY,
+	estr_numero int NOT NULL PRIMARY KEY,
 	estr_recargo int NOT NULL
 	)
 
@@ -93,8 +93,8 @@ CREATE TABLE HOTEL (
 	hote_domicilio varchar(200) NOT NULL,
 	hote_ciudad int NOT NULL FOREIGN KEY REFERENCES CIUDAD(ciud_id),
 	hote_pais int NOT NULL FOREIGN KEY REFERENCES PAIS(pais_id),
-	hote_estrellas char(1) NOT NULL FOREIGN KEY REFERENCES ESTRELLAS(estr_numero),
-	hote_fecha_creacion smalldatetime NOT NULL
+	hote_estrellas int NOT NULL FOREIGN KEY REFERENCES ESTRELLAS(estr_numero),
+	hote_fecha_creacion smalldatetime NOT NULL DEFAULT GETDATE()
 	)
 
 CREATE TABLE USUARIO (
@@ -172,13 +172,13 @@ CREATE TABLE HABITACION (
 	habi_piso int NOT NULL,
 	habi_vista char(1) NOT NULL DEFAULT 'N',
 	habi_tipo int NOT NULL FOREIGN KEY REFERENCES TIPO_HABITACION(tipo_id),
-	habi_descripcion varchar(1000),
+	habi_descripcion varchar(255),
 	habi_habilitada char(1) NOT NULL DEFAULT 1,
 	PRIMARY KEY (habi_hotel, habi_numero)
 	) 
 
 CREATE TABLE COMODIDAD (
-	como_id int NOT NULL PRIMARY KEY,
+	como_id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	como_descripcion varchar(100)
 	)
 

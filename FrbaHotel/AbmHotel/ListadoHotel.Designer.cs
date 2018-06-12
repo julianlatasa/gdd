@@ -69,17 +69,6 @@
             // pais
             // 
             this.pais.FormattingEnabled = true;
-            this.pais.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
             this.pais.Location = new System.Drawing.Point(103, 96);
             this.pais.Name = "pais";
             this.pais.Size = new System.Drawing.Size(114, 21);
@@ -88,17 +77,6 @@
             // ciudad
             // 
             this.ciudad.FormattingEnabled = true;
-            this.ciudad.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
             this.ciudad.Location = new System.Drawing.Point(103, 70);
             this.ciudad.Name = "ciudad";
             this.ciudad.Size = new System.Drawing.Size(114, 21);
@@ -107,17 +85,6 @@
             // estrellas
             // 
             this.estrellas.FormattingEnabled = true;
-            this.estrellas.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
             this.estrellas.Location = new System.Drawing.Point(103, 43);
             this.estrellas.Name = "estrellas";
             this.estrellas.Size = new System.Drawing.Size(114, 21);
@@ -197,6 +164,8 @@
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 2;
+            this.resultados.View = System.Windows.Forms.View.Details;
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.UseCompatibleStateImageBehavior = false;
             this.resultados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseDoubleClick);
             // 
@@ -245,7 +214,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado Hoteles";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ListadoUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

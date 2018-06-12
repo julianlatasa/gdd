@@ -22,7 +22,7 @@ namespace FrbaHotel.Objetos
             this.total = reader.GetInt32(reader.GetOrdinal("fact_total"));
             this.monto = reader.GetInt32(reader.GetOrdinal("fact_line_monto"));
             this.cantidad = reader.GetInt32(reader.GetOrdinal("fact_line_cantidad"));
-            this.fecha = ConvertFecha.fechaBdAVs(reader.GetString(reader.GetOrdinal("fact_fecha")));
+            this.fecha = ConvertFecha.fechaBdAVs(reader.GetDateTime(reader.GetOrdinal("fact_fecha")));
             this.descripcion = reader.GetString(reader.GetOrdinal("fact_line_descripcion"));
         }
 

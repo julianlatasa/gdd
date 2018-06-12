@@ -46,7 +46,8 @@
             this.resultados.Size = new System.Drawing.Size(248, 284);
             this.resultados.TabIndex = 0;
             this.resultados.UseCompatibleStateImageBehavior = false;
-            this.resultados.View = System.Windows.Forms.View.List;
+            this.resultados.View = System.Windows.Forms.View.Details;
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             // 
             // Hotel
             // 
@@ -73,7 +74,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado Estadístico";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.Estadistico1_Load);
             this.ResumeLayout(false);
 
         }

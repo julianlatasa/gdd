@@ -34,11 +34,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.telefono = new System.Windows.Forms.MaskedTextBox();
-            this.fechaCreacion = new System.Windows.Forms.MaskedTextBox();
             this.pais = new System.Windows.Forms.ComboBox();
             this.ciudad = new System.Windows.Forms.ComboBox();
-            this.estrellas2 = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.estrellas = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,7 +57,7 @@
             this.limpiar.Location = new System.Drawing.Point(12, 250);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 5;
+            this.limpiar.TabIndex = 8;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -69,7 +67,7 @@
             this.guardar.Location = new System.Drawing.Point(293, 250);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(75, 23);
-            this.guardar.TabIndex = 5;
+            this.guardar.TabIndex = 9;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = true;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
@@ -78,11 +76,9 @@
             // 
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.telefono);
-            this.groupBox2.Controls.Add(this.fechaCreacion);
             this.groupBox2.Controls.Add(this.pais);
             this.groupBox2.Controls.Add(this.ciudad);
-            this.groupBox2.Controls.Add(this.estrellas2);
-            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.estrellas);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label2);
@@ -114,82 +110,31 @@
             this.telefono.Mask = "(999)0000-0000";
             this.telefono.Name = "telefono";
             this.telefono.Size = new System.Drawing.Size(114, 20);
-            this.telefono.TabIndex = 7;
-            // 
-            // fechaCreacion
-            // 
-            this.fechaCreacion.Location = new System.Drawing.Point(104, 202);
-            this.fechaCreacion.Mask = "00/00/0000";
-            this.fechaCreacion.Name = "fechaCreacion";
-            this.fechaCreacion.Size = new System.Drawing.Size(114, 20);
-            this.fechaCreacion.TabIndex = 5;
-            this.fechaCreacion.ValidatingType = typeof(System.DateTime);
+            this.telefono.TabIndex = 3;
             // 
             // pais
             // 
             this.pais.FormattingEnabled = true;
-            this.pais.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
             this.pais.Location = new System.Drawing.Point(104, 175);
             this.pais.Name = "pais";
             this.pais.Size = new System.Drawing.Size(114, 21);
-            this.pais.TabIndex = 4;
+            this.pais.TabIndex = 7;
             // 
             // ciudad
             // 
             this.ciudad.FormattingEnabled = true;
-            this.ciudad.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
             this.ciudad.Location = new System.Drawing.Point(104, 149);
             this.ciudad.Name = "ciudad";
             this.ciudad.Size = new System.Drawing.Size(114, 21);
-            this.ciudad.TabIndex = 4;
+            this.ciudad.TabIndex = 6;
             // 
             // estrellas2
             // 
-            this.estrellas2.FormattingEnabled = true;
-            this.estrellas2.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.estrellas2.Location = new System.Drawing.Point(104, 122);
-            this.estrellas2.Name = "estrellas2";
-            this.estrellas2.Size = new System.Drawing.Size(114, 21);
-            this.estrellas2.TabIndex = 4;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(9, 205);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 13);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Fecha de creación";
+            this.estrellas.FormattingEnabled = true;
+            this.estrellas.Location = new System.Drawing.Point(104, 122);
+            this.estrellas.Name = "estrellas2";
+            this.estrellas.Size = new System.Drawing.Size(114, 21);
+            this.estrellas.TabIndex = 5;
             // 
             // label13
             // 
@@ -223,7 +168,7 @@
             this.direccion.Location = new System.Drawing.Point(104, 96);
             this.direccion.Name = "direccion";
             this.direccion.Size = new System.Drawing.Size(114, 20);
-            this.direccion.TabIndex = 3;
+            this.direccion.TabIndex = 4;
             // 
             // label11
             // 
@@ -248,14 +193,14 @@
             this.email.Location = new System.Drawing.Point(104, 44);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(114, 20);
-            this.email.TabIndex = 3;
+            this.email.TabIndex = 2;
             // 
             // nombre
             // 
             this.nombre.Location = new System.Drawing.Point(104, 18);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(114, 20);
-            this.nombre.TabIndex = 3;
+            this.nombre.TabIndex = 1;
             // 
             // label3
             // 
@@ -282,7 +227,7 @@
             this.regimenesList.Location = new System.Drawing.Point(6, 21);
             this.regimenesList.Name = "regimenesList";
             this.regimenesList.Size = new System.Drawing.Size(113, 199);
-            this.regimenesList.TabIndex = 0;
+            this.regimenesList.TabIndex = 10;
             // 
             // AltaHotel
             // 
@@ -302,7 +247,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Hotel";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.AltaHotel_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -320,13 +264,11 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.MaskedTextBox telefono;
-        private System.Windows.Forms.MaskedTextBox fechaCreacion;
         private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox estrellas2;
+        private System.Windows.Forms.ComboBox estrellas;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox pais;

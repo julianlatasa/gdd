@@ -48,7 +48,7 @@ namespace FrbaHotel
                 MessageBox.Show("Campo NOMBRE es obligatorio");
             }
 
-            if (funcionalidades.SelectedItems.Count == 0)
+            if (funcionalidades.CheckedItems.Count == 0)
             {
                 esValido = false;
                 MessageBox.Show("Seleccione una funcionalidad");
@@ -60,7 +60,7 @@ namespace FrbaHotel
         private void limpiar_Click(object sender, EventArgs e)
         {
             nombre.Clear();
-            funcionalidades.ClearSelected();
+            for (int i = 0; i < funcionalidades.Items.Count; i++) funcionalidades.SetItemChecked(i, false);
         }
 
         private void llenarListaFuncionalidades()
@@ -102,20 +102,18 @@ namespace FrbaHotel
             sqlConnection.Open();
 
             int idRol = 0;
-            reader = cmd.ExecuteReader();
-            
+
             try
             {
-              reader.Read();
-              idRol = reader.GetInt32(0);
-
-
+                reader = cmd.ExecuteReader();
+                reader.Read();
+                idRol = reader.GetInt32(0);
+                reader.Close();
             }
             catch (Exception se)
             {
-                MessageBox.Show("Error en el alta de Rol: "+se.Message,"Alta de Rol");
+                MessageBox.Show("Error en el alta de Rol: " + se.Message, "Alta de Rol");
             }
-            reader.Close();
             sqlConnection.Close();
 
             return idRol;

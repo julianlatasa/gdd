@@ -22,8 +22,12 @@ namespace FrbaHotel.Objetos
             this.piso = reader.GetInt32(reader.GetOrdinal("habi_piso"));
             this.vista = reader.GetString(reader.GetOrdinal("habi_vista"));
             this.tipo = reader.GetInt32(reader.GetOrdinal("habi_tipo"));
-            this.descripcion = reader.GetString(reader.GetOrdinal("habi_descripcion"));
-            this.habilitado = reader.GetBoolean(reader.GetOrdinal("habi_habilitada"));
+            this.habilitado = reader.GetString(reader.GetOrdinal("habi_habilitada")).Equals("1");
+            try
+            {
+                this.descripcion = reader.GetString(reader.GetOrdinal("habi_descripcion"));
+            }
+            catch (Exception) { }
         }
 
         public override string ToString()

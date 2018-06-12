@@ -39,6 +39,7 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.resultados = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -130,13 +131,22 @@
             // 
             // resultados
             // 
+            this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.Location = new System.Drawing.Point(13, 150);
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 2;
             this.resultados.UseCompatibleStateImageBehavior = false;
+            this.resultados.View = System.Windows.Forms.View.Details;
             this.resultados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseDoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Usuario";
+            this.columnHeader1.Width = 208;
             // 
             // nuevo
             // 
@@ -167,7 +177,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado Usuarios";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ListadoUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -187,6 +196,7 @@
         private System.Windows.Forms.ComboBox hotelCombobox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button nuevo;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
 
 
     }

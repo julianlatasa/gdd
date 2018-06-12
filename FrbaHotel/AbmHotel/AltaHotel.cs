@@ -14,24 +14,13 @@ namespace FrbaHotel.AbmHotel
 {
     public partial class AltaHotel : Form
     {
-        private List<Estrella> estrellas;
-        private List<Pais> paises;
-        private List<Ciudad> ciudades;
-
-        public AltaHotel(List<Estrella> estrellas, List<Pais> paises, List<Ciudad> ciudades)
+        public AltaHotel()
         {
-            this.estrellas = estrellas;
-            this.paises = paises;
-            this.ciudades = ciudades;
             InitializeComponent();
-        }
 
-        private void AltaHotel_Load(object sender, EventArgs e)
-        {
-            estrellas2.Items.AddRange(estrellas.ToArray());
-            pais.Items.AddRange(paises.ToArray());
-            ciudad.Items.AddRange(ciudades.ToArray());
-
+            obtenerEstrellas();
+            obtenerPaises();
+            obtenerCiudades();
             obtenerRegimenes();
         }
 
@@ -52,13 +41,26 @@ namespace FrbaHotel.AbmHotel
 
         private Boolean validar()
         {
-            Control[] controles = { nombre, email, telefono, direccion, ciudad, pais, fechaCreacion, estrellas2 };
+            Control[] controles = { nombre, email, direccion, ciudad, pais, estrellas };
 
             Boolean esValido = true;
             String errores = "";
             foreach (Control control in controles.Where(e => String.IsNullOrWhiteSpace(e.Text)))
             {
                 errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
+                esValido = false;
+            }
+
+            MaskedTextBox[] controles2 = { telefono };
+            foreach (MaskedTextBox control in controles2.Where(e => !e.MaskCompleted))
+            {
+                errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
+                esValido = false;
+            }
+
+            if (regimenesList.CheckedItems.Count == 0)
+            {
+                errores += "Seleccione un régimen.\n";
                 esValido = false;
             }
 
@@ -76,8 +78,7 @@ namespace FrbaHotel.AbmHotel
             direccion.Clear();
             ciudad.SelectedIndex = 0;
             pais.SelectedIndex = 0;
-            estrellas2.SelectedIndex = 0;
-            fechaCreacion.Clear();
+            estrellas.SelectedIndex = 0;
         }
 
         private int crearHotel()
@@ -85,16 +86,16 @@ namespace FrbaHotel.AbmHotel
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
-            
+
             cmd.CommandText = "HOTEL_Crear";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
             cmd.Parameters.Add("@telefono", SqlDbType.VarChar).Value = telefono.Text;
             cmd.Parameters.Add("@domicilio", SqlDbType.VarChar).Value = direccion.Text;
-            cmd.Parameters.Add("@pais", SqlDbType.Int).Value = nombre.Text;
-            cmd.Parameters.Add("@ciudad", SqlDbType.Int).Value = nombre.Text;
-            cmd.Parameters.Add("@estrellas", SqlDbType.Int).Value = nombre.Text;
+            cmd.Parameters.Add("@pais", SqlDbType.Int).Value = ((Pais)pais.SelectedItem).id;
+            cmd.Parameters.Add("@ciudad", SqlDbType.Int).Value = ((Ciudad)ciudad.SelectedItem).id;
+            cmd.Parameters.Add("@estrellas", SqlDbType.Int).Value = ((Estrella)estrellas.SelectedItem).numero;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -150,6 +151,84 @@ namespace FrbaHotel.AbmHotel
 
             cmd.ExecuteNonQuery();
 
+            sqlConnection.Close();
+        }
+
+        private void obtenerCiudades()
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM CIUDAD";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    ciudad.Items.Add(new Ciudad(reader));
+                }
+            }
+
+            reader.Close();
+            sqlConnection.Close();
+        }
+
+        private void obtenerPaises()
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM PAIS";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    pais.Items.Add(new Pais(reader));
+                }
+            }
+
+            reader.Close();
+            sqlConnection.Close();
+        }
+
+        private void obtenerEstrellas()
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM ESTRELLAS";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    estrellas.Items.Add(new Estrella(reader));
+                }
+            }
+
+            reader.Close();
             sqlConnection.Close();
         }
     }

@@ -61,7 +61,7 @@
             this.anio.Mask = "9999";
             this.anio.Name = "anio";
             this.anio.Size = new System.Drawing.Size(114, 20);
-            this.anio.TabIndex = 13;
+            this.anio.TabIndex = 1;
             // 
             // estadistica
             // 
@@ -75,7 +75,7 @@
             this.estadistica.Location = new System.Drawing.Point(103, 75);
             this.estadistica.Name = "estadistica";
             this.estadistica.Size = new System.Drawing.Size(114, 21);
-            this.estadistica.TabIndex = 12;
+            this.estadistica.TabIndex = 3;
             // 
             // trimestre
             // 
@@ -88,7 +88,7 @@
             this.trimestre.Location = new System.Drawing.Point(103, 48);
             this.trimestre.Name = "trimestre";
             this.trimestre.Size = new System.Drawing.Size(114, 21);
-            this.trimestre.TabIndex = 12;
+            this.trimestre.TabIndex = 2;
             // 
             // label2
             // 
@@ -122,7 +122,7 @@
             this.visualizar.Location = new System.Drawing.Point(161, 129);
             this.visualizar.Name = "visualizar";
             this.visualizar.Size = new System.Drawing.Size(75, 23);
-            this.visualizar.TabIndex = 1;
+            this.visualizar.TabIndex = 4;
             this.visualizar.Text = "Visualizar";
             this.visualizar.UseVisualStyleBackColor = true;
             this.visualizar.Click += new System.EventHandler(this.visualizar_Click);

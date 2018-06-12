@@ -24,6 +24,12 @@ namespace FrbaHotel
         private void SeleccionarRol_Load(object sender, EventArgs e)
         {
             obtenerRoles();
+
+            if (roles.Count == 1)
+            {
+                seleccionarRol();
+                irAMenuPrincipal();
+            }
         }
 
         private void listaRoles_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -60,7 +66,7 @@ namespace FrbaHotel
 
         private void seleccionarRol()
         {
-            Rol rol = roles[listaRoles.SelectedItems[0].Index];
+            Rol rol = listaRoles.SelectedItems.Count == 0 ? roles[0] : roles[listaRoles.SelectedItems[0].Index];
 
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -77,7 +83,6 @@ namespace FrbaHotel
             asignarRolActivo(rol);
 
             sqlConnection.Close();
-            //this.Close();
         }
 
         private void asignarRolActivo(Rol rol)

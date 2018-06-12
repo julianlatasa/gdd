@@ -66,8 +66,16 @@ namespace FrbaHotel.AbmHotel
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = hotel.id;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion.Text;
-            cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
-            cmd.Parameters.Add("@fechaHasta", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaHasta.Text);
+            try
+            {
+                cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
+            }
+            catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return; }
+            try
+            {
+                cmd.Parameters.Add("@fechaHasta", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaHasta.Text);
+            }
+            catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return; }
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();

@@ -15,16 +15,12 @@ namespace FrbaHotel.AbmUsuario
     public partial class ModificarUsuario : Form
     {
         private Usuario usuario2;
-        private List<Rol> roles;
-        private List<Hotel> hoteles;
         private int[] rolesMarcados;
         private int[] hotelesMarcados;
 
-        public ModificarUsuario(Usuario usuario, List<Rol> roles, List<Hotel> hoteles)
+        public ModificarUsuario(Usuario usuario)
         {
             this.usuario2 = usuario;
-            this.roles = roles;
-            this.hoteles = hoteles;
             InitializeComponent();
         }
 
@@ -51,8 +47,8 @@ namespace FrbaHotel.AbmUsuario
             rolesMarcados = obtenerRolesMarcados();
             hotelesMarcados = obtenerHotelesMarcados();
 
-            roles.ForEach(r => { rolesList.Items.Add(r, rolesMarcados.Any(rm => rm == r.id)); });
-            hoteles.ForEach(h => { hotelesList.Items.Add(h, hotelesMarcados.Any(hm => hm == h.id)); });
+            obtenerRoles();
+            obtenerHoteles();
         }
 
         private void guardar_Click(object sender, EventArgs e)
@@ -90,7 +86,7 @@ namespace FrbaHotel.AbmUsuario
 
         private Boolean validar()
         {
-            Control[] controles = { usuario, contrasena, nombre, apellido, tipoIdentificacion, nroIdentificacion, email, telefono, direccion, altura, fechaNacimiento };
+            Control[] controles = { usuario, contrasena, nombre, apellido, tipoIdentificacion, nroIdentificacion, email, direccion, altura, departamento };
 
             Boolean esValido = true;
             String errores = "";
@@ -100,20 +96,27 @@ namespace FrbaHotel.AbmUsuario
                 esValido = false;
             }
 
+            MaskedTextBox[] controles2 = { telefono, fechaNacimiento };
+            foreach (MaskedTextBox control in controles2.Where(e => !e.MaskCompleted))
+            {
+                errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
+                esValido = false;
+            }
+
+            if (rolesList.CheckedItems.Count == 0)
+            {
+                errores += "Seleccione un rol.\n";
+                esValido = false;
+            }
+
+            if (hotelesList.CheckedItems.Count == 0)
+            {
+                errores += "Seleccione un hotel.\n";
+                esValido = false;
+            }
+
             if (!esValido)
                 MessageBox.Show(errores, "ERROR");
-
-            if (rolesList.SelectedItems.Count == 0)
-            {
-                esValido = false;
-                MessageBox.Show("Seleccione un rol");
-            }
-
-            if (hotelesList.SelectedItems.Count == 0)
-            {
-                esValido = false;
-                MessageBox.Show("Seleccione un hotel");
-            }
 
             return esValido;
         }
@@ -131,8 +134,8 @@ namespace FrbaHotel.AbmUsuario
             altura.Clear();
             departamento.Clear();
             fechaNacimiento.Clear();
-            rolesList.ClearSelected();
-            hotelesList.ClearSelected();
+            for (int i = 0; i < rolesList.Items.Count; i++) rolesList.SetItemChecked(i, false);
+            for (int i = 0; i < hotelesList.Items.Count; i++) hotelesList.SetItemChecked(i, false);
             habilitado.Checked = true;
         }
 
@@ -143,7 +146,7 @@ namespace FrbaHotel.AbmUsuario
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT rol_id FROM USUARIO_ROL WHERE usua_usuario = '" + usuario2.usuario +"'";
+            cmd.CommandText = "SELECT rol_id FROM USUARIO_ROL WHERE usua_usuario = '" + usuario2.usuario + "'";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -194,6 +197,58 @@ namespace FrbaHotel.AbmUsuario
             return idHoteles.ToArray();
         }
 
+        private void obtenerHoteles()
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM HOTEL";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Hotel hotel = new Hotel(reader);
+                    hotelesList.Items.Add(hotel, hotelesMarcados.Any(h => h == hotel.id));
+                }
+            }
+            reader.Close();
+            sqlConnection.Close();
+        }
+
+        private void obtenerRoles()
+        {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM ROL WHERE rol_habilitado = 1";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    Rol rol = new Rol(reader);
+                    rolesList.Items.Add(rol, rolesMarcados.Any(r => r == rol.id));
+                }
+            }
+            reader.Close();
+            sqlConnection.Close();
+        }
+
         private bool modificarUsuario()
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
@@ -205,13 +260,17 @@ namespace FrbaHotel.AbmUsuario
             cmd.Parameters.Add("@contrasena", SqlDbType.VarChar).Value = contrasena.Text;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
-            cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento) tipoIdentificacion.SelectedItem).id;
+            cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento)tipoIdentificacion.SelectedItem).id;
             cmd.Parameters.Add("@nroDocumento", SqlDbType.VarChar).Value = nroIdentificacion.Text;
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
             cmd.Parameters.Add("@telefono", SqlDbType.VarChar).Value = telefono.Text;
             cmd.Parameters.Add("@domicilio", SqlDbType.VarChar).Value = String.Format("{0}|{1}|{2}", direccion.Text, altura.Text, departamento.Text);
-            cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaNacimiento.Text);
-            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = habilitado.Checked ? 1 : 0;
+            try
+            {
+                cmd.Parameters.Add("@fechaNacimiento", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaNacimiento.Text);
+            }
+            catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return false; }
+            cmd.Parameters.Add("@habilitado", SqlDbType.Char).Value = habilitado.Checked ? '1' : '0';
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -220,7 +279,7 @@ namespace FrbaHotel.AbmUsuario
             {
                 cmd.ExecuteNonQuery();
                 sqlConnection.Close();
-                MessageBox.Show("Usuario modificado con exito.","Modificar Usuario");
+                MessageBox.Show("Usuario modificado con exito.", "Modificar Usuario");
                 return true;
             }
             catch (SqlException se)

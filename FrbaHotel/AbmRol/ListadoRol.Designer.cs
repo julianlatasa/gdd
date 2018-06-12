@@ -72,7 +72,7 @@
             this.limpiar.Location = new System.Drawing.Point(13, 66);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 1;
+            this.limpiar.TabIndex = 2;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -82,7 +82,7 @@
             this.buscar.Location = new System.Drawing.Point(161, 66);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(75, 23);
-            this.buscar.TabIndex = 1;
+            this.buscar.TabIndex = 3;
             this.buscar.Text = "Buscar";
             this.buscar.UseVisualStyleBackColor = true;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
@@ -91,24 +91,27 @@
             // 
             this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nombre1});
+            this.resultados.View = System.Windows.Forms.View.Details;
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.Location = new System.Drawing.Point(13, 96);
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
-            this.resultados.TabIndex = 2;
+            this.resultados.TabIndex = 4;
             this.resultados.UseCompatibleStateImageBehavior = false;
             this.resultados.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseDoubleClick);
             // 
             // nombre1
             // 
             this.nombre1.Text = "Nombre";
+            this.nombre1.Width = 218;
             // 
             // nuevo
             // 
             this.nuevo.Location = new System.Drawing.Point(161, 256);
             this.nuevo.Name = "nuevo";
             this.nuevo.Size = new System.Drawing.Size(75, 23);
-            this.nuevo.TabIndex = 1;
+            this.nuevo.TabIndex = 5;
             this.nuevo.Text = "Nuevo";
             this.nuevo.UseVisualStyleBackColor = true;
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);

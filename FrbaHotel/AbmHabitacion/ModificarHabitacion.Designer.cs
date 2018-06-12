@@ -54,7 +54,7 @@
             this.limpiar.Location = new System.Drawing.Point(12, 350);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 5;
+            this.limpiar.TabIndex = 8;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -64,7 +64,7 @@
             this.guardar.Location = new System.Drawing.Point(192, 350);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(75, 23);
-            this.guardar.TabIndex = 5;
+            this.guardar.TabIndex = 9;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = true;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
@@ -101,7 +101,7 @@
             this.ubicacionHotel.Location = new System.Drawing.Point(128, 66);
             this.ubicacionHotel.Name = "ubicacionHotel";
             this.ubicacionHotel.Size = new System.Drawing.Size(114, 21);
-            this.ubicacionHotel.TabIndex = 13;
+            this.ubicacionHotel.TabIndex = 3;
             // 
             // tipoHabitacion
             // 
@@ -110,7 +110,7 @@
             this.tipoHabitacion.Location = new System.Drawing.Point(128, 92);
             this.tipoHabitacion.Name = "tipoHabitacion";
             this.tipoHabitacion.Size = new System.Drawing.Size(114, 21);
-            this.tipoHabitacion.TabIndex = 13;
+            this.tipoHabitacion.TabIndex = 4;
             // 
             // comodidades
             // 
@@ -118,7 +118,7 @@
             this.comodidades.Location = new System.Drawing.Point(128, 209);
             this.comodidades.Name = "comodidades";
             this.comodidades.Size = new System.Drawing.Size(114, 94);
-            this.comodidades.TabIndex = 12;
+            this.comodidades.TabIndex = 6;
             // 
             // label1
             // 
@@ -137,7 +137,7 @@
             this.habilitado.Location = new System.Drawing.Point(128, 309);
             this.habilitado.Name = "habilitado";
             this.habilitado.Size = new System.Drawing.Size(15, 14);
-            this.habilitado.TabIndex = 10;
+            this.habilitado.TabIndex = 7;
             this.habilitado.UseVisualStyleBackColor = true;
             // 
             // labelHa
@@ -151,11 +151,12 @@
             // 
             // pisoHabitacion
             // 
+            this.pisoHabitacion.Enabled = false;
             this.pisoHabitacion.Location = new System.Drawing.Point(128, 40);
             this.pisoHabitacion.Mask = "99999";
             this.pisoHabitacion.Name = "pisoHabitacion";
             this.pisoHabitacion.Size = new System.Drawing.Size(114, 20);
-            this.pisoHabitacion.TabIndex = 7;
+            this.pisoHabitacion.TabIndex = 2;
             this.pisoHabitacion.ValidatingType = typeof(int);
             // 
             // nroHabitacion
@@ -165,7 +166,7 @@
             this.nroHabitacion.Mask = "99999";
             this.nroHabitacion.Name = "nroHabitacion";
             this.nroHabitacion.Size = new System.Drawing.Size(114, 20);
-            this.nroHabitacion.TabIndex = 7;
+            this.nroHabitacion.TabIndex = 1;
             this.nroHabitacion.ValidatingType = typeof(int);
             // 
             // label13
@@ -192,7 +193,7 @@
             this.descripcion.Multiline = true;
             this.descripcion.Name = "descripcion";
             this.descripcion.Size = new System.Drawing.Size(114, 85);
-            this.descripcion.TabIndex = 3;
+            this.descripcion.TabIndex = 5;
             // 
             // label11
             // 
@@ -238,7 +239,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Habitación";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ModificarHabitacion_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);

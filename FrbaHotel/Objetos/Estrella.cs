@@ -10,17 +10,19 @@ namespace FrbaHotel.Objetos
     public class Estrella
     {
         public int numero { get; set; }
-        public string recargo { get; set; }
+        public int recargo { get; set; }
+
+        public Estrella() { numero = 0; }
 
         public Estrella(SqlDataReader reader)
         {
             this.numero = reader.GetInt32(reader.GetOrdinal("estr_numero"));
-            this.recargo = reader.GetString(reader.GetOrdinal("estr_recargo"));
+            this.recargo = reader.GetInt32(reader.GetOrdinal("estr_recargo"));
         }
 
         public override string ToString()
         {
-            return numero.ToString();
+            return numero == 0 ? "" : numero.ToString();
         }
     }
 }

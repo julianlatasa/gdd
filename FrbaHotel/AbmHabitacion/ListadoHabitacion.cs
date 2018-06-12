@@ -19,21 +19,20 @@ namespace FrbaHotel.AbmHabitacion
         public ListadoHabitacion()
         {
             InitializeComponent();
-        }
 
-        private void ListadoHabitacion_Load(object sender, EventArgs e)
-        {
             buscarHabitaciones();
         }
 
         private void nuevo_Click(object sender, EventArgs e)
         {
             (new AltaHabitacion()).ShowDialog();
+            buscarHabitaciones();
         }
 
         private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             (new ModificarHabitacion(habitaciones[resultados.SelectedItems[0].Index])).ShowDialog();
+            buscarHabitaciones();
         }
 
         private void buscarHabitaciones()

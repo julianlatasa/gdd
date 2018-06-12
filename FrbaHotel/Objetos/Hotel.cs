@@ -18,6 +18,8 @@ namespace FrbaHotel.Objetos
         public int pais { get; set; }
         public int estrellas { get; set; }
 
+        public Hotel() { nombre = ""; }
+
         public Hotel(SqlDataReader reader)
         {
             this.id = reader.GetInt32(reader.GetOrdinal("hote_id"));

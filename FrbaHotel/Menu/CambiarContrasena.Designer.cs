@@ -56,7 +56,7 @@
             this.repetirContrasena.Location = new System.Drawing.Point(104, 49);
             this.repetirContrasena.Name = "repetirContrasena";
             this.repetirContrasena.Size = new System.Drawing.Size(114, 20);
-            this.repetirContrasena.TabIndex = 5;
+            this.repetirContrasena.TabIndex = 2;
             this.repetirContrasena.UseSystemPasswordChar = true;
             // 
             // label3
@@ -73,7 +73,7 @@
             this.contrasena.Location = new System.Drawing.Point(104, 23);
             this.contrasena.Name = "contrasena";
             this.contrasena.Size = new System.Drawing.Size(114, 20);
-            this.contrasena.TabIndex = 5;
+            this.contrasena.TabIndex = 1;
             this.contrasena.UseSystemPasswordChar = true;
             // 
             // label2
@@ -90,7 +90,7 @@
             this.guardar.Location = new System.Drawing.Point(161, 97);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(75, 23);
-            this.guardar.TabIndex = 6;
+            this.guardar.TabIndex = 3;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = true;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
