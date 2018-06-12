@@ -30,7 +30,11 @@ namespace FrbaHotel.GenerarReserva
             if(Conexion.usuario != "INVITADO")
             {
                 hotel.Enabled = false;
-                hotel.SelectedItem = hotel.Items.Cast<Hotel>().ToList().First(h => h.id == Conexion.hotel);
+                //List<Hotel> hoteles = (List<Hotel>)hotel.Items.OfType<Hotel>().ToList(); 
+                //hotel.SelectedItem = hoteles.First(h => h.id == Conexion.hotel);
+                hotel.SelectedItem = hotel.Items.OfType<Hotel>().ToList().First(h => h.id == Conexion.hotel);
+
+
             }
         }
 
@@ -40,7 +44,7 @@ namespace FrbaHotel.GenerarReserva
             {
                 ListadoCliente listadoCliente = new ListadoCliente();
                 DialogResult dr = listadoCliente.ShowDialog();
-
+                
                 if(dr == DialogResult.OK)
                 {
                     reservar2(listadoCliente.idCliente);
@@ -212,15 +216,15 @@ namespace FrbaHotel.GenerarReserva
             cmd.Parameters.Add("@fechaDesde", SqlDbType.SmallDateTime).Value = ConvertFecha.fechaVsABd(fechaDesde.Text);
             cmd.Parameters.Add("@duracion", SqlDbType.Int).Value = duracion.Text;
             cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion) tipoHabitacion.SelectedItem).id;
-            if(tipoRegimen.SelectedIndex >= 0)
-                cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen) tipoRegimen.SelectedItem).id;
             cmd.Parameters.Add("@nroPersonas", SqlDbType.VarChar).Value = nroPersonas.Text;
             cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
+
+            if (tipoRegimen.SelectedIndex >= 0)
+                cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen) tipoRegimen.SelectedItem).id;
             cmd.Connection = sqlConnection;
             sqlConnection.Open();
-
             reader = cmd.ExecuteReader();
-
+            //TODO Ver procedimiento se queda en EXEC RESERVA_Cancelar y pierde la conexion
             try
             {
                 reader.Read();

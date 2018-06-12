@@ -17,7 +17,7 @@ namespace FrbaHotel.Objetos
         {
             this.id = reader.GetInt32(reader.GetOrdinal("tipo_id"));
             this.nombre = reader.GetString(reader.GetOrdinal("tipo_descripcion"));
-            this.precio = reader.GetFloat(reader.GetOrdinal("tipo_precio"));
+            this.precio = float.Parse(reader.GetDecimal(reader.GetOrdinal("tipo_precio")).ToString());
         }
 
         public override string ToString()
