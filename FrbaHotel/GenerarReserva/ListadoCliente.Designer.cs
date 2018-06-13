@@ -43,10 +43,10 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.resultados = new System.Windows.Forms.ListView();
-            this.nuevo = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nuevo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +75,7 @@
             this.nroIdentificacion.Mask = "99999999";
             this.nroIdentificacion.Name = "nroIdentificacion";
             this.nroIdentificacion.Size = new System.Drawing.Size(114, 20);
-            this.nroIdentificacion.TabIndex = 10;
+            this.nroIdentificacion.TabIndex = 4;
             // 
             // label5
             // 
@@ -92,7 +92,7 @@
             this.tipoIdentificacion.Location = new System.Drawing.Point(103, 71);
             this.tipoIdentificacion.Name = "tipoIdentificacion";
             this.tipoIdentificacion.Size = new System.Drawing.Size(114, 21);
-            this.tipoIdentificacion.TabIndex = 9;
+            this.tipoIdentificacion.TabIndex = 3;
             // 
             // label4
             // 
@@ -108,7 +108,7 @@
             this.email.Location = new System.Drawing.Point(103, 125);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(114, 20);
-            this.email.TabIndex = 8;
+            this.email.TabIndex = 5;
             // 
             // label2
             // 
@@ -124,7 +124,7 @@
             this.apellido.Location = new System.Drawing.Point(103, 45);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(114, 20);
-            this.apellido.TabIndex = 8;
+            this.apellido.TabIndex = 2;
             // 
             // label8
             // 
@@ -156,7 +156,7 @@
             this.limpiar.Location = new System.Drawing.Point(13, 172);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 1;
+            this.limpiar.TabIndex = 6;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -166,7 +166,7 @@
             this.buscar.Location = new System.Drawing.Point(161, 172);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(75, 23);
-            this.buscar.TabIndex = 1;
+            this.buscar.TabIndex = 7;
             this.buscar.Text = "Buscar";
             this.buscar.UseVisualStyleBackColor = true;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
@@ -179,23 +179,12 @@
             this.columnHeader3});
             this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.Location = new System.Drawing.Point(13, 202);
-            this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
-            this.resultados.TabIndex = 2;
+            this.resultados.TabIndex = 8;
             this.resultados.UseCompatibleStateImageBehavior = false;
             this.resultados.View = System.Windows.Forms.View.Details;
             this.resultados.MouseClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseClick);
-            // 
-            // nuevo
-            // 
-            this.nuevo.Location = new System.Drawing.Point(161, 362);
-            this.nuevo.Name = "nuevo";
-            this.nuevo.Size = new System.Drawing.Size(75, 23);
-            this.nuevo.TabIndex = 1;
-            this.nuevo.Text = "Nuevo";
-            this.nuevo.UseVisualStyleBackColor = true;
-            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
             // columnHeader1
             // 
@@ -208,6 +197,16 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Nombre";
+            // 
+            // nuevo
+            // 
+            this.nuevo.Location = new System.Drawing.Point(161, 362);
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(75, 23);
+            this.nuevo.TabIndex = 1;
+            this.nuevo.Text = "Nuevo";
+            this.nuevo.UseVisualStyleBackColor = true;
+            this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
             // ListadoCliente
             // 

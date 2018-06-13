@@ -46,11 +46,11 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.resultados = new System.Windows.Forms.ListView();
-            this.consultarDisponibilidad = new System.Windows.Forms.Button();
-            this.limpiar = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.consultarDisponibilidad = new System.Windows.Forms.Button();
+            this.limpiar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -217,13 +217,23 @@
             this.columnHeader2,
             this.columnHeader3});
             this.resultados.Location = new System.Drawing.Point(13, 252);
-            this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
             this.resultados.Size = new System.Drawing.Size(223, 154);
-            this.resultados.View = System.Windows.Forms.View.Details;
-            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.TabIndex = 10;
             this.resultados.UseCompatibleStateImageBehavior = false;
+            this.resultados.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Regimen";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Precio";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Disponibles";
             // 
             // consultarDisponibilidad
             // 
@@ -244,18 +254,6 @@
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Regimen";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Precio";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Disponibles";
             // 
             // GenerarReserva
             // 

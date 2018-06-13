@@ -62,36 +62,60 @@ namespace FrbaHotel.RegistrarConsumible
                 }
             }
 
+            consumibles.ForEach(c => consumible.Items.Add(c));
+
             reader.Close();
             sqlConnection.Close();
         }
 
         private void registarConsumible()
         {
-            SqlConnection sqlConnection = Conexion.getSqlConnection();
-            SqlCommand cmd = new SqlCommand();
-
-            cmd.CommandText = "CONSUMIBLE_Crear";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = Int32.Parse(codReserva.Text);
-            cmd.Parameters.Add("@idConsumible", SqlDbType.Int).Value = ((Consumible) consumible.SelectedItem).id;
-            cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = Int32.Parse(cantidad.Text);
-            cmd.Connection = sqlConnection;
-
-            sqlConnection.Open();
-
-            try
+            if (validar())
             {
-                cmd.ExecuteNonQuery();
-                consumible.SelectedIndex = 0;
-                cantidad.Text = "1";
-            }
-            catch (Exception se)
-            {
-                MessageBox.Show(se.Message, "Registrar Consumible");
-            }
+                SqlConnection sqlConnection = Conexion.getSqlConnection();
+                SqlCommand cmd = new SqlCommand();
 
-            sqlConnection.Close();
+                cmd.CommandText = "CONSUMIBLE_Crear";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = Int32.Parse(codReserva.Text);
+                cmd.Parameters.Add("@idConsumible", SqlDbType.Int).Value = ((Consumible)consumible.SelectedItem).id;
+                cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = Int32.Parse(cantidad.Text);
+                cmd.Connection = sqlConnection;
+
+                sqlConnection.Open();
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    consumible.SelectedIndex = 0;
+                    cantidad.Text = "1";
+                    MessageBox.Show("Consumible registrado a la reserva "+codReserva.Text,"Registrar Consumible");
+                }
+                catch (Exception se)
+                {
+                    MessageBox.Show(se.Message, "Registrar Consumible");
+                }
+
+                sqlConnection.Close();
+            }
         }
+
+        private Boolean validar()
+        {
+            Control[] controles = { codReserva, consumible, cantidad };
+
+            Boolean esValido = true;
+            String errores = "";
+            foreach (Control control in controles.Where(e => String.IsNullOrWhiteSpace(e.Text)))
+            {
+                errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
+                esValido = false;
+            }
+            if (!esValido)
+                MessageBox.Show(errores, "ERROR");
+
+            return esValido;
+        }
+
     }
 }
