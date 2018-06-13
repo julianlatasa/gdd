@@ -11,14 +11,14 @@ namespace FrbaHotel.Objetos
     {
         public int idRegimen { get; set; }
         public string descripcionRegimen { get; set; }
-        public int precio { get; set; }
+        public float precio { get; set; }
         public int habitaciones { get; set; }
 
         public Consulta(SqlDataReader reader)
         {
             this.idRegimen = reader.GetInt32(reader.GetOrdinal("regi_id"));
             this.descripcionRegimen = reader.GetString(reader.GetOrdinal("regi_descripcion"));
-            this.precio = reader.GetInt32(reader.GetOrdinal("precio"));
+            this.precio = float.Parse(reader.GetDecimal(reader.GetOrdinal("precio")).ToString());
             this.habitaciones = reader.GetInt32(reader.GetOrdinal("habitaciones"));
         }
 

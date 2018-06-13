@@ -59,6 +59,7 @@ namespace FrbaHotel.GenerarReserva
             {
                 consultarDisponibilidad2();
             }
+            
         }
 
         private Boolean validar()
@@ -212,7 +213,7 @@ namespace FrbaHotel.GenerarReserva
             resultados.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader;
+            SqlDataReader reader = null;
 
             cmd.CommandText = "RESERVA_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
@@ -226,16 +227,15 @@ namespace FrbaHotel.GenerarReserva
             cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion)tipoHabitacion.SelectedItem).id;
             cmd.Parameters.Add("@nroPersonas", SqlDbType.VarChar).Value = nroPersonas.Text;
             cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
-
             if (tipoRegimen.SelectedIndex >= 0)
                 cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen)tipoRegimen.SelectedItem).id;
             cmd.Connection = sqlConnection;
             sqlConnection.Open();
-            reader = cmd.ExecuteReader();
             //TODO Ver procedimiento se queda en EXEC RESERVA_Cancelar y pierde la conexion
             try
             {
-                reader.Read();
+                reader = cmd.ExecuteReader();
+                //reader.Read();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -248,6 +248,7 @@ namespace FrbaHotel.GenerarReserva
                     string[] cols = { c.precio.ToString(), 
                                     c.habitaciones.ToString() };
                     resultados.Items.Add(c.descripcionRegimen).SubItems.AddRange(cols);
+                    
                 });
             }
             catch (Exception se)
