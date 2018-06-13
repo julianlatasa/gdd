@@ -99,8 +99,8 @@ namespace FrbaHotel.GenerarReserva
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
             cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento) tipoIdentificacion.SelectedItem).id;
-            cmd.Parameters.Add("@nroDocumento", SqlDbType.Int).Value = nroIdentificacion.Text;
-            cmd.Parameters.Add("@email", SqlDbType.Int).Value = email.Text;
+            cmd.Parameters.Add("@nroDocumento", SqlDbType.Text).Value = nroIdentificacion.Text;
+            cmd.Parameters.Add("@email", SqlDbType.Text).Value = email.Text;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -119,7 +119,7 @@ namespace FrbaHotel.GenerarReserva
                 string[] cols = { c.apellido, c.nombre };
                 resultados.Items.Add(c.numeroDocumento).SubItems.AddRange(cols);
             });
-
+            resultados.Show();
             reader.Close();
             sqlConnection.Close();
         }

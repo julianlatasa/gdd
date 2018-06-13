@@ -185,9 +185,10 @@ namespace FrbaHotel.GenerarReserva
             cmd.Parameters.Add("@duracion", SqlDbType.Int).Value = duracion.Text;
             cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion)tipoHabitacion.SelectedItem).id;
             cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen)tipoRegimen.SelectedItem).id;
-            cmd.Parameters.Add("@precio", SqlDbType.Int).Value = consultas[resultados.SelectedItems[0].Index].precio;
+            cmd.Parameters.Add("@precio", SqlDbType.Float).Value = consultas[resultados.SelectedItems[0].Index].precio;
             cmd.Parameters.Add("@habitaciones", SqlDbType.VarChar).Value = nroHabitaciones.Text;
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idCliente;
+            cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Connection = sqlConnection;
             sqlConnection.Open();
 
@@ -248,14 +249,16 @@ namespace FrbaHotel.GenerarReserva
                     string[] cols = { c.precio.ToString(), 
                                     c.habitaciones.ToString() };
                     resultados.Items.Add(c.descripcionRegimen).SubItems.AddRange(cols);
-                    
+
                 });
+                resultados.Items[0].Selected = true;
+                resultados.Show();
             }
             catch (Exception se)
             {
                 MessageBox.Show(se.Message, "Generar Reserva");
             }
-
+            
             reader.Close();
             sqlConnection.Close();
         }

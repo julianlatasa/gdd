@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerarReserva));
             this.reservar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -217,15 +216,8 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            listViewItem1.Checked = true;
-            listViewItem1.StateImageIndex = 1;
-            this.resultados.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
             this.resultados.Location = new System.Drawing.Point(13, 252);
-            this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
-            this.resultados.ShowItemToolTips = true;
             this.resultados.Size = new System.Drawing.Size(223, 154);
             this.resultados.TabIndex = 10;
             this.resultados.UseCompatibleStateImageBehavior = false;
