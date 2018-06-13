@@ -91,7 +91,7 @@ namespace FrbaHotel.RegistrarEstadia
 
             cmd.CommandText = "ESTADIA_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@codReserva", SqlDbType.Int).Value = codReserva.Text;
+            cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = codReserva.Text;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();

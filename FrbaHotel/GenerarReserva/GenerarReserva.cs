@@ -30,8 +30,6 @@ namespace FrbaHotel.GenerarReserva
             if (Conexion.usuario != "INVITADO")
             {
                 hotel.Enabled = false;
-                //List<Hotel> hoteles = (List<Hotel>)hotel.Items.OfType<Hotel>().ToList(); 
-                //hotel.SelectedItem = hoteles.First(h => h.id == Conexion.hotel);
                 hotel.SelectedItem = hotel.Items.OfType<Hotel>().ToList().First(h => h.id == Conexion.hotel);
 
 
@@ -253,14 +251,15 @@ namespace FrbaHotel.GenerarReserva
                 });
                 resultados.Items[0].Selected = true;
                 resultados.Show();
+
+                reader.Close();
+                sqlConnection.Close();
             }
             catch (Exception se)
             {
                 MessageBox.Show(se.Message, "Generar Reserva");
             }
             
-            reader.Close();
-            sqlConnection.Close();
         }
     }
 }

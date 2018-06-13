@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrarConsumible));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.consumible = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cantidad = new System.Windows.Forms.MaskedTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.codReserva = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.confirmar = new System.Windows.Forms.Button();
             this.limpiar = new System.Windows.Forms.Button();
-            this.consumible = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cantidad = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +56,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registrar Consumible";
             // 
+            // consumible
+            // 
+            this.consumible.FormattingEnabled = true;
+            this.consumible.Location = new System.Drawing.Point(103, 48);
+            this.consumible.Name = "consumible";
+            this.consumible.Size = new System.Drawing.Size(114, 21);
+            this.consumible.TabIndex = 2;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -65,13 +73,30 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Consumible";
             // 
+            // cantidad
+            // 
+            this.cantidad.Location = new System.Drawing.Point(103, 75);
+            this.cantidad.Mask = "99999999";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.Size = new System.Drawing.Size(114, 20);
+            this.cantidad.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Cantidad";
+            // 
             // codReserva
             // 
             this.codReserva.Location = new System.Drawing.Point(103, 19);
             this.codReserva.Mask = "99999999";
             this.codReserva.Name = "codReserva";
             this.codReserva.Size = new System.Drawing.Size(114, 20);
-            this.codReserva.TabIndex = 11;
+            this.codReserva.TabIndex = 1;
             // 
             // label1
             // 
@@ -87,7 +112,7 @@
             this.confirmar.Location = new System.Drawing.Point(161, 129);
             this.confirmar.Name = "confirmar";
             this.confirmar.Size = new System.Drawing.Size(75, 23);
-            this.confirmar.TabIndex = 1;
+            this.confirmar.TabIndex = 4;
             this.confirmar.Text = "Confirmar";
             this.confirmar.UseVisualStyleBackColor = true;
             this.confirmar.Click += new System.EventHandler(this.confirmar_Click);
@@ -97,35 +122,10 @@
             this.limpiar.Location = new System.Drawing.Point(14, 129);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 1;
+            this.limpiar.TabIndex = 5;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
-            // 
-            // consumible
-            // 
-            this.consumible.FormattingEnabled = true;
-            this.consumible.Location = new System.Drawing.Point(103, 48);
-            this.consumible.Name = "consumible";
-            this.consumible.Size = new System.Drawing.Size(114, 21);
-            this.consumible.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 78);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Cantidad";
-            // 
-            // cantidad
-            // 
-            this.cantidad.Location = new System.Drawing.Point(103, 75);
-            this.cantidad.Mask = "99999999";
-            this.cantidad.Name = "cantidad";
-            this.cantidad.Size = new System.Drawing.Size(114, 20);
-            this.cantidad.TabIndex = 11;
             // 
             // RegistrarConsumible
             // 

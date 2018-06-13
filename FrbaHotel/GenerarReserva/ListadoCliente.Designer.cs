@@ -203,7 +203,7 @@
             this.nuevo.Location = new System.Drawing.Point(161, 362);
             this.nuevo.Name = "nuevo";
             this.nuevo.Size = new System.Drawing.Size(75, 23);
-            this.nuevo.TabIndex = 9;
+            this.nuevo.TabIndex = 1;
             this.nuevo.Text = "Nuevo";
             this.nuevo.UseVisualStyleBackColor = true;
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
