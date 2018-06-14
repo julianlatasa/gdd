@@ -48,7 +48,9 @@ UPDATE CLIENTE SET clie_habilitado = 0
 
 INSERT INTO ESTADO (esta_descripcion) VALUES ('RESERVADO')
 INSERT INTO ESTADO (esta_descripcion) VALUES ('MODIFICADO')
-INSERT INTO ESTADO (esta_descripcion) VALUES ('CANCELADO')
+INSERT INTO ESTADO (esta_descripcion) VALUES ('CANCELADO POR CLIENTE')
+INSERT INTO ESTADO (esta_descripcion) VALUES ('CANCELADO POR RECEPCION')
+INSERT INTO ESTADO (esta_descripcion) VALUES ('CANCELADO POR NO-SHOW')
 INSERT INTO ESTADO (esta_descripcion) VALUES ('HOSPEDADO')
 
 
@@ -124,7 +126,7 @@ DBCC CHECKIDENT ('RESERVA', RESEED, @max_id)
 SET IDENTITY_INSERT RESERVA OFF
 
 INSERT INTO ESTADIA (esta_hotel, esta_habitacion, esta_cliente, esta_reserva, esta_checkin, esta_duracion)
-SELECT (SELECT hote_id FROM HOTEL WHERE CAST((RTRIM(Hotel_Ciudad) + ' - ' + Hotel_Calle) AS VARCHAR(100)) = hote_nombre),
+SELECT DISTINCT (SELECT hote_id FROM HOTEL WHERE CAST((RTRIM(Hotel_Ciudad) + ' - ' + Hotel_Calle) AS VARCHAR(100)) = hote_nombre),
 	(SELECT habi_numero FROM HABITACION WHERE habi_numero = Habitacion_Numero AND habi_hotel = (SELECT hote_id FROM HOTEL WHERE CAST((RTRIM(Hotel_Ciudad) + ' - ' + Hotel_Calle) AS VARCHAR(100)) = hote_nombre)),
 	(SELECT clie_id FROM CLIENTE WHERE clie_email = Cliente_Mail AND clie_numero_doc = Cliente_Pasaporte_Nro),
 	Reserva_Codigo, Estadia_Fecha_Inicio, Estadia_Cant_Noches
