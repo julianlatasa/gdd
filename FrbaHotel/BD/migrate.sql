@@ -47,8 +47,10 @@ UPDATE CLIENTE SET clie_habilitado = 0
 		clie_id NOT IN (SELECT MIN(cl.clie_id) FROM CLIENTE cl GROUP BY cl.clie_email HAVING COUNT(cl.clie_email) > 1)
 
 INSERT INTO ESTADO (esta_descripcion) VALUES ('RESERVADO')
+INSERT INTO ESTADO (esta_descripcion) VALUES ('MODIFICADO')
 INSERT INTO ESTADO (esta_descripcion) VALUES ('CANCELADO')
 INSERT INTO ESTADO (esta_descripcion) VALUES ('HOSPEDADO')
+
 
 INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('ABM de Rol');
 INSERT INTO FUNCIONALIDAD (func_nombre) VALUES ('ABM de Usuario');

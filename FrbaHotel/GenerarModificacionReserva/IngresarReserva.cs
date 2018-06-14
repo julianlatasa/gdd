@@ -40,7 +40,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT COUNT(*) FROM RESERVA WHERE rese_id = " + Int32.Parse(codigoReserva.Text);
+             cmd.CommandText = "SELECT COUNT(*) FROM RESERVA WHERE rese_id = " + Int32.Parse(codigoReserva.Text);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 

@@ -56,11 +56,10 @@
             // codigoReserva
             // 
             this.codigoReserva.Location = new System.Drawing.Point(101, 12);
-            this.codigoReserva.Mask = "99999";
+            this.codigoReserva.Mask = "999999";
             this.codigoReserva.Name = "codigoReserva";
             this.codigoReserva.Size = new System.Drawing.Size(135, 20);
             this.codigoReserva.TabIndex = 8;
-            this.codigoReserva.ValidatingType = typeof(int);
             // 
             // IngresarReserva
             // 

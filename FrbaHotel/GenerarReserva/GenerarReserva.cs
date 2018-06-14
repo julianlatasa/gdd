@@ -27,7 +27,7 @@ namespace FrbaHotel.GenerarReserva
             obtenerTiposHabitacion();
             obtenerRegimenes();
 
-            if (Conexion.usuario != "INVITADO")
+            if (Conexion.rol != 3)
             {
                 hotel.Enabled = false;
                 hotel.SelectedItem = hotel.Items.OfType<Hotel>().ToList().First(h => h.id == Conexion.hotel);
@@ -209,7 +209,7 @@ namespace FrbaHotel.GenerarReserva
         private void consultarDisponibilidad2()
         {
             consultas.Clear();
-            resultados.Clear();
+            resultados.Items.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader = null;
@@ -249,16 +249,17 @@ namespace FrbaHotel.GenerarReserva
                     resultados.Items.Add(c.descripcionRegimen).SubItems.AddRange(cols);
 
                 });
-                resultados.Items[0].Selected = true;
-                resultados.Show();
+            //    resultados.Items[0].Selected = true;
+             //   resultados.Show();
 
                 reader.Close();
-                sqlConnection.Close();
             }
             catch (Exception se)
             {
                 MessageBox.Show(se.Message, "Generar Reserva");
             }
+
+            sqlConnection.Close();
             
         }
     }

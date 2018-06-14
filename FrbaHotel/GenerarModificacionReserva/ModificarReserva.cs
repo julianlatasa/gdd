@@ -31,7 +31,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             obtenerRegimenes();
             obtenerReserva(idReserva);
 
-            if (Conexion.usuario != "INVITADO")
+            if (Conexion.rol != 3)
             {
                 hotel.Enabled = false;
                 hotel.SelectedItem = hotel.Items.OfType<Hotel>().ToList().First(h => h.id == Conexion.hotel);
@@ -199,7 +199,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     h.id == reader.GetInt32(reader.GetOrdinal("rese_tipo_habitacion")));
 
             }
-
+            sqlConnection.Close();
         }
 
         private void cancelarReserva2(string motivo)
@@ -210,7 +210,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmd.CommandText = "RESERVA_Cancelar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = idReserva;
-            cmd.Parameters.Add("@idUsuario", SqlDbType.Int).Value = Conexion.usuario;
+            cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Parameters.Add("@motivo", SqlDbType.VarChar).Value = motivo;
             cmd.Connection = sqlConnection;
             sqlConnection.Open();
@@ -218,6 +218,8 @@ namespace FrbaHotel.GenerarModificacionReserva
             try
             {
                 cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Cancelado por Cliente la Reserva #"+idReserva);
             }
             catch (Exception se)
             {
@@ -246,6 +248,8 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen)tipoRegimen.SelectedItem).id;
             cmd.Parameters.Add("@precio", SqlDbType.Int).Value = consultas[resultados.SelectedItems[0].Index].precio;
             cmd.Parameters.Add("@habitaciones", SqlDbType.VarChar).Value = nroHabitaciones.Text;
+
+            cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Connection = sqlConnection;
             sqlConnection.Open();
 
@@ -264,7 +268,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void consultarDisponibilidad2()
         {
             consultas.Clear();
-            resultados.Clear();
+            resultados.Items.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -290,7 +294,6 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             try
             {
-                reader.Read();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
