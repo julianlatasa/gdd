@@ -20,10 +20,7 @@ namespace FrbaHotel.RegistrarConsumible
         public RegistrarConsumible()
         {
             InitializeComponent();
-        }
 
-        private void RegistrarConsumible_Load(object sender, EventArgs e)
-        {
             obtenerConsumibles();
         }
 
@@ -53,7 +50,6 @@ namespace FrbaHotel.RegistrarConsumible
 
             reader = cmd.ExecuteReader();
 
-
             if (reader.HasRows)
             {
                 while (reader.Read())
@@ -61,8 +57,8 @@ namespace FrbaHotel.RegistrarConsumible
                     consumibles.Add(new Consumible(reader));
                 }
             }
-
             consumibles.ForEach(c => consumible.Items.Add(c));
+            consumible.SelectedIndex = 0;
 
             reader.Close();
             sqlConnection.Close();
@@ -89,7 +85,7 @@ namespace FrbaHotel.RegistrarConsumible
                     cmd.ExecuteNonQuery();
                     consumible.SelectedIndex = 0;
                     cantidad.Text = "1";
-                    MessageBox.Show("Consumible registrado a la reserva "+codReserva.Text,"Registrar Consumible");
+                    MessageBox.Show("Consumible registrado a la reserva " + codReserva.Text, "Registrar Consumible");
                 }
                 catch (Exception se)
                 {

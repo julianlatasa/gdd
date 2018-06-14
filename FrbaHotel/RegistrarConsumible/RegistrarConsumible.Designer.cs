@@ -144,7 +144,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar Consumible";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.RegistrarConsumible_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
