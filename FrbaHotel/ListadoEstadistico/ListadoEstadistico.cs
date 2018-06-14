@@ -26,8 +26,8 @@ namespace FrbaHotel.ListadoEstadistico
             {
                 int anio2 = Int32.Parse(anio.Text);
                 int trimestre2 = Int32.Parse(trimestre.Text);
-                string desde = (new DateTime(anio2, trimestre2 * 3, 1)).ToShortDateString();
-                string hasta = (new DateTime(anio2, trimestre2 * 3 + 3, 1)).ToShortDateString();
+                string desde = (new DateTime(anio2, trimestre2 * 3-2, 1)).ToShortDateString();
+                string hasta = (new DateTime(anio2, trimestre2 * 3, DateTime.DaysInMonth(anio2, trimestre2*3))).ToShortDateString();
 
                 switch (estadistica.SelectedIndex)
                 {

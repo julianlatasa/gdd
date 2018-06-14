@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Estadistico4));
             this.resultados = new System.Windows.Forms.ListView();
-            this.Hotel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NroHabitacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Hotel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Tiempo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cantidad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // resultados
@@ -44,6 +44,7 @@
             this.Tiempo,
             this.Cantidad});
             this.resultados.Enabled = false;
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.Location = new System.Drawing.Point(13, 13);
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
@@ -51,27 +52,29 @@
             this.resultados.TabIndex = 0;
             this.resultados.UseCompatibleStateImageBehavior = false;
             this.resultados.View = System.Windows.Forms.View.Details;
-            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            // 
-            // Hotel
-            // 
-            this.Hotel.DisplayIndex = 0;
-            this.Hotel.Text = "Hotel";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.DisplayIndex = 1;
-            this.Cantidad.Text = "Cantidad";
             // 
             // NroHabitacion
             // 
             this.NroHabitacion.DisplayIndex = 2;
             this.NroHabitacion.Text = "Nro Habitación";
+            this.NroHabitacion.Width = 63;
+            // 
+            // Hotel
+            // 
+            this.Hotel.DisplayIndex = 0;
+            this.Hotel.Text = "Hotel";
+            this.Hotel.Width = 81;
             // 
             // Tiempo
             // 
             this.Tiempo.DisplayIndex = 3;
             this.Tiempo.Text = "Tiempo";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DisplayIndex = 1;
+            this.Cantidad.Text = "Cantidad";
+            this.Cantidad.Width = 43;
             // 
             // Estadistico4
             // 

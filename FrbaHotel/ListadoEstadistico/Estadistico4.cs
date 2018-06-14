@@ -42,8 +42,13 @@ namespace FrbaHotel.ListadoEstadistico
             {
                 while (reader.Read())
                 {
-                    string[] cols = { reader.GetInt32(1).ToString(), reader.GetInt32(2).ToString(), reader.GetInt32(3).ToString() };
-                    resultados.Items.Add(reader.GetString(0)).SubItems.AddRange(cols);
+                    //ListViewItem item = new ListViewItem(reader.GetInt32(0).ToString());
+                    //item.SubItems.Add(reader.GetString(1));
+                    //item.SubItems.Add(reader.GetInt32(2).ToString());
+                    //item.SubItems.Add(reader.GetInt32(3).ToString());
+                    //resultados.Items.Add(item);
+                    string[] cols = { reader.GetString(1), reader.GetInt32(2).ToString(), reader.GetInt32(3).ToString() };
+                    resultados.Items.Add(reader.GetInt32(0).ToString()).SubItems.AddRange(cols);
                 }
             }
 

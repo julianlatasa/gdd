@@ -89,39 +89,46 @@ namespace FrbaHotel.GenerarReserva
         private void obtenerClientes()
         {
             clientes.Clear();
-            resultados.Clear();
+            resultados.Items.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
-
-            cmd.CommandText = "CLIENTE_Buscar";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
-            cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
-            cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento) tipoIdentificacion.SelectedItem).id;
-            cmd.Parameters.Add("@nroDocumento", SqlDbType.Text).Value = nroIdentificacion.Text;
-            cmd.Parameters.Add("@email", SqlDbType.Text).Value = email.Text;
-            cmd.Connection = sqlConnection;
-
-            sqlConnection.Open();
-
-            reader = cmd.ExecuteReader();
-
-            if (reader.HasRows)
+            try
             {
-                while (reader.Read())
+
+                cmd.CommandText = "CLIENTE_Buscar";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
+                cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
+                cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento)tipoIdentificacion.SelectedItem).id;
+                cmd.Parameters.Add("@nroDocumento", SqlDbType.Text).Value = nroIdentificacion.Text;
+                cmd.Parameters.Add("@email", SqlDbType.Text).Value = email.Text;
+                cmd.Connection = sqlConnection;
+            
+                sqlConnection.Open();
+
+               reader = cmd.ExecuteReader();
+                    
+                if (reader.HasRows)
                 {
-                    clientes.Add(new Cliente(reader));
+                    while (reader.Read())
+                    {
+                        clientes.Add(new Cliente(reader));
+                    }
                 }
+                clientes.ForEach(c =>
+                {
+                    string[] cols = { c.apellido, c.nombre };
+                    resultados.Items.Add(c.numeroDocumento).SubItems.AddRange(cols);
+                });
+                reader.Close();
+                sqlConnection.Close();
             }
-            clientes.ForEach(c =>
+            
+            catch (Exception se)
             {
-                string[] cols = { c.apellido, c.nombre };
-                resultados.Items.Add(c.numeroDocumento).SubItems.AddRange(cols);
-            });
-            resultados.Show();
-            reader.Close();
-            sqlConnection.Close();
+                MessageBox.Show("Faltan datos para realizar la busqueda", "Busqueda de Cliente");
+            }
         }
     }
 }

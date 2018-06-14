@@ -42,6 +42,7 @@
             this.Nombre,
             this.Puntos});
             this.resultados.Enabled = false;
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.Location = new System.Drawing.Point(13, 13);
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
@@ -49,15 +50,16 @@
             this.resultados.TabIndex = 0;
             this.resultados.UseCompatibleStateImageBehavior = false;
             this.resultados.View = System.Windows.Forms.View.Details;
-            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             // 
             // Apellido
             // 
             this.Apellido.Text = "Apellido";
+            this.Apellido.Width = 87;
             // 
             // Nombre
             // 
             this.Nombre.Text = "Nombre";
+            this.Nombre.Width = 93;
             // 
             // Puntos
             // 

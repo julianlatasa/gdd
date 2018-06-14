@@ -62,7 +62,7 @@ namespace FrbaHotel.RegistrarEstadia
             cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = habitaciones[resultados.SelectedItems[0].Index].numero;
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idCliente;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = Int32.Parse(codReserva.Text);
-            cmd.Parameters.Add("@idUsuario", SqlDbType.Char).Value = Conexion.usuario;
+            cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -84,7 +84,7 @@ namespace FrbaHotel.RegistrarEstadia
         private void obtenerHabitaciones()
         {
             habitaciones.Clear();
-            resultados.Clear();
+            resultados.Items.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -102,16 +102,31 @@ namespace FrbaHotel.RegistrarEstadia
             {
                 while (reader.Read())
                 {
-                    habitaciones.Add(new Habitacion(reader));
+                    //habitaciones.Add(new Habitacion(reader));
+
+                    Habitacion habitacion = new Habitacion(reader);
+                    habitaciones.Add(habitacion);
+                    //resultados.Items.Add(habitacion.numero.ToString()).SubItems.Add(habitacion.piso.ToString());
+                    resultados.Items.Add(reader.GetInt32(1).ToString()).SubItems.Add(reader.GetInt32(2).ToString());
+                    resultados.Show();
                 }
             }
-            habitaciones.ForEach(h =>
+           /* habitaciones.ForEach(h =>
             {
                 resultados.Items.Add(h.numero.ToString()).SubItems.Add(h.piso.ToString());
             });
-
+            this.ResumeLayout();*/
             reader.Close();
             sqlConnection.Close();
         }
+
+
+        private void resultados_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            //throw new System.NotImplementedException();
+        }
+
+
+       
     }
 }

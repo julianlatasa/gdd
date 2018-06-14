@@ -119,7 +119,7 @@
             // 
             // visualizar
             // 
-            this.visualizar.Location = new System.Drawing.Point(161, 129);
+            this.visualizar.Location = new System.Drawing.Point(161, 126);
             this.visualizar.Name = "visualizar";
             this.visualizar.Size = new System.Drawing.Size(75, 23);
             this.visualizar.TabIndex = 4;

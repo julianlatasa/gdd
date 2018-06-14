@@ -45,7 +45,7 @@ namespace FrbaHotel.ListadoEstadistico
                     resultados.Items.Add(reader.GetString(0)).SubItems.Add(reader.GetInt32(1).ToString());
                 }
             }
-
+            
             reader.Close();
             sqlConnection.Close();
         }

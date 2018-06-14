@@ -40,6 +40,7 @@
             this.Hotel,
             this.Cantidad});
             this.resultados.Enabled = false;
+            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.resultados.Location = new System.Drawing.Point(13, 13);
             this.resultados.MultiSelect = false;
             this.resultados.Name = "resultados";
@@ -47,16 +48,14 @@
             this.resultados.TabIndex = 0;
             this.resultados.UseCompatibleStateImageBehavior = false;
             this.resultados.View = System.Windows.Forms.View.Details;
-            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             // 
             // Hotel
             // 
-            this.Hotel.DisplayIndex = 0;
             this.Hotel.Text = "Hotel";
+            this.Hotel.Width = 151;
             // 
             // Cantidad
             // 
-            this.Cantidad.DisplayIndex = 1;
             this.Cantidad.Text = "Cantidad";
             // 
             // Estadistico2
