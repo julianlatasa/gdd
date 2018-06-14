@@ -26,10 +26,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 if (buscarReserva())
                 {
                     ModificarReserva modificarReserva = new ModificarReserva(Int32.Parse(codigoReserva.Text));
-                    modificarReserva.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
-                    { Close(); };
-                    modificarReserva.Show();
-                    Hide();
+                    modificarReserva.ShowDialog();
                 }
             }
         }
@@ -40,7 +37,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT COUNT(*) FROM RESERVA WHERE rese_id = " + Int32.Parse(codigoReserva.Text);
+            cmd.CommandText = "SELECT COUNT(*) FROM [DON_GATO_Y_SU_PANDILLA].RESERVA WHERE rese_id = " + Int32.Parse(codigoReserva.Text);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 

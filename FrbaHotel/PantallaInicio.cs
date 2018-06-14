@@ -29,13 +29,12 @@ namespace FrbaHotel
 
         private void guest_button_Click(object sender, EventArgs e)
         {
-            Conexion.rolNombre = "INVITADO";
 
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "GUEST_Login";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].GUEST_Login";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Connection = sqlConnection;
 
@@ -44,7 +43,8 @@ namespace FrbaHotel
             reader = cmd.ExecuteReader();
             reader.Read();
             Conexion.rol = reader.GetInt32(reader.GetOrdinal("rol_id"));
-            Conexion.usuario = reader.GetString(reader.GetOrdinal("usua_usuario"));
+            Conexion.usuario = reader.GetString(reader.GetOrdinal("usua_usuario")).Trim().ToUpper();
+            Conexion.rolNombre = Conexion.usuario;
 
             reader.Close();
             sqlConnection.Close();

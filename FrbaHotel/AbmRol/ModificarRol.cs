@@ -84,7 +84,7 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM FUNCIONALIDAD_ROL WHERE rol_id = " + rol.id;
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].FUNCIONALIDAD_ROL WHERE rol_id = " + rol.id;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -112,7 +112,7 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM FUNCIONALIDAD";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].FUNCIONALIDAD";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -139,7 +139,7 @@ namespace FrbaHotel
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "ROL_Modificar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].ROL_Modificar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = rol.id;
             cmd.Parameters.Add("@nombreRol", SqlDbType.VarChar).Value = nombre.Text;
@@ -160,7 +160,7 @@ namespace FrbaHotel
                 SqlConnection sqlConnection = Conexion.getSqlConnection();
                 SqlCommand cmd = new SqlCommand();
 
-                cmd.CommandText = "ROL_Asignar_Funcionalidad";
+                cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].ROL_Asignar_Funcionalidad";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
                 cmd.Parameters.Add("@idFuncionalidad", SqlDbType.Int).Value = idFuncionalidad;
@@ -183,7 +183,7 @@ namespace FrbaHotel
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "ROL_Eliminar_Funcionalidad";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].ROL_Eliminar_Funcionalidad";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
             cmd.Parameters.Add("@idFuncionalidad", SqlDbType.Int).Value = idFuncionalidad;

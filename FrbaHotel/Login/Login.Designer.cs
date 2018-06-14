@@ -63,7 +63,7 @@
             this.usuario.Name = "usuario";
             this.usuario.Size = new System.Drawing.Size(114, 20);
             this.usuario.TabIndex = 1;
-            this.usuario.Text = "recepcionista";
+            this.usuario.Text = "admin";
             // 
             // groupBox1
             // 
@@ -84,7 +84,7 @@
             this.contrasena.Name = "contrasena";
             this.contrasena.Size = new System.Drawing.Size(114, 20);
             this.contrasena.TabIndex = 2;
-            this.contrasena.Text = "123456";
+            this.contrasena.Text = "w23e";
             this.contrasena.UseSystemPasswordChar = true;
             // 
             // ingresar

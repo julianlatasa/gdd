@@ -47,6 +47,7 @@ UPDATE CLIENTE SET clie_habilitado = 0
 		clie_id NOT IN (SELECT MIN(cl.clie_id) FROM CLIENTE cl GROUP BY cl.clie_email HAVING COUNT(cl.clie_email) > 1)
 
 INSERT INTO ESTADO (esta_descripcion) VALUES ('RESERVADO')
+INSERT INTO ESTADO (esta_descripcion) VALUES ('MODIFICADO')
 INSERT INTO ESTADO (esta_descripcion) VALUES ('CANCELADO')
 INSERT INTO ESTADO (esta_descripcion) VALUES ('HOSPEDADO')
 
@@ -81,10 +82,12 @@ INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (2, 10);
 INSERT INTO FUNCIONALIDAD_ROL (rol_id, func_id) VALUES (1, 11);
 
 INSERT INTO USUARIO (usua_usuario, usua_password, usua_email, usua_rol_activo, usua_tipo_doc, usua_numero_doc, usua_nombre, usua_apellido, usua_fecha_nac)
-	VALUES ('invitado', '', '', 3, 1, '00000000', 'INVITADO', 'INVITADO', CAST(0 AS smalldatetime)),
+	VALUES 
+			('invitado', '', '', 3, 1, '00000000', 'INVITADO', 'INVITADO', CAST(0 AS smalldatetime)),
 			('recepcionista', HASHBYTES('SHA2_256', '123456'), '', 2, 1, '00000000', 'RECEPCIONISTA', 'RECEPCIONISTA', CAST(0 AS smalldatetime)),
 			('administrador', HASHBYTES('SHA2_256', '123456'), '', 1, 1, '00000000', 'ADMINISTRADOR', 'ADMINISTRADOR', CAST(0 AS smalldatetime)),
-			('test', HASHBYTES('SHA2_256', '123456'), '', 1, 1, '00000000', 'TEST', 'TEST', CAST(0 AS smalldatetime))
+			('test', HASHBYTES('SHA2_256', '123456'), '', 1, 1, '00000000', 'TEST', 'TEST', CAST(0 AS smalldatetime)),
+			('admin', HASHBYTES('SHA2_256', 'w23e'), '', 1, 1, '00000000', 'ADMINISTRADOR', 'ADMINISTRADOR', CAST(0 AS smalldatetime))
 
 INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id) 
 	SELECT 'invitado', hote_id FROM HOTEL
@@ -97,6 +100,12 @@ INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id)
 	
 INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id) 
 	SELECT 'test', hote_id FROM HOTEL
+	
+INSERT INTO USUARIO_HOTEL (usua_usuario, hote_id) 
+	SELECT 'admin', hote_id FROM HOTEL
+	
+INSERT INTO USUARIO_ROL (usua_usuario, rol_id) 
+	SELECT 'admin', rol_id FROM ROL
 
 INSERT INTO USUARIO_ROL (usua_usuario, rol_id) VALUES ('invitado', 3), ('recepcionista', 2), ('administrador', 1), ('test', 2), ('test', 3)
 

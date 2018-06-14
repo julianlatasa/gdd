@@ -87,7 +87,7 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "HOTEL_Crear";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].HOTEL_Crear";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email.Text;
@@ -116,7 +116,7 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM REGIMEN WHERE regi_habilitado = 1";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].REGIMEN WHERE regi_habilitado = 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -141,7 +141,7 @@ namespace FrbaHotel.AbmHotel
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "HOTEL_Asignar_Regimen";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].HOTEL_Asignar_Regimen";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = idHotel;
             cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = idRegimen;
@@ -160,7 +160,7 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM CIUDAD";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].CIUDAD";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -186,7 +186,7 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM PAIS";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].PAIS";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -212,7 +212,7 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM ESTRELLAS";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].ESTRELLAS";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 

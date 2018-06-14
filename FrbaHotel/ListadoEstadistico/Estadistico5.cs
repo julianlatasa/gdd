@@ -28,7 +28,7 @@ namespace FrbaHotel.ListadoEstadistico
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "ESTADISTICO_5";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].ESTADISTICO_5";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@desde", SqlDbType.SmallDateTime).Value = desde;
             cmd.Parameters.Add("@hasta", SqlDbType.SmallDateTime).Value = hasta;

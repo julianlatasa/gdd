@@ -37,13 +37,6 @@ namespace FrbaHotel.AbmUsuario
             hotelCombobox.SelectedIndex = 0;
         }
 
-        private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            ModificarUsuario modificarUsuario = new ModificarUsuario((Usuario)usuarios[resultados.SelectedItems[0].Index]);
-            modificarUsuario.ShowDialog();
-            obtenerUsuarios();
-        }
-
         private void nuevo_Click(object sender, EventArgs e)
         {
             AltaUsuario altaUsuario = new AltaUsuario();
@@ -54,12 +47,12 @@ namespace FrbaHotel.AbmUsuario
         private void obtenerUsuarios()
         {
             usuarios.Clear();
-            resultados.Items.Clear();
+            resultados.Rows.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "USUARIO_Buscar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].USUARIO_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
             if (rolCombobox.SelectedIndex > 0)
@@ -76,7 +69,8 @@ namespace FrbaHotel.AbmUsuario
             {
                 while (reader.Read())
                 {
-                    resultados.Items.Add(reader.GetString(0));
+                    string[] cols = { reader.GetString(0), "Seleccionar" };
+                    resultados.Rows.Add(cols);
                     usuarios.Add(new Usuario(reader));
                 }
             }
@@ -92,7 +86,7 @@ namespace FrbaHotel.AbmUsuario
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM HOTEL";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].HOTEL";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -118,7 +112,7 @@ namespace FrbaHotel.AbmUsuario
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM ROL WHERE rol_habilitado = 1";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].ROL WHERE rol_habilitado = 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -135,6 +129,18 @@ namespace FrbaHotel.AbmUsuario
             }
             reader.Close();
             sqlConnection.Close();
+        }
+
+        private void resultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                ModificarUsuario modificarUsuario = new ModificarUsuario((Usuario)usuarios[e.RowIndex]);
+                modificarUsuario.ShowDialog();
+                obtenerUsuarios();
+            }
         }
 
     }

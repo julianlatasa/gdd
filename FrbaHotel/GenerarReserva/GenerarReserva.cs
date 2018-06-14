@@ -19,10 +19,7 @@ namespace FrbaHotel.GenerarReserva
         public GenerarReserva()
         {
             InitializeComponent();
-        }
 
-        private void GenerarReserva_Load(object sender, EventArgs e)
-        {
             obtenerHoteles();
             obtenerTiposHabitacion();
             obtenerRegimenes();
@@ -31,23 +28,6 @@ namespace FrbaHotel.GenerarReserva
             {
                 hotel.Enabled = false;
                 hotel.SelectedItem = hotel.Items.OfType<Hotel>().ToList().First(h => h.id == Conexion.hotel);
-
-
-            }
-        }
-
-        private void reservar_Click(object sender, EventArgs e)
-        {
-            if (resultados.SelectedItems.Count > 0)
-            {
-                ListadoCliente listadoCliente = new ListadoCliente();
-                DialogResult dr = listadoCliente.ShowDialog();
-
-                if (dr == DialogResult.OK)
-                {
-                    reservar2(listadoCliente.idCliente);
-                    Close();
-                }
             }
         }
 
@@ -57,16 +37,22 @@ namespace FrbaHotel.GenerarReserva
             {
                 consultarDisponibilidad2();
             }
-            
         }
 
         private Boolean validar()
         {
-            Control[] controles = { hotel, fechaDesde, duracion, tipoHabitacion, nroPersonas, nroHabitaciones };
+            Control[] controles = { hotel, duracion, tipoHabitacion, nroPersonas, nroHabitaciones };
 
             Boolean esValido = true;
             String errores = "";
             foreach (Control control in controles.Where(e => String.IsNullOrWhiteSpace(e.Text)))
+            {
+                errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
+                esValido = false;
+            }
+
+            MaskedTextBox[] controles2 = { fechaDesde };
+            foreach (MaskedTextBox control in controles2.Where(e => !e.MaskCompleted))
             {
                 errores += "El campo " + control.Name.ToUpper() + " es obligatorio.\n";
                 esValido = false;
@@ -86,15 +72,17 @@ namespace FrbaHotel.GenerarReserva
             tipoHabitacion.SelectedIndex = 0;
             tipoRegimen.SelectedIndex = 0;
             nroPersonas.Clear();
+            nroHabitaciones.Clear();
         }
 
         private void obtenerRegimenes()
         {
+            tipoRegimen.Items.Add(new Regimen());
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM REGIMEN WHERE regi_habilitado = 1";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].REGIMEN WHERE regi_habilitado = 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -120,7 +108,7 @@ namespace FrbaHotel.GenerarReserva
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM TIPO_HABITACION";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].TIPO_HABITACION";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -135,6 +123,7 @@ namespace FrbaHotel.GenerarReserva
                     tipoHabitacion.Items.Add(new TipoHabitacion(reader));
                 }
             }
+            tipoHabitacion.SelectedIndex = 0;
 
             reader.Close();
             sqlConnection.Close();
@@ -146,7 +135,7 @@ namespace FrbaHotel.GenerarReserva
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM HOTEL";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].HOTEL";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -166,13 +155,13 @@ namespace FrbaHotel.GenerarReserva
             sqlConnection.Close();
         }
 
-        private void reservar2(int idCliente)
+        private void reservar2(int idCliente, int index)
         {
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "RESERVA_Crear";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].RESERVA_Crear";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel)hotel.SelectedItem).id;
             try
@@ -182,8 +171,8 @@ namespace FrbaHotel.GenerarReserva
             catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return; }
             cmd.Parameters.Add("@duracion", SqlDbType.Int).Value = duracion.Text;
             cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion)tipoHabitacion.SelectedItem).id;
-            cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen)tipoRegimen.SelectedItem).id;
-            cmd.Parameters.Add("@precio", SqlDbType.Float).Value = consultas[resultados.SelectedItems[0].Index].precio;
+            cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = tipoRegimen.SelectedItem != null ? ((Regimen)tipoRegimen.SelectedItem).id : consultas[index].idRegimen;
+            cmd.Parameters.Add("@precio", SqlDbType.Float).Value = consultas[index].precio;
             cmd.Parameters.Add("@habitaciones", SqlDbType.VarChar).Value = nroHabitaciones.Text;
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idCliente;
             cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
@@ -209,12 +198,12 @@ namespace FrbaHotel.GenerarReserva
         private void consultarDisponibilidad2()
         {
             consultas.Clear();
-            resultados.Clear();
+            resultados.Rows.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader = null;
 
-            cmd.CommandText = "RESERVA_Buscar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].RESERVA_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = ((Hotel)hotel.SelectedItem).id;
             try
@@ -224,17 +213,17 @@ namespace FrbaHotel.GenerarReserva
             catch (Exception) { MessageBox.Show("Formato de fecha incorrecto", "Error"); return; }
             cmd.Parameters.Add("@duracion", SqlDbType.Int).Value = duracion.Text;
             cmd.Parameters.Add("@tipoHabitacion", SqlDbType.Int).Value = ((TipoHabitacion)tipoHabitacion.SelectedItem).id;
-            cmd.Parameters.Add("@nroPersonas", SqlDbType.VarChar).Value = nroPersonas.Text;
+            cmd.Parameters.Add("@nroPersonas", SqlDbType.Int).Value = Int32.Parse(nroPersonas.Text);
+            cmd.Parameters.Add("@nrohabitaciones", SqlDbType.Int).Value = Int32.Parse(nroHabitaciones.Text);
             cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
-            if (tipoRegimen.SelectedIndex >= 0)
+            if (tipoRegimen.SelectedIndex > 0)
                 cmd.Parameters.Add("@idRegimen", SqlDbType.Int).Value = ((Regimen)tipoRegimen.SelectedItem).id;
             cmd.Connection = sqlConnection;
             sqlConnection.Open();
-            //TODO Ver procedimiento se queda en EXEC RESERVA_Cancelar y pierde la conexion
+
             try
             {
                 reader = cmd.ExecuteReader();
-                //reader.Read();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -244,22 +233,38 @@ namespace FrbaHotel.GenerarReserva
                 }
                 consultas.ForEach(c =>
                 {
-                    string[] cols = { c.precio.ToString(), 
-                                    c.habitaciones.ToString() };
-                    resultados.Items.Add(c.descripcionRegimen).SubItems.AddRange(cols);
-
+                    string[] cols = { c.descripcionRegimen, c.precio.ToString(), "Seleccionar" };
+                    resultados.Rows.Add(cols);
                 });
-                resultados.Items[0].Selected = true;
-                resultados.Show();
 
                 reader.Close();
-                sqlConnection.Close();
             }
             catch (Exception se)
             {
                 MessageBox.Show(se.Message, "Generar Reserva");
             }
-            
+
+            sqlConnection.Close();
+        }
+
+        private void resultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                if (validar())
+                {
+                    ListadoCliente listadoCliente = new ListadoCliente();
+                    DialogResult dr = listadoCliente.ShowDialog();
+
+                    if (dr == DialogResult.OK)
+                    {
+                        reservar2(listadoCliente.idCliente, e.RowIndex);
+                        Close();
+                    }
+                }
+            }
         }
     }
 }

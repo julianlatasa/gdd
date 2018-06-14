@@ -27,39 +27,21 @@ namespace FrbaHotel.RegistrarEstadia
             obtenerHabitaciones();
         }
 
-        private void resultados_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (resultados.SelectedItems.Count > 0)
-            {
-                ListadoCliente listadoCliente = new ListadoCliente();
-                listadoCliente.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
-                { Show(); };
-                DialogResult dr = listadoCliente.ShowDialog();
-                Hide();
-
-                if (dr == DialogResult.OK)
-                {
-                    if(crearEstadia(listadoCliente.idCliente))
-                        Close();
-                }
-            }
-        }
-
         private void limpiar_Click(object sender, EventArgs e)
         {
             codReserva.Clear();
         }
 
-        private bool crearEstadia(int idCliente)
+        private bool crearEstadia(int idCliente, int index)
         {
             bool resultado = false;
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "ESTADIA_Crear";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].ESTADIA_Crear";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
-            cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = habitaciones[resultados.SelectedItems[0].Index].numero;
+            cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = habitaciones[index].numero;
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idCliente;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = Int32.Parse(codReserva.Text);
             cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
@@ -71,6 +53,7 @@ namespace FrbaHotel.RegistrarEstadia
             {
                 cmd.ExecuteNonQuery();
                 resultado = true;
+                MessageBox.Show("Estadía registrada con éxito", "Registrar Estadía");
             }
             catch (Exception se)
             {
@@ -84,14 +67,14 @@ namespace FrbaHotel.RegistrarEstadia
         private void obtenerHabitaciones()
         {
             habitaciones.Clear();
-            resultados.Items.Clear();
+            resultados.Rows.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "ESTADIA_Buscar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].ESTADIA_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = codReserva.Text;
+            cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = Int32.Parse(codReserva.Text);
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -102,31 +85,31 @@ namespace FrbaHotel.RegistrarEstadia
             {
                 while (reader.Read())
                 {
-                    //habitaciones.Add(new Habitacion(reader));
-
                     Habitacion habitacion = new Habitacion(reader);
                     habitaciones.Add(habitacion);
-                    //resultados.Items.Add(habitacion.numero.ToString()).SubItems.Add(habitacion.piso.ToString());
-                    resultados.Items.Add(reader.GetInt32(1).ToString()).SubItems.Add(reader.GetInt32(2).ToString());
-                    resultados.Show();
+                    string[] cols = { habitacion.numero.ToString(), habitacion.piso.ToString(), "Seleccionar" };
+                    resultados.Rows.Add(cols);
                 }
             }
-           /* habitaciones.ForEach(h =>
-            {
-                resultados.Items.Add(h.numero.ToString()).SubItems.Add(h.piso.ToString());
-            });
-            this.ResumeLayout();*/
             reader.Close();
             sqlConnection.Close();
         }
 
-
-        private void resultados_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void resultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //throw new System.NotImplementedException();
-        }
+            var senderGrid = (DataGridView)sender;
 
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                ListadoCliente listadoCliente = new ListadoCliente();
+                DialogResult dr = listadoCliente.ShowDialog();
 
-       
+                if (dr == DialogResult.OK)
+                {
+                    if (crearEstadia(listadoCliente.idCliente, e.RowIndex))
+                        Close();
+                }
+            }
+        }       
     }
 }

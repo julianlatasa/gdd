@@ -20,23 +20,13 @@ namespace FrbaHotel.GenerarReserva
         public ListadoCliente()
         {
             InitializeComponent();
-        }
 
-        private void ListadoCliente_Load(object sender, EventArgs e)
-        {
             obtenerTiposDocumentos();
         }
 
         private void buscar_Click(object sender, EventArgs e)
         {
             obtenerClientes();
-        }
-
-        private void resultados_MouseClick(object sender, MouseEventArgs e)
-        {
-            idCliente = clientes[resultados.SelectedItems[0].Index].id;
-            DialogResult = DialogResult.OK;
-            Close();
         }
 
         private void nuevo_Click(object sender, EventArgs e)
@@ -56,6 +46,7 @@ namespace FrbaHotel.GenerarReserva
         {
             nombre.Clear();
             apellido.Clear();
+            tipoIdentificacion.SelectedIndex = 0;
             nroIdentificacion.Clear();
             email.Clear();
         }
@@ -66,7 +57,7 @@ namespace FrbaHotel.GenerarReserva
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM TIPO_DOCUMENTO";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].TIPO_DOCUMENTO";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -81,6 +72,7 @@ namespace FrbaHotel.GenerarReserva
                     tipoIdentificacion.Items.Add(new TipoDocumento(reader));
                 }
             }
+            tipoIdentificacion.SelectedIndex = 0;
 
             reader.Close();
             sqlConnection.Close();
@@ -89,24 +81,23 @@ namespace FrbaHotel.GenerarReserva
         private void obtenerClientes()
         {
             clientes.Clear();
-            resultados.Items.Clear();
+            resultados.Rows.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].CLIENTE_Buscar";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
+            cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
+            cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento)tipoIdentificacion.SelectedItem).id;
+            cmd.Parameters.Add("@nroDocumento", SqlDbType.Text).Value = nroIdentificacion.Text;
+            cmd.Parameters.Add("@email", SqlDbType.Text).Value = email.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
             try
             {
-
-                cmd.CommandText = "CLIENTE_Buscar";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
-                cmd.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido.Text;
-                cmd.Parameters.Add("@tipoDocumento", SqlDbType.Int).Value = ((TipoDocumento)tipoIdentificacion.SelectedItem).id;
-                cmd.Parameters.Add("@nroDocumento", SqlDbType.Text).Value = nroIdentificacion.Text;
-                cmd.Parameters.Add("@email", SqlDbType.Text).Value = email.Text;
-                cmd.Connection = sqlConnection;
-
-                sqlConnection.Open();
-
                 reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -118,16 +109,28 @@ namespace FrbaHotel.GenerarReserva
                 }
                 clientes.ForEach(c =>
                 {
-                    string[] cols = { c.apellido, c.nombre };
-                    resultados.Items.Add(c.numeroDocumento).SubItems.AddRange(cols);
+                    string[] cols = { c.numeroDocumento, c.apellido, c.nombre, "Seleccionar" };
+                    resultados.Rows.Add(cols);
                 });
+
                 reader.Close();
                 sqlConnection.Close();
             }
-
             catch (Exception se)
             {
                 MessageBox.Show(se.Message, "Busqueda de Cliente");
+            }
+        }
+
+        private void resultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                idCliente = clientes[e.RowIndex].id;
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
     }

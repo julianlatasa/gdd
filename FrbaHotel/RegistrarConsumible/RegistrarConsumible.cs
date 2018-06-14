@@ -42,7 +42,7 @@ namespace FrbaHotel.RegistrarConsumible
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM CONSUMIBLE";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].CONSUMIBLE";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -71,7 +71,7 @@ namespace FrbaHotel.RegistrarConsumible
                 SqlConnection sqlConnection = Conexion.getSqlConnection();
                 SqlCommand cmd = new SqlCommand();
 
-                cmd.CommandText = "CONSUMIBLE_Crear";
+                cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].CONSUMIBLE_Crear";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = Int32.Parse(codReserva.Text);
                 cmd.Parameters.Add("@idConsumible", SqlDbType.Int).Value = ((Consumible)consumible.SelectedItem).id;

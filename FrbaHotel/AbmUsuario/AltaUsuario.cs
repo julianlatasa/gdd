@@ -107,7 +107,7 @@ namespace FrbaHotel.AbmUsuario
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM HOTEL";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].HOTEL";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -132,7 +132,7 @@ namespace FrbaHotel.AbmUsuario
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM ROL WHERE rol_habilitado = 1";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].ROL WHERE rol_habilitado = 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -156,7 +156,7 @@ namespace FrbaHotel.AbmUsuario
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "USUARIO_Crear";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].USUARIO_Crear";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
             cmd.Parameters.Add("@contrasena", SqlDbType.VarChar).Value = contrasena.Text;
@@ -197,7 +197,7 @@ namespace FrbaHotel.AbmUsuario
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "USUARIO_Asignar_Hotel";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].USUARIO_Asignar_Hotel";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = idHotel;
@@ -215,7 +215,7 @@ namespace FrbaHotel.AbmUsuario
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "USUARIO_Asignar_Rol";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].USUARIO_Asignar_Rol";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
             cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = idRol;
@@ -234,7 +234,7 @@ namespace FrbaHotel.AbmUsuario
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM TIPO_DOCUMENTO";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].TIPO_DOCUMENTO";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 

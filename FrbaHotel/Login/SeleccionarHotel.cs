@@ -38,7 +38,7 @@ namespace FrbaHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT h.hote_nombre, h.hote_id FROM HOTEL h JOIN USUARIO_HOTEL uh ON h.hote_id = uh.hote_id AND uh.usua_usuario = '" + Conexion.usuario + "'";
+            cmd.CommandText = "SELECT h.hote_nombre, h.hote_id FROM [DON_GATO_Y_SU_PANDILLA].HOTEL h JOIN [DON_GATO_Y_SU_PANDILLA].USUARIO_HOTEL uh ON h.hote_id = uh.hote_id AND uh.usua_usuario = '" + Conexion.usuario + "'";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -68,7 +68,7 @@ namespace FrbaHotel
                 SqlConnection sqlConnection = Conexion.getSqlConnection();
                 SqlCommand cmd = new SqlCommand();
 
-                cmd.CommandText = "USUARIO_Asignar_Hotel_Activo";
+                cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].USUARIO_Asignar_Hotel_Activo";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = Conexion.usuario;
                 cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = idHotel;

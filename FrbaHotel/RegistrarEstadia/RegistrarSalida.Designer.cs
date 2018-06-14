@@ -58,7 +58,7 @@
             this.nroHabitacion.Mask = "99999999";
             this.nroHabitacion.Name = "nroHabitacion";
             this.nroHabitacion.Size = new System.Drawing.Size(114, 20);
-            this.nroHabitacion.TabIndex = 11;
+            this.nroHabitacion.TabIndex = 2;
             // 
             // label2
             // 
@@ -75,7 +75,7 @@
             this.codReserva.Mask = "99999999";
             this.codReserva.Name = "codReserva";
             this.codReserva.Size = new System.Drawing.Size(114, 20);
-            this.codReserva.TabIndex = 11;
+            this.codReserva.TabIndex = 1;
             // 
             // label1
             // 
@@ -91,7 +91,7 @@
             this.checkOut.Location = new System.Drawing.Point(160, 93);
             this.checkOut.Name = "checkOut";
             this.checkOut.Size = new System.Drawing.Size(75, 23);
-            this.checkOut.TabIndex = 1;
+            this.checkOut.TabIndex = 4;
             this.checkOut.Text = "Check-out";
             this.checkOut.UseVisualStyleBackColor = true;
             this.checkOut.Click += new System.EventHandler(this.checkOut_Click);
@@ -101,7 +101,7 @@
             this.limpiar.Location = new System.Drawing.Point(13, 93);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 1;
+            this.limpiar.TabIndex = 3;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);

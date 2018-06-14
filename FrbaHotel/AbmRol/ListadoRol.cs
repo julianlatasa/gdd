@@ -43,22 +43,15 @@ namespace FrbaHotel.AbmRol
             buscarRoles();
         }
 
-        private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            ModificarRol modificarRol = new ModificarRol(roles[resultados.SelectedItems[0].Index]);
-            modificarRol.ShowDialog();
-            buscarRoles();
-        }
-
         private void buscarRoles()
         {
-            resultados.Items.Clear();
+            resultados.Rows.Clear();
             roles.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "ROL_Buscar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].ROL_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@nombreRol", SqlDbType.VarChar).Value = nombre.Text;
             cmd.Connection = sqlConnection;
@@ -74,10 +67,25 @@ namespace FrbaHotel.AbmRol
                     roles.Add(new Rol(reader));
                 }
             }
-            roles.ForEach(r => { resultados.Items.Add(r.nombre); });
+            roles.ForEach(r => {
+                string[] cols = { r.nombre, "Seleccionar" };
+                resultados.Rows.Add(cols); 
+            });
             
             reader.Close();
             sqlConnection.Close();
+        }
+
+        private void resultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                ModificarRol modificarRol = new ModificarRol(roles[e.RowIndex]);
+                modificarRol.ShowDialog();
+                buscarRoles();
+            }
         }
 
     }

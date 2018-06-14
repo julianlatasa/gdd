@@ -57,7 +57,7 @@ namespace FrbaHotel.Login
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "USUARIO_Login";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].USUARIO_Login";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.Text;
             cmd.Parameters.Add("@contrasena", SqlDbType.VarChar).Value = contrasena.Text;

@@ -46,22 +46,15 @@ namespace FrbaHotel.AbmHotel
             obtenerHoteles();
         }
 
-        private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            ModificarHotel modificarHotel = new ModificarHotel(hoteles[resultados.SelectedItems[0].Index]);
-            modificarHotel.ShowDialog();
-            obtenerHoteles();
-        }
-
         private void obtenerHoteles()
         {
             hoteles.Clear();
-            resultados.Items.Clear();
+            resultados.Rows.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "HOTEL_Buscar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].HOTEL_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
             if (pais.SelectedIndex > 0)
@@ -85,10 +78,10 @@ namespace FrbaHotel.AbmHotel
             }
             hoteles.ForEach(h =>
             {
-                string[] cols = { h.estrellas.ToString(), 
+                string[] cols = { h.nombre, h.estrellas.ToString(), 
                                     ciudad.Items.Cast<Ciudad>().ToList().First(c => c.id == h.ciudad).nombre, 
-                                    pais.Items.Cast<Pais>().ToList().First(p => p.id == h.pais).nombre };
-                resultados.Items.Add(h.nombre).SubItems.AddRange(cols);
+                                    pais.Items.Cast<Pais>().ToList().First(p => p.id == h.pais).nombre, "Seleccionar" };
+                resultados.Rows.Add(cols);
             });
 
             reader.Close();
@@ -102,7 +95,7 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM CIUDAD";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].CIUDAD";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -129,7 +122,7 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM PAIS";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].PAIS";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -156,7 +149,7 @@ namespace FrbaHotel.AbmHotel
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM ESTRELLAS";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].ESTRELLAS";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -174,6 +167,18 @@ namespace FrbaHotel.AbmHotel
 
             reader.Close();
             sqlConnection.Close();
+        }
+
+        private void resultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                ModificarHotel modificarHotel = new ModificarHotel(hoteles[e.RowIndex]);
+                modificarHotel.ShowDialog();
+                obtenerHoteles();
+            }
         }
     }
 }

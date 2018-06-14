@@ -15,7 +15,7 @@ namespace FrbaHotel.RegistrarEstadia
 {
     public partial class RegistrarSalida : Form
     {
-        int idClienteReserva;
+        int idClienteReserva, idCliente;
 
         public RegistrarSalida()
         {
@@ -24,18 +24,12 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void checkOut_Click(object sender, EventArgs e)
         {
-            ListadoCliente listadoCliente = new ListadoCliente();
-            DialogResult dr = listadoCliente.ShowDialog();
-
-            if (dr == DialogResult.OK)
+            if (checkOut2())
             {
-                if (checkOut2(listadoCliente.idCliente))
+                if (idCliente == idClienteReserva)
                 {
-                    if (listadoCliente.idCliente == idClienteReserva)
-                    {
-                        generarFacturacion();
-                        Close();
-                    }
+                    generarFacturacion();
+                    Close();
                 }
             }
         }
@@ -43,10 +37,7 @@ namespace FrbaHotel.RegistrarEstadia
         private void generarFacturacion()
         {
             ElegirFormaDePago elegirFormaDePago = new ElegirFormaDePago(Int32.Parse(codReserva.Text), idClienteReserva);
-            elegirFormaDePago.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
-            { Close(); };
-            elegirFormaDePago.Show();
-            Hide();
+            elegirFormaDePago.ShowDialog();
         }
 
         private void limpiar_Click(object sender, EventArgs e)
@@ -55,20 +46,19 @@ namespace FrbaHotel.RegistrarEstadia
             nroHabitacion.Clear();
         }
 
-        private bool checkOut2(int idCliente)
+        private bool checkOut2()
         {
             bool resultado = false;
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "ESTADIA_Checkout";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].ESTADIA_Checkout";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
             cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = Int32.Parse(nroHabitacion.Text);
-            cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idCliente;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = Int32.Parse(codReserva.Text);
-            cmd.Parameters.Add("@idUsuario", SqlDbType.Char).Value = Conexion.usuario;
+            cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();
@@ -79,7 +69,9 @@ namespace FrbaHotel.RegistrarEstadia
                 reader.Read();
 
                 idClienteReserva = reader.GetInt32(0);
+                idCliente = reader.GetInt32(1);
                 resultado = true;
+                MessageBox.Show("Salida registrada con éxito.", "Registrar Salida");
             }
             catch (Exception se)
             {

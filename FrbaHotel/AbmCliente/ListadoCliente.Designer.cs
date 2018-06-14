@@ -42,12 +42,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
-            this.resultados = new System.Windows.Forms.ListView();
             this.nuevo = new System.Windows.Forms.Button();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.resultados = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.resultados)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -171,25 +173,9 @@
             this.buscar.UseVisualStyleBackColor = true;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
-            // resultados
-            // 
-            this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.resultados.Location = new System.Drawing.Point(13, 202);
-            this.resultados.MultiSelect = false;
-            this.resultados.Name = "resultados";
-            this.resultados.Size = new System.Drawing.Size(223, 154);
-            this.resultados.TabIndex = 2;
-            this.resultados.View = System.Windows.Forms.View.Details;
-            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.resultados.UseCompatibleStateImageBehavior = false;
-            this.resultados.MouseClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseClick);
-            // 
             // nuevo
             // 
-            this.nuevo.Location = new System.Drawing.Point(161, 362);
+            this.nuevo.Location = new System.Drawing.Point(383, 362);
             this.nuevo.Name = "nuevo";
             this.nuevo.Size = new System.Drawing.Size(75, 23);
             this.nuevo.TabIndex = 1;
@@ -197,28 +183,65 @@
             this.nuevo.UseVisualStyleBackColor = true;
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
-            // columnHeader1
+            // resultados
             // 
-            this.columnHeader1.Text = "Documento";
+            this.resultados.AllowUserToAddRows = false;
+            this.resultados.AllowUserToDeleteRows = false;
+            this.resultados.AllowUserToResizeRows = false;
+            this.resultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.resultados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            this.resultados.Location = new System.Drawing.Point(12, 206);
+            this.resultados.MultiSelect = false;
+            this.resultados.Name = "resultados";
+            this.resultados.ReadOnly = true;
+            this.resultados.Size = new System.Drawing.Size(446, 150);
+            this.resultados.TabIndex = 3;
+            this.resultados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.resultados_CellContentClick);
             // 
-            // columnHeader2
+            // Column1
             // 
-            this.columnHeader2.Text = "Apellido";
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "Documento";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
-            // columnHeader3
+            // Column2
             // 
-            this.columnHeader3.Text = "Nombre";
+            this.Column2.Frozen = true;
+            this.Column2.HeaderText = "Apellido";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.Frozen = true;
+            this.Column3.HeaderText = "Nombre";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.Frozen = true;
+            this.Column4.HeaderText = "";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Text = "Seleccionar";
             // 
             // ListadoCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 390);
+            this.ClientSize = new System.Drawing.Size(466, 390);
             this.Controls.Add(this.resultados);
             this.Controls.Add(this.nuevo);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -230,6 +253,7 @@
             this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.resultados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -241,7 +265,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
-        private System.Windows.Forms.ListView resultados;
         private System.Windows.Forms.ComboBox tipoIdentificacion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox apellido;
@@ -251,9 +274,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox nroIdentificacion;
         private System.Windows.Forms.Button nuevo;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.DataGridView resultados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewButtonColumn Column4;
 
 
     }

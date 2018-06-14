@@ -14,6 +14,8 @@ namespace FrbaHotel.Objetos
         public bool habilitado { get; set; }
         public float precioBase { get; set; }
 
+        public Regimen() { descripcion = "";  }
+
         public Regimen(SqlDataReader reader)
         {
             this.id = reader.GetInt32(reader.GetOrdinal("regi_id"));

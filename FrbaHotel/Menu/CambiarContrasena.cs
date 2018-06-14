@@ -56,7 +56,7 @@ namespace FrbaHotel
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "USUARIO_Cambiar_Contrasena";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].USUARIO_Cambiar_Contrasena";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@usuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Parameters.Add("@contrasena", SqlDbType.VarChar).Value = contrasena.Text;

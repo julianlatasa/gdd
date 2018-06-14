@@ -16,5 +16,10 @@ namespace FrbaHotel.AbmRegimen
         {
             InitializeComponent();
         }
+
+        private void resultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

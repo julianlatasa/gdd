@@ -139,7 +139,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facturación Estadía";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.FacturarEstadia_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

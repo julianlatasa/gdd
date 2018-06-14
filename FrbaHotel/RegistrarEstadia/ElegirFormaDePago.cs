@@ -21,10 +21,7 @@ namespace FrbaHotel.RegistrarEstadia
             this.codReserva = codReserva;
             this.idCliente = idCliente;
             InitializeComponent();
-        }        
 
-        private void ElegirFormaDePago_Load(object sender, EventArgs e)
-        {
             obtenerFormasDePago();
         }
 
@@ -35,8 +32,7 @@ namespace FrbaHotel.RegistrarEstadia
                 FacturarEstadia facturarEstadia = new FacturarEstadia(codReserva, idCliente, ((FormaDePago) formaDePago.SelectedItem).id);
                 facturarEstadia.FormClosed += delegate(System.Object o, System.Windows.Forms.FormClosedEventArgs ee)
                 { Close(); };
-                facturarEstadia.Show();
-                Hide();
+                facturarEstadia.ShowDialog();
             }
         }
 
@@ -46,7 +42,7 @@ namespace FrbaHotel.RegistrarEstadia
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM FORMA_PAGO";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].FORMA_PAGO";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 

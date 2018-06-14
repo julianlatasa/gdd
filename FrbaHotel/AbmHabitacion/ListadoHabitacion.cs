@@ -29,21 +29,15 @@ namespace FrbaHotel.AbmHabitacion
             buscarHabitaciones();
         }
 
-        private void resultados_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            (new ModificarHabitacion(habitaciones[resultados.SelectedItems[0].Index])).ShowDialog();
-            buscarHabitaciones();
-        }
-
         private void buscarHabitaciones()
         {
-            resultados.Items.Clear();
+            resultados.Rows.Clear();
             habitaciones.Clear();
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "HABITACION_Buscar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].HABITACION_Buscar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
             cmd.Connection = sqlConnection;
@@ -61,11 +55,23 @@ namespace FrbaHotel.AbmHabitacion
             }
             habitaciones.ForEach(h =>
             {
-                resultados.Items.Add(h.numero.ToString()).SubItems.Add(h.piso.ToString());
+                string[] cols = { h.numero.ToString(), h.piso.ToString(), "Seleccionar" };
+                resultados.Rows.Add(cols);
             });
 
             reader.Close();
             sqlConnection.Close();
+        }
+
+        private void resultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                (new ModificarHabitacion(habitaciones[e.RowIndex])).ShowDialog();
+                buscarHabitaciones();
+            }
         }
     }
 }

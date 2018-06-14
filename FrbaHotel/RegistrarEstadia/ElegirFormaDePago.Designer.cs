@@ -39,7 +39,7 @@
             this.seleccionar.Location = new System.Drawing.Point(128, 39);
             this.seleccionar.Name = "seleccionar";
             this.seleccionar.Size = new System.Drawing.Size(108, 23);
-            this.seleccionar.TabIndex = 5;
+            this.seleccionar.TabIndex = 2;
             this.seleccionar.Text = "Seleccionar";
             this.seleccionar.UseVisualStyleBackColor = true;
             this.seleccionar.Click += new System.EventHandler(this.seleccionar_Click);
@@ -59,7 +59,7 @@
             this.formaDePago.Location = new System.Drawing.Point(97, 11);
             this.formaDePago.Name = "formaDePago";
             this.formaDePago.Size = new System.Drawing.Size(138, 21);
-            this.formaDePago.TabIndex = 7;
+            this.formaDePago.TabIndex = 1;
             // 
             // ElegirFormaDePago
             // 
@@ -78,7 +78,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Elegir Forma de Pago";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ElegirFormaDePago_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

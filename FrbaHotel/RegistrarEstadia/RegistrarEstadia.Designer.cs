@@ -34,11 +34,13 @@
             this.codReserva = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.limpiar = new System.Windows.Forms.Button();
-            this.resultados = new System.Windows.Forms.ListView();
-            this.Numero = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Piso = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buscar = new System.Windows.Forms.Button();
+            this.resultados = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.resultados)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -58,7 +60,7 @@
             this.codReserva.Mask = "99999999";
             this.codReserva.Name = "codReserva";
             this.codReserva.Size = new System.Drawing.Size(114, 20);
-            this.codReserva.TabIndex = 11;
+            this.codReserva.TabIndex = 1;
             // 
             // label1
             // 
@@ -74,51 +76,66 @@
             this.limpiar.Location = new System.Drawing.Point(13, 66);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(75, 23);
-            this.limpiar.TabIndex = 1;
+            this.limpiar.TabIndex = 2;
             this.limpiar.Text = "Limpiar";
             this.limpiar.UseVisualStyleBackColor = true;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
-            // 
-            // resultados
-            // 
-            this.resultados.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Numero,
-            this.Piso});
-            this.resultados.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.resultados.Location = new System.Drawing.Point(13, 95);
-            this.resultados.MultiSelect = false;
-            this.resultados.Name = "resultados";
-            this.resultados.Size = new System.Drawing.Size(223, 154);
-            this.resultados.TabIndex = 2;
-            this.resultados.UseCompatibleStateImageBehavior = false;
-            this.resultados.View = System.Windows.Forms.View.Details;
-            this.resultados.SelectedIndexChanged += new System.EventHandler(this.resultados_SelectedIndexChanged);
-            this.resultados.MouseClick += new System.Windows.Forms.MouseEventHandler(this.resultados_MouseClick);
-            // 
-            // Numero
-            // 
-            this.Numero.Text = "Número";
-            this.Numero.Width = 85;
-            // 
-            // Piso
-            // 
-            this.Piso.Text = "Piso";
             // 
             // buscar
             // 
             this.buscar.Location = new System.Drawing.Point(161, 66);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(75, 23);
-            this.buscar.TabIndex = 1;
+            this.buscar.TabIndex = 3;
             this.buscar.Text = "Buscar";
             this.buscar.UseVisualStyleBackColor = true;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
+            // 
+            // resultados
+            // 
+            this.resultados.AllowUserToAddRows = false;
+            this.resultados.AllowUserToDeleteRows = false;
+            this.resultados.AllowUserToResizeRows = false;
+            this.resultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.resultados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column4});
+            this.resultados.Location = new System.Drawing.Point(13, 98);
+            this.resultados.MultiSelect = false;
+            this.resultados.Name = "resultados";
+            this.resultados.ReadOnly = true;
+            this.resultados.Size = new System.Drawing.Size(345, 150);
+            this.resultados.TabIndex = 8;
+            this.resultados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.resultados_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "Número";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.Frozen = true;
+            this.Column2.HeaderText = "Piso";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.Frozen = true;
+            this.Column4.HeaderText = "";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Text = "Seleccionar";
             // 
             // RegistrarEstadia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 260);
+            this.ClientSize = new System.Drawing.Size(366, 260);
             this.Controls.Add(this.resultados);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.limpiar);
@@ -134,6 +151,7 @@
             this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.resultados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -145,10 +163,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
-        private System.Windows.Forms.ListView resultados;
         private System.Windows.Forms.MaskedTextBox codReserva;
-        private System.Windows.Forms.ColumnHeader Numero;
-        private System.Windows.Forms.ColumnHeader Piso;
+        private System.Windows.Forms.DataGridView resultados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewButtonColumn Column4;
 
 
     }

@@ -94,7 +94,7 @@ namespace FrbaHotel.AbmCliente
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "CLIENTE_Modificar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].CLIENTE_Modificar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = cliente.id;
             cmd.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre.Text;
@@ -135,7 +135,7 @@ namespace FrbaHotel.AbmCliente
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM TIPO_DOCUMENTO";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].TIPO_DOCUMENTO";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -162,7 +162,7 @@ namespace FrbaHotel.AbmCliente
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM PAIS";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].PAIS";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 

@@ -62,7 +62,7 @@ namespace FrbaHotel.AbmHotel
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "HOTEL_Asignar_Baja_Temporal";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].HOTEL_Asignar_Baja_Temporal";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = hotel.id;
             cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = descripcion.Text;

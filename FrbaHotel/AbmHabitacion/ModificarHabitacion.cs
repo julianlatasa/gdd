@@ -90,7 +90,7 @@ namespace FrbaHotel.AbmHabitacion
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM HABITACION_COMODIDAD WHERE habi_hotel = " + Conexion.hotel + " AND habi_numero = " + habitacion.numero;
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].HABITACION_COMODIDAD WHERE habi_hotel = " + Conexion.hotel + " AND habi_numero = " + habitacion.numero;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -118,7 +118,7 @@ namespace FrbaHotel.AbmHabitacion
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM TIPO_HABITACION";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].TIPO_HABITACION";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -144,7 +144,7 @@ namespace FrbaHotel.AbmHabitacion
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM COMODIDAD";
+            cmd.CommandText = "SELECT * FROM [DON_GATO_Y_SU_PANDILLA].COMODIDAD";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = sqlConnection;
 
@@ -170,7 +170,7 @@ namespace FrbaHotel.AbmHabitacion
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "HABITACION_Modificar";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].HABITACION_Modificar";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
             cmd.Parameters.Add("@nroHabitacion", SqlDbType.VarChar).Value = nroHabitacion.Text;
@@ -192,7 +192,7 @@ namespace FrbaHotel.AbmHabitacion
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "HABITACION_Asignar_Comodidad";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].HABITACION_Asignar_Comodidad";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
             cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = nroHabitacion.Text;
@@ -211,7 +211,7 @@ namespace FrbaHotel.AbmHabitacion
             SqlConnection sqlConnection = Conexion.getSqlConnection();
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "HABITACION_Eliminar_Comodidad";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].HABITACION_Eliminar_Comodidad";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idHotel", SqlDbType.Int).Value = Conexion.hotel;
             cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = nroHabitacion.Text;

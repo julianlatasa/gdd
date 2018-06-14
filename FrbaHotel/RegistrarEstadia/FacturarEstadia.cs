@@ -22,10 +22,7 @@ namespace FrbaHotel.RegistrarEstadia
             this.idCliente = idCliente;
             this.formaDePago = formaDePago;
             InitializeComponent();
-        }        
 
-        private void FacturarEstadia_Load(object sender, EventArgs e)
-        {
             facturarEstadia();
         }
 
@@ -35,10 +32,10 @@ namespace FrbaHotel.RegistrarEstadia
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "FACTURACION_Crear";
+            cmd.CommandText = "[DON_GATO_Y_SU_PANDILLA].FACTURACION_Crear";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = codReserva;
-            cmd.Parameters.Add("@formaDePago", SqlDbType.Int).Value = formaDePago;
+            cmd.Parameters.Add("@formaPago", SqlDbType.Int).Value = formaDePago;
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idCliente;
             cmd.Connection = sqlConnection;
 
