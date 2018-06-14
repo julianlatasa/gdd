@@ -20,10 +20,7 @@ namespace FrbaHotel.AbmCliente
         {
             this.cliente = cliente;
             InitializeComponent();
-        }
 
-        private void AltaCliente_Load(object sender, EventArgs e)
-        {
             obtenerPaises();
             obtenerTipoDocumento();
 
@@ -53,7 +50,7 @@ namespace FrbaHotel.AbmCliente
 
         private Boolean validar()
         {
-            Control[] controles = { nombre, apellido, tipoDocumento, documento, email, direccion, altura, pais };
+            Control[] controles = { nombre, apellido, documento, email, direccion, altura, departamento, localidad, pais };
 
             Boolean esValido = true;
             String errores = "";
@@ -153,6 +150,7 @@ namespace FrbaHotel.AbmCliente
                     tipoDocumento.Items.Add(new TipoDocumento(reader));
                 }
             }
+            tipoDocumento.SelectedIndex = 0;
 
             reader.Close();
             sqlConnection.Close();
@@ -180,6 +178,8 @@ namespace FrbaHotel.AbmCliente
                     pais.Items.Add(new Pais(reader));
                 }
             }
+            nacionalidad.SelectedIndex = 0;
+            pais.SelectedIndex = 0;
 
             reader.Close();
             sqlConnection.Close();

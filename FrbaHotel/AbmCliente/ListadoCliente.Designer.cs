@@ -228,7 +228,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado Cliente";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.ListadoCliente_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

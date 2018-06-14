@@ -104,11 +104,11 @@ namespace FrbaHotel.GenerarReserva
                 cmd.Parameters.Add("@nroDocumento", SqlDbType.Text).Value = nroIdentificacion.Text;
                 cmd.Parameters.Add("@email", SqlDbType.Text).Value = email.Text;
                 cmd.Connection = sqlConnection;
-            
+
                 sqlConnection.Open();
 
-               reader = cmd.ExecuteReader();
-                    
+                reader = cmd.ExecuteReader();
+
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -124,10 +124,10 @@ namespace FrbaHotel.GenerarReserva
                 reader.Close();
                 sqlConnection.Close();
             }
-            
+
             catch (Exception se)
             {
-                MessageBox.Show("Faltan datos para realizar la busqueda", "Busqueda de Cliente");
+                MessageBox.Show(se.Message, "Busqueda de Cliente");
             }
         }
     }
