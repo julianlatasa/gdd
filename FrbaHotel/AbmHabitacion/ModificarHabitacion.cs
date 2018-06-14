@@ -47,6 +47,11 @@ namespace FrbaHotel.AbmHabitacion
                     asignarComodidad(c.id);
                 });
 
+                comodidadesMarcadas.Where(r => !comodidades.CheckedItems.Cast<Comodidad>().Any(r2 => r2.id == r)).ToList().ForEach(r =>
+                {
+                    eliminarComodidad(r);
+                });
+
                 Close();
             }
         }

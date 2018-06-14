@@ -26,8 +26,8 @@ namespace FrbaHotel.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLEXPRESS;Initial Catalog=GD1C2018;Persist Security Info=T" +
-            "rue;User ID=gdHotel2018;Password=gd2018")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Inf" +
+            "o=True;User ID=gdHotel2018;Password=gd2018")]
         public string Conection {
             get {
                 return ((string)(this["Conection"]));
