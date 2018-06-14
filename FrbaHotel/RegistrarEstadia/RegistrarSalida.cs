@@ -24,7 +24,15 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void checkOut_Click(object sender, EventArgs e)
         {
+            SqlConnection sqlConnection = Conexion.getSqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            
             ListadoCliente listadoCliente = new ListadoCliente();
+
+            //listadoCliente.clie
+
             DialogResult dr = listadoCliente.ShowDialog();
 
             if (dr == DialogResult.OK)
@@ -68,7 +76,7 @@ namespace FrbaHotel.RegistrarEstadia
             cmd.Parameters.Add("@nroHabitacion", SqlDbType.Int).Value = Int32.Parse(nroHabitacion.Text);
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idCliente;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = Int32.Parse(codReserva.Text);
-            cmd.Parameters.Add("@idUsuario", SqlDbType.Char).Value = Conexion.usuario;
+            cmd.Parameters.Add("@idUsuario", SqlDbType.VarChar).Value = Conexion.usuario;
             cmd.Connection = sqlConnection;
 
             sqlConnection.Open();

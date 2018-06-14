@@ -38,7 +38,7 @@ namespace FrbaHotel.RegistrarEstadia
             cmd.CommandText = "FACTURACION_Crear";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@idReserva", SqlDbType.Int).Value = codReserva;
-            cmd.Parameters.Add("@formaDePago", SqlDbType.Int).Value = formaDePago;
+            cmd.Parameters.Add("@formaPago", SqlDbType.Int).Value = formaDePago;
             cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idCliente;
             cmd.Connection = sqlConnection;
 
