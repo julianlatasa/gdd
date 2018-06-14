@@ -232,8 +232,8 @@ CREATE TABLE ESTADIA (
 	esta_reserva int NOT NULL FOREIGN KEY REFERENCES RESERVA(rese_id),
 	esta_checkin smalldatetime NOT NULL,
 	esta_checkout smalldatetime,
-    esta_usua_checkin INT,
-    esta_usua_checkout INT,
+    esta_usua_checkin CHAR(50),
+    esta_usua_checkout CHAR(50),
 	esta_duracion int,
 	FOREIGN KEY (esta_hotel, esta_habitacion) REFERENCES HABITACION(habi_hotel, habi_numero)
 	)

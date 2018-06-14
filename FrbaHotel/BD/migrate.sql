@@ -139,7 +139,7 @@ INSERT INTO COMODIDAD (como_descripcion) VALUES ('Toallas limpias'), ('WIFI'), (
 /* El total de la factura no coincide con la suma de los items, pero es un problema que se arrastra de la tabla original */
 SET IDENTITY_INSERT FACTURA ON
 INSERT INTO FACTURA (fact_numero, fact_reserva, fact_forma_pago, fact_fecha, fact_total)
-SELECT Factura_Nro, Reserva_Codigo, 1, Factura_Fecha, Factura_Total
+SELECT DISTINCT Factura_Nro, Reserva_Codigo, 1, Factura_Fecha, Factura_Total
 FROM gd_esquema.Maestra WHERE Consumible_Codigo IS NULL AND Factura_Total IS NOT NULL
 SELECT @max_id=MAX(fact_numero) FROM FACTURA
 DBCC CHECKIDENT ('FACTURA', RESEED, @max_id)
